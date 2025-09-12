@@ -1,121 +1,155 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yenismara Pelayo Garcia - Analista de Datos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f7f7f7;
-            color: #333;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        h2 {
-            color: #2c3e50;
-            margin-top: 2rem;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 2rem;
-        }
-        .profile {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .profile img {
-            width: 140px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-        }
-        .contact a {
-            margin: 0 10px;
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        .card {
-            background: white;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .card a {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: #2980b9;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #2c3e50;
-            color: white;
-            margin-top: 2rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yenismara Pelayo Garcia - Analista de Datos</title>
+  <style>
+    * {box-sizing: border-box; margin: 0; padding: 0;}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg,#2c3e50,#3498db);
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      border-bottom-left-radius: 50% 10%;
+      border-bottom-right-radius: 50% 10%;
+    }
+
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      object-fit: cover;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: .5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: .9;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    h2 {
+      color: #2c3e50;
+      border-left: 5px solid #3498db;
+      padding-left: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .contact a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+    .contact a:hover {color: #2c3e50;}
+
+    .skills, .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <header>
+    <img src="perfil.jpg" alt="Foto de perfil">
     <h1>Yenismara Pelayo Garcia</h1>
     <p>Analista de Datos</p>
-</header>
+    <div class="contact">
+      <a href="https://linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
+      <a href="mailto:ypelayog25@gmail.com">Email</a>
+      <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
+    </div>
+  </header>
 
-<div class="container">
+  <div class="container">
 
-    <section class="profile">
-        <img src="https://via.placeholder.com/140" alt="Foto de perfil">
-        <div class="contact">
-            <a href="https://linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a> |
-            <a href="mailto:ypelayog25@gmail.com">Email</a> |
-            <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
-        </div>
+    <section>
+      <h2>Sobre mí</h2>
+      <p>Soy analista de datos con experiencia en Python, SQL, Power BI y Excel. Me apasiona transformar datos en información valiosa para la toma de decisiones estratégicas.</p>
     </section>
 
     <section>
-        <h2>Sobre mí</h2>
-        <p>Soy analista de datos con conocimientos en Python, SQL, Power BI y Excel. Me apasiona transformar datos en información valiosa para la toma de decisiones.</p>
+      <h2>Habilidades</h2>
+      <div class="skills">
+        <div class="card">Python</div>
+        <div class="card">SQL</div>
+        <div class="card">Power BI</div>
+        <div class="card">Excel Avanzado</div>
+        <div class="card">ETL</div>
+        <div class="card">Machine Learning básico</div>
+      </div>
     </section>
 
     <section>
-        <h2>Proyectos</h2>
-        <div class="projects">
-            <div class="card">
-                <h3>Proyecto 1: Análisis de Ventas</h3>
-                <p>Visualización y análisis de ventas usando el dataset Superstore.</p>
-                <a href="#">Ver proyecto</a>
-            </div>
-            <div class="card">
-                <h3>Proyecto 2: Dashboard de Recursos Humanos</h3>
-                <p>Dashboard interactivo para analizar rotación y desempeño del personal.</p>
-                <a href="#">Ver proyecto</a>
-            </div>
+      <h2>Proyectos</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>📊 Análisis de Ventas</h3>
+          <p>Exploración y visualización de ventas usando el dataset Superstore.</p>
+          <a href="#">Ver proyecto</a>
         </div>
+        <div class="card">
+          <h3>📈 Dashboard de Finanzas</h3>
+          <p>Creación de panel interactivo en Power BI con datos financieros simulados.</p>
+          <a href="#">Ver proyecto</a>
+        </div>
+      </div>
     </section>
 
-</div>
+  </div>
 
-<footer>
-    © 2025 Yenismara Pelayo Garcia
-</footer>
+  <footer>
+    © 2025 Yenismara Pelayo Garcia - Portafolio de Analista de Datos
+  </footer>
 
 </body>
 </html>
