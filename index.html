@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +5,7 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="google-site-verification: googlec39006b09ba8c17f.html" />
-  <title>Portafolio de Yenismara Pelayo García - Analista de Datos</title>
+  <title>Yenismara Pelayo García - Analista de Datos | Python, SQL, Power BI</title>
 
   <!-- SEO básico -->
   <meta name="description" content="Portafolio profesional de Yenismara Pelayo García, Analista de Datos con experiencia en Python, SQL, Power BI, Excel y Machine Learning.">
@@ -14,15 +13,15 @@
   <meta name="author" content="Yenismara Pelayo García">
 
   <!-- Open Graph (para LinkedIn, Facebook) -->
-  <meta property="og:title" content="Portafolio de Yenismara Pelayo García">
+  <meta property="og:title" content="Yenismara Pelayo García - Analista de Datos">
   <meta property="og:description" content="Descubre mis proyectos y habilidades como Analista de Datos.">
   <meta property="og:image" content="https://ypelayog25.github.io/portafolio/perfil.jpg">
   <meta property="og:url" content="https://ypelayog25.github.io/portafolio/">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Portafolio de Yenismara Pelayo García">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yenismara Pelayo García - Analista de Datos">
   <meta name="twitter:description" content="Analista de Datos | Python, SQL, Power BI, Excel.">
   <meta name="twitter:image" content="https://ypelayog25.github.io/portafolio/perfil.jpg">
 
@@ -45,141 +44,666 @@
   </script>
 
   <style>
-    * {box-sizing: border-box; margin: 0; padding: 0;}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #64748b;
+      --accent: #0ea5e9;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+      --border-radius: 12px;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f6f9;
-      color: #333;
-      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(135deg,#2c3e50,#3498db);
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #0ea5e9 100%);
       color: white;
+      padding: 5rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile-image-container {
       text-align: center;
-      padding: 4rem 1rem 3rem;
-      border-bottom-left-radius: 50% 10%;
-      border-bottom-right-radius: 50% 10%;
     }
 
-    header img {
-      width: 140px;
-      height: 140px;
+    .profile-image {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      border: 4px solid white;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border: 6px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
       object-fit: cover;
+      transition: transform 0.3s ease;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: .5rem;
+    .profile-image:hover {
+      transform: scale(1.05);
     }
 
-    header p {
-      font-size: 1.2rem;
-      opacity: .9;
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
     }
 
+    .hero-text .tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      opacity: 0.95;
+    }
+
+    .hero-text .description {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    /* Container */
     .container {
-      max-width: 1000px;
-      margin: 2rem auto;
+      max-width: 1100px;
+      margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    h2 {
-      color: #2c3e50;
-      border-left: 5px solid #3498db;
-      padding-left: .5rem;
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* About Section */
+    .about-content {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      font-size: 1.1rem;
+      line-height: 1.9;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
     }
 
-    .contact {
-      text-align: center;
-      margin-top: 1rem;
+    .skill-card h3 {
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
-    .contact a {
-      display: inline-block;
-      margin: 0 10px;
-      color: #3498db;
-      text-decoration: none;
-      font-weight: bold;
-      transition: .3s;
-    }
-    .contact a:hover {color: #2c3e50;}
 
-    .skills, .projects {
+    .skill-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .skill-level {
+      margin-top: 1rem;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-level-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+      transition: width 1s ease;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-image {
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .project-content {
+      padding: 1.75rem;
+    }
+
+    .project-content h3 {
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .project-content p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      padding: 0.35rem 0.75rem;
+      background: #eff6ff;
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.3s ease;
+    }
+
+    .project-link:hover {
+      gap: 0.75rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
       gap: 1.5rem;
+      flex-wrap: wrap;
       margin-top: 2rem;
     }
 
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform .3s, box-shadow .3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
+    .contact-link:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+    }
+
+    /* Footer */
     footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.8);
       text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      color: #777;
+      padding: 2.5rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero-text .tagline {
+        font-size: 1.25rem;
+      }
+
+      .cta-buttons {
+        justify-content: center;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .profile-image {
+        width: 160px;
+        height: 160px;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .scroll-top:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="perfil.jpg" alt="Foto de perfil de Yenismara Pelayo García">
-    <h1>Yenismara Pelayo García</h1>
-    <p>Analista de Datos</p>
-    <div class="contact">
-      <a href="https://linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
-      <a href="mailto:ypelayog25@gmail.com">Email</a>
-      <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="profile-image-container fade-in">
+        <img src="perfil.jpg" alt="Foto de perfil de Yenismara Pelayo García, Analista de Datos" class="profile-image">
+      </div>
+      <div class="hero-text fade-in">
+        <h1>Yenismara Pelayo García</h1>
+        <p class="tagline">Analista de Datos</p>
+        <p class="description">
+          Transformo datos complejos en insights accionables mediante Python, SQL y visualizaciones avanzadas. 
+          Especializada en ETL, análisis predictivo y dashboards empresariales.
+        </p>
+        <div class="cta-buttons">
+          <a href="#proyectos" class="btn btn-primary">
+            <span>📊</span> Ver Proyectos
+          </a>
+          <a href="#contacto" class="btn btn-secondary">
+            <span>💼</span> Contáctame
+          </a>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
   <div class="container">
 
-    <section>
-      <h2>Sobre mí</h2>
-      <p>Mi nombre es <strong>Yenismara Pelayo García</strong>, analista de datos con experiencia en Python, SQL, Power BI y Excel. Me apasiona transformar datos en información valiosa para la toma de decisiones estratégicas.</p>
-    </section>
-
-    <section>
-      <h2>Habilidades</h2>
-      <div class="skills">
-        <div class="card">Python</div>
-        <div class="card">SQL</div>
-        <div class="card">Power BI</div>
-        <div class="card">Excel Avanzado</div>
-        <div class="card">ETL</div>
-        <div class="card">Machine Learning básico</div>
+    <!-- About Section -->
+    <section id="sobre-mi">
+      <div class="section-header">
+        <h2 class="section-title">Sobre Mí</h2>
+        <p class="section-subtitle">Profesional apasionada por los datos y la toma de decisiones estratégicas</p>
+      </div>
+      <div class="about-content">
+        <p>
+          Soy <strong>Yenismara Pelayo García</strong>, analista de datos con sólida experiencia en el manejo 
+          de herramientas como <strong>Python</strong>, <strong>SQL</strong>, <strong>Power BI</strong> y <strong>Excel Avanzado</strong>. 
+          Mi enfoque está en extraer valor de los datos mediante procesos ETL eficientes, análisis exploratorio profundo 
+          y visualizaciones que facilitan la comprensión de información compleja.
+        </p>
+        <p style="margin-top: 1rem;">
+          Me especializo en convertir datos crudos en insights estratégicos que impulsan decisiones de negocio 
+          fundamentadas. Con conocimientos en Machine Learning y estadística aplicada, ayudo a las organizaciones 
+          a descubrir patrones ocultos y oportunidades de optimización.
+        </p>
       </div>
     </section>
 
-    <section>
-      <h2>Proyectos</h2>
-      <div class="projects">
-        <div class="card">
-          <h3>📊 Análisis de Ventas</h3>
-          <p>Exploración y visualización de ventas usando el dataset Superstore.</p>
-          <a href="#">Ver proyecto</a>
+    <!-- Skills Section -->
+    <section id="habilidades">
+      <div class="section-header">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+        <p class="section-subtitle">Stack tecnológico y competencias profesionales</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🐍</div>
+          <h3>Python</h3>
+          <p>Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn para análisis de datos y Machine Learning.</p>
+          <div class="skill-level">
+            <div class="skill-level-fill" style="width: 90%"></div>
+          </div>
         </div>
-        <div class="card">
-          <h3>📈 Dashboard de Finanzas</h3>
-          <p>Creación de panel interactivo en Power BI con datos financieros simulados.</p>
-          <a href="#">Ver proyecto</a>
+        <div class="skill-card">
+          <div class="skill-icon">🗄️</div>
+          <h3>SQL</h3>
+          <p>Consultas complejas, optimización de queries, modelado de bases de datos relacionales.</p>
+          <div class="skill-level">
+            <div class="skill-level-fill" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📊</div>
+          <h3>Power BI</h3>
+          <p>Creación de dashboards interactivos, DAX, modelado de datos y reporting empresarial.</p>
+          <div class="skill-level">
+            <div class="skill-level-fill" style="width: 88%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📈</div>
+          <h3>Excel Avanzado</h3>
+          <p>Tablas dinámicas, macros, VBA, análisis de datos y modelado financiero.</p>
+          <div class="skill-level">
+            <div class="skill-level-fill" style="width: 92%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔄</div>
+          <h3>ETL & Pipelines</h3>
+          <p>Extracción, transformación y carga de datos. Automatización de procesos de datos.</p>
+          <div class="skill-level">
+            <div class="skill-level-fill" style="width: 80%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <h3>Machine Learning</h3>
+          <p>Modelos predictivos, clasificación, regresión y análisis de series temporales.</p>
+          <div class="skill-level">
+            <div class="skill-level-fill" style="width: 75%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos">
+      <div class="section-header">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <p class="section-subtitle">Casos de uso reales y análisis de datos empresariales</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">📊</div>
+          <div class="project-content">
+            <h3>Análisis de Ventas - Superstore</h3>
+            <p>Exploración y visualización completa del dataset Superstore. Identificación de patrones de compra, 
+            segmentación de clientes y análisis de rentabilidad por producto.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+            <a href="https://github.com/ypelayog25" class="project-link" target="_blank">Ver proyecto →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">📈</div>
+          <div class="project-content">
+            <h3>Dashboard Financiero Interactivo</h3>
+            <p>Panel ejecutivo en Power BI con KPIs financieros clave, análisis de costos vs ingresos 
+            y forecasting de tendencias usando datos simulados.</p>
+            <div class="project-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">SQL</span>
+            </div>
+            <a href="https://github.com/ypelayog25" class="project-link" target="_blank">Ver proyecto →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">🚢</div>
+          <div class="project-content">
+            <h3>Maritime Trade Intelligence</h3>
+            <p>Análisis empresarial del comercio marítimo global usando datos AIS en tiempo real. 
+            Pipeline ETL automatizado con métricas propietarias para supply chain.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">APIs</span>
+              <span class="tag">Plotly</span>
+            </div>
+            <a href="https://github.com/ypelayog25" class="project-link" target="_blank">Ver proyecto →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto">
+      <div class="section-header">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-subtitle">¿Interesado en colaborar? Hablemos</p>
+      </div>
+      <div class="contact-section">
+        <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">
+          Estoy disponible para oportunidades profesionales, colaboraciones en proyectos 
+          o simplemente para conectar con otros profesionales del análisis de datos.
+        </p>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/yenismara-pelayo-235b60335" target="_blank" class="contact-link">
+            <span class="contact-icon">💼</span> LinkedIn
+          </a>
+          <a href="mailto:ypelayog25@gmail.com" class="contact-link">
+            <span class="contact-icon">📧</span> Email
+          </a>
+          <a href="https://github.com/ypelayog25" target="_blank" class="contact-link">
+            <span class="contact-icon">💻</span> GitHub
+          </a>
         </div>
       </div>
     </section>
@@ -187,8 +711,54 @@
   </div>
 
   <footer>
-    © 2025 Portafolio de <strong>Yenismara Pelayo García</strong> - Analista de Datos
+    <p>© 2025 <strong>Yenismara Pelayo García</strong> - Analista de Datos</p>
+    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">
+      Python • SQL • Power BI • Machine Learning
+    </p>
   </footer>
+
+  <!-- Scroll to top button -->
+  <div class="scroll-top" id="scrollTop">
+    ↑
+  </div>
+
+  <script>
+    // Scroll to top functionality
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Animate skill bars on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.getAttribute('style').match(/width:\s*(\d+%)/)[1];
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.skill-level-fill').forEach(bar => {
+      observer.observe(bar);
+    });
+  </script>
 
 </body>
 </html>
