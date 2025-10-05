@@ -3,14 +3,451 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yenismara Pelayo — Data Analyst | Python · SQL · Tableau · ML</title>
-  <meta name="description" content="Yenismara Pelayo — Data Analyst. I turn complex data into actionable insights using Python, SQL, Tableau and Machine Learning. Portfolio with projects, skills and contact." />
-  <meta name="keywords" content="Yenismara Pelayo, Data Analyst, Python, SQL, Tableau, Machine Learning, Data Analytics, ETL" />
+  <title>Yenismara Pelayo — Data Analyst | Python · SQL · Tableau · Data Analytics</title>
+  <meta name="description" content="Yenismara Pelayo — Data Analyst. I turn complex data into actionable insights using Python, SQL, Tableau and Data Analytics. Portfolio with projects, skills and contact." />
+  <meta name="keywords" content="Yenismara Pelayo, Data Analyst, Python, SQL, Tableau, Data Analytics, ETL" />
   <meta name="author" content="Yenismara Pelayo" />
   <meta name="theme-color" content="#0B6B7A" />
-  <!-- Rest of the HTML content omitted for brevity -->
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Yenismara Pelayo — Data Analyst" />
+  <meta property="og:description" content="Portfolio of Yenismara Pelayo — Data Analyst | Python · SQL · Tableau · Data Analytics" />
+  <meta property="og:image" content="https://ypelayog25.github.io/portafolio/perfil.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ypelayog25.github.io/portafolio/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yenismara Pelayo — Data Analyst" />
+  <meta name="twitter:description" content="Portfolio of Yenismara Pelayo — Data Analyst | Python · SQL · Tableau" />
+  <meta name="twitter:image" content="https://ypelayog25.github.io/portafolio/perfil.jpg" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yenismara Pelayo",
+    "jobTitle": "Data Analyst",
+    "email": "mailto:ypelayog25@gmail.com",
+    "url": "https://ypelayog25.github.io/portafolio/",
+    "sameAs": [
+      "https://www.linkedin.com/in/yenismara-pelayo-235b60335",
+      "https://github.com/ypelayog25"
+    ],
+    "image": "https://ypelayog25.github.io/portafolio/perfil.jpg",
+    "description": "Data Analyst skilled in Python, SQL, Tableau and Data Analytics. Focused on turning data into actionable business insights."
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f5f7f6; /* ivory-ish */
+      --card: #ffffff;
+      --text: #0f1724;
+      --muted: #6b7280;
+      --accent-blue: #073b4c; /* deep navy */
+      --accent-teal: #0fb3a3; /* teal */
+      --glass: rgba(11,107,122,0.06);
+      --radius: 14px;
+      --container: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, Outfit, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* layout container */
+    .wrap{max-width:var(--container); margin:0 auto; padding:2.25rem 1.25rem;}
+
+    /* NAV */
+    header{
+      position:sticky; top:0; z-index:60;
+      background:rgba(255,255,255,0.7); backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(15,23,36,0.04);
+    }
+    .nav-inner{max-width:var(--container); margin:0 auto; padding:0.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;}
+    .brand{display:flex; align-items:center; gap:0.75rem}
+    .brand .logo{
+      width:46px;height:46px;border-radius:12px;background:linear-gradient(180deg,var(--accent-blue),var(--accent-teal)); display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.05rem;box-shadow:0 10px 30px rgba(11,107,122,0.12);
+    }
+    nav ul{display:flex; gap:1rem; list-style:none; margin:0; padding:0; align-items:center}
+    nav a{padding:0.45rem 0.6rem; color:var(--muted); font-weight:700; border-radius:8px; transition:all .18s}
+    nav a:hover{color:var(--accent-blue); background:var(--glass)}
+
+    /* HERO */
+    .hero{
+      background: linear-gradient(180deg, rgba(11,107,122,0.04), transparent 40%);
+      padding:3.2rem 0 2rem;
+    }
+    .hero-grid{display:grid; grid-template-columns: 1fr 1.15fr; gap:2.5rem; align-items:center}
+    .portrait{
+      display:flex; align-items:center; justify-content:center;
+    }
+    .portrait img{width:210px;height:210px;border-radius:16px;object-fit:cover; box-shadow:0 20px 50px rgba(11,107,122,0.12); border:8px solid #fff;}
+    .hero-text h1{font-size:2.05rem;margin:0 0 0.4rem; font-weight:800; letter-spacing:-0.3px; font-family:Outfit, Inter, sans-serif;}
+    .hero-text p.lead{color:var(--muted); margin:0 0 1rem; font-size:1.02rem}
+    .cta-row{display:flex; gap:0.75rem; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:0.6rem; padding:0.6rem 1rem; border-radius:12px; font-weight:700; cursor:pointer;
+      transition:all .18s; border: none; font-size:0.95rem;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal)); color:white; box-shadow:0 10px 30px rgba(11,107,122,0.12)}
+    .btn-secondary{background:transparent; color:var(--accent-blue); border:2px solid rgba(11,107,122,0.06)}
+
+    /* Sections */
+    section{padding:3rem 0}
+    .section-head{text-align:center; margin-bottom:1.8rem}
+    .section-head h2{font-size:1.55rem; margin:0; font-weight:800}
+    .section-head p{color:var(--muted); margin-top:0.6rem}
+
+    /* Card */
+    .card{background:var(--card); border-radius:var(--radius); padding:1.4rem; box-shadow:0 12px 30px rgba(15,23,36,0.05); border:1px solid rgba(15,23,36,0.03)}
+
+    .about-grid{display:grid; grid-template-columns:1fr 320px; gap:1.25rem; align-items:start}
+    .about-grid .bio p{color:var(--muted); margin-bottom:0.9rem; font-size:1rem}
+    .about-grid .meta{display:flex; flex-direction:column; gap:0.9rem}
+    .meta .item{display:flex; gap:0.8rem; align-items:center; padding:0.6rem; border-radius:10px; background:linear-gradient(180deg,#ffffff, #fbfdfe); border:1px solid rgba(15,23,36,0.03)}
+    .meta .title{font-weight:800; color:var(--accent-blue); font-size:0.95rem}
+
+    /* Skills */
+    .skills{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.9rem; margin-top:0.4rem}
+    .skill{
+      background:transparent; padding:0.95rem; border-radius:12px; border:1px solid rgba(15,23,36,0.04); display:flex; flex-direction:column; gap:0.6rem;
+    }
+    .skill h4{margin:0; font-size:1rem}
+    .skill small{color:var(--muted)}
+    .bar{height:9px;background:#eef3f4;border-radius:999px; overflow:hidden}
+    .bar > i{display:block;height:100%; width:0; background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal)); border-radius:999px; transition:width 1s ease}
+
+    /* Projects */
+    .projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1rem}
+    .project{background:var(--card); border-radius:12px; overflow:hidden; border:1px solid rgba(15,23,36,0.03); box-shadow:0 10px 30px rgba(15,23,36,0.04); display:flex; flex-direction:column}
+    .project-media{height:160px; display:flex; align-items:center; justify-content:center; font-size:2.25rem; background:linear-gradient(135deg,var(--accent-blue),var(--accent-teal)); color:white}
+    .project-body{padding:1.05rem 1.1rem; flex:1}
+    .tags{display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.75rem}
+    .tag{background:#eef6f6; color:var(--accent-blue); padding:0.35rem 0.6rem; border-radius:999px; font-weight:700; font-size:0.78rem}
+
+    /* Contact */
+    .contact-grid{display:grid; grid-template-columns:1fr 320px; gap:1rem}
+    .contact-grid p{color:var(--muted)}
+    .links{display:flex; gap:0.6rem; flex-wrap:wrap}
+    .links a{padding:0.6rem 0.9rem; border-radius:10px; border:1px solid rgba(15,23,36,0.04); background:#fff; font-weight:800}
+
+    /* Footer */
+    footer{padding:2rem 0; text-align:center; color:var(--muted); font-size:0.95rem}
+
+    /* small screens */
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr; text-align:left}
+      .about-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+    @media (max-width:520px){
+      .portrait img{width:160px;height:160px}
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Test file - Yenismara Pelayo Portfolio</h1>
+  <header aria-label="Primary">
+    <div class="nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">YP</div>
+        <div>
+          <div style="font-weight:800">Yenismara Pelayo</div>
+          <div style="font-size:0.85rem;color:var(--muted); margin-top:2px">Data Analyst</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://docs.google.com/document/d/1CATKrWeYmdyvYPhsmWbSB2fxHGbt2To6/edit?usp=drive_link&ouid=102070831059635395068&rtpof=true&sd=true" target="_blank" rel="noopener">View Resume</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="wrap hero-grid">
+        <div class="portrait" role="img" aria-label="Portrait of Yenismara Pelayo">
+          <img src="perfil.jpg" alt="Portrait of Yenismara Pelayo — Data Analyst" width="210" height="210" loading="eager">
+        </div>
+
+        <div class="hero-text">
+          <h1 id="hero-heading">Hi, I'm Yenismara Pelayo</h1>
+          <p class="lead">Data Analyst — I turn complex data into clear insights using Python, SQL, Tableau and Data Analytics.</p>
+
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+            <a class="btn btn-primary" href="#projects" aria-label="View projects">📊 View Projects</a>
+            <a class="btn btn-secondary" href="#contact" aria-label="Contact me">✉️ Contact</a>
+            <a class="btn" href="https://github.com/ypelayog25" target="_blank" rel="noopener" style="border:1px solid rgba(11,107,122,0.06); background:#fff">💻 GitHub</a>
+          </div>
+
+          <div style="margin-top:1rem; color:var(--muted); font-size:0.94rem">
+            Available for remote roles · Contract · Full-time
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <!-- ABOUT -->
+      <section id="about" aria-labelledby="about-title">
+        <div class="section-head">
+          <h2 id="about-title">About</h2>
+          <p>Analytical, detail-oriented data professional with experience building ETL pipelines, dashboards and predictive analysis.</p>
+        </div>
+
+        <div class="card about-grid" role="region" aria-labelledby="about-title">
+          <div class="bio">
+            <p>
+              I am <strong>Yenismara Pelayo</strong>, a Data Analyst with solid experience in Python, SQL, Tableau and advanced Excel. I design robust ETL processes, perform exploratory data analysis and build dashboards that enable data-driven decisions.
+            </p>
+            <p>
+              My work combines statistical understanding with engineering practices to deliver reliable analytics, reproducible pipelines and clear visual storytelling for stakeholders.
+            </p>
+            <p style="margin-top:0.6rem; color:var(--muted); font-size:0.95rem">
+              Tools & workflows: Pandas · NumPy · SQL (Postgres / MySQL) · Tableau · Git · Docker · basic MLOps · GitHub Actions.
+            </p>
+          </div>
+
+          <aside class="meta" aria-label="Profile">
+            <div class="item">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-teal)"></div>
+              <div>
+                <div class="title">Location</div>
+                <div style="color:var(--muted)">Luanda, Angola</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-blue)"></div>
+              <div>
+                <div class="title">Role</div>
+                <div style="color:var(--muted)">Data Analyst / Freelance</div>
+              </div>
+            </div>
+
+            <div class="item" role="listitem">
+              <div style="width:10px;height:10px;border-radius:50%;background:#a8e8df"></div>
+              <div>
+                <div class="title">Contact</div>
+                <div style="color:var(--muted)"><a href="mailto:ypelayog25@gmail.com">ypelayog25@gmail.com</a></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" aria-labelledby="skills-title">
+        <div class="section-head">
+          <h2 id="skills-title">Technical Skills</h2>
+          <p>Core competencies and tools I use daily.</p>
+        </div>
+
+        <div class="skills">
+          <div class="skill card" aria-hidden="false">
+            <h4>Python</h4>
+            <small>Pandas · NumPy · Matplotlib · Seaborn · Scikit-learn</small>
+            <div class="bar" aria-hidden="true"><i data-level="92" style="width:0"></i></div>
+          </div>
+
+          <div class="skill card">
+            <h4>SQL</h4>
+            <small>Complex queries · Performance tuning · Data modeling</small>
+            <div class="bar"><i data-level="88" style="width:0"></i></div>
+          </div>
+
+          <div class="skill card">
+            <h4>Tableau</h4>
+            <small>Interactive dashboards · Calculations · Storytelling</small>
+            <div class="bar"><i data-level="90" style="width:0"></i></div>
+          </div>
+
+          <div class="skill card">
+            <h4>Advanced Excel</h4>
+            <small>PivotTables · Power Query · Macros</small>
+            <div class="bar"><i data-level="92" style="width:0"></i></div>
+          </div>
+
+          <div class="skill card">
+            <h4>ETL & Pipelines</h4>
+            <small>Automated data ingestion and transformation</small>
+            <div class="bar"><i data-level="84" style="width:0"></i></div>
+          </div>
+
+          <div class="skill card">
+            <h4>Data Analytics</h4>
+            <small>Exploratory analysis · KPI definition · A/B testing basics</small>
+            <div class="bar"><i data-level="80" style="width:0"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" aria-labelledby="projects-title">
+        <div class="section-head">
+          <h2 id="projects-title">Selected Projects</h2>
+          <p>Practical work demonstrating analytics, dashboards and pipelines.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project" aria-labelledby="p1-title">
+            <div class="project-media" aria-hidden="true">📊</div>
+            <div class="project-body">
+              <h3 id="p1-title">Sales Analysis — Superstore</h3>
+              <p style="color:var(--muted);margin:0.35rem 0">
+                End-to-end exploration and visualization of the Superstore dataset: customer segmentation, profitability analysis and actionable recommendations.
+              </p>
+              <div class="tags" aria-hidden="true">
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">Tableau</span>
+              </div>
+              <div style="margin-top:0.9rem">
+                <a href="https://github.com/ypelayog25" target="_blank" rel="noopener" class="tag">View on GitHub →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" aria-labelledby="p2-title">
+            <div class="project-media" aria-hidden="true">📈</div>
+            <div class="project-body">
+              <h3 id="p2-title">Financial KPI Dashboard</h3>
+              <p style="color:var(--muted);margin:0.35rem 0">
+                Executive Tableau dashboard with KPIs, trend forecasting and scenario analysis for business stakeholders.
+              </p>
+              <div class="tags">
+                <span class="tag">Tableau</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Forecasting</span>
+              </div>
+              <div style="margin-top:0.9rem">
+                <a href="https://github.com/ypelayog25" target="_blank" rel="noopener" class="tag">View on GitHub →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" aria-labelledby="p3-title">
+            <div class="project-media" aria-hidden="true">🚢</div>
+            <div class="project-body">
+              <h3 id="p3-title">Maritime Trade Intelligence</h3>
+              <p style="color:var(--muted);margin:0.35rem 0">
+                Pipeline for AIS data ingestion and analytics: automated ETL, geospatial aggregation and KPI reporting for supply chain insights.
+              </p>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">APIs</span>
+                <span class="tag">Plotly</span>
+              </div>
+              <div style="margin-top:0.9rem">
+                <a href="https://github.com/ypelayog25" target="_blank" rel="noopener" class="tag">View on GitHub →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="section-head">
+          <h2 id="contact-title">Contact</h2>
+          <p>Interested in collaborating or hiring? Let's talk.</p>
+        </div>
+
+        <div class="card contact-grid" role="region" aria-labelledby="contact-title">
+          <div>
+            <p>If you'd like to discuss a role or project, reach out via LinkedIn or email — I respond promptly to professional inquiries.</p>
+
+            <div style="margin-top:1rem" class="links" role="list">
+              <a href="https://www.linkedin.com/in/yenismara-pelayo-235b60335" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a>
+              <a href="mailto:ypelayog25@gmail.com" aria-label="Send email">Email</a>
+              <a href="https://github.com/ypelayog25" target="_blank" rel="noopener" aria-label="GitHub profile">GitHub</a>
+            </div>
+
+            <div style="margin-top:1.2rem; color:var(--muted); font-size:0.95rem">
+              Available: Remote · Contract · Full-time
+            </div>
+          </div>
+
+          <aside style="display:flex;flex-direction:column;gap:0.8rem;align-items:flex-end">
+            <div style="text-align:right">
+              <div style="font-weight:800">Let's build something with data</div>
+              <div style="color:var(--muted); margin-top:4px">Send a short message — 3–5 lines is perfect.</div>
+            </div>
+
+            <div style="width:100%; display:flex; gap:0.6rem; justify-content:flex-end;">
+              <a class="btn btn-primary" href="mailto:ypelayog25@gmail.com">Email Me</a>
+              <a class="btn btn-secondary" href="#projects">See Work</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex;flex-direction:column;gap:0.5rem;align-items:center">
+      <div>© <strong>Yenismara Pelayo</strong> — Data Analyst · 2025</div>
+      <div style="color:var(--muted)">Python · SQL · Tableau · Data Analytics</div>
+    </div>
+  </footer>
+
+  <!-- Accessibility and small interactions -->
+  <script>
+    (function(){
+      // animate skill bars when visible
+      const bars = document.querySelectorAll('.bar i');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const el = e.target;
+            const level = el.getAttribute('data-level') || '70';
+            el.style.width = level + '%';
+            obs.unobserve(el);
+          }
+        });
+      }, {threshold: 0.45});
+      bars.forEach(b => obs.observe(b));
+
+      // keyboard focus outline for accessibility
+      document.body.addEventListener('mousedown', () => document.documentElement.style.setProperty('--focus-style','none'));
+      document.body.addEventListener('keydown', (e) => {
+        if(e.key === 'Tab') document.documentElement.style.setProperty('--focus-style','auto');
+      });
+
+      const style = document.createElement('style');
+      style.innerHTML = `
+        :focus{outline: 3px solid rgba(15,179,163,0.12); outline-offset:3px}
+        a:focus{outline-offset:3px}
+      `;
+      document.head.appendChild(style);
+    })();
+  </script>
 </body>
 </html>
