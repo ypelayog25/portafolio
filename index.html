@@ -1,118 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yenismara Pelayo Garcia - Portfolio</title>
+    <title>Pelayo Portfolio</title>
     <style>
-        body {
-            margin: 0;
-            background: #111;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-        }
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            font-weight: 700;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 2rem 1rem;
-        }
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #444;
-            padding-bottom: .5rem;
-        }
-        .intro-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        .social-bar {
-            display: flex;
-            justify-content: center;
-            margin-top: 1.5rem;
-            gap: 1rem;
-        }
-        .social-bar a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: opacity .3s;
-        }
-        .social-bar a:hover {
-            opacity: .7;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: .9rem;
-            border-top: 1px solid #333;
-            margin-top: 2rem;
-        }
+      video::-webkit-media-controls-fullscreen-button {
+        display: none !important;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #0c0c0c;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      #main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      #video-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        max-height: 100vh;
+      }
+      #video-bg {
+        width: 100%;
+        height: auto;
+        display: block;
+        pointer-events: none;
+        user-select: none;
+        background-color: black;
+      }
+      .content-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        z-index: 2;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+      .intro-title {
+        font-size: 4vw;
+        font-weight: 300;
+        letter-spacing: 0.3vw;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+      .intro-description {
+        font-size: 1.2vw;
+        margin-top: 0.5rem;
+        font-weight: 200;
+      }
+      #about-me {
+        width: 100%;
+        background-color: white;
+        padding: 4rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .section-title {
+        font-size: 4vw;
+        margin-bottom: 2rem;
+        color: #222;
+      }
+      #about-content {
+        display: flex;
+        width: 90%;
+        max-width: 1200px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+      }
+      #profile-photo-container img {
+        width: 300px;
+        height: auto;
+        border-radius: 10px;
+      }
+      #about-text {
+        font-size: 1.2vw;
+        line-height: 1.6;
+        max-width: 600px;
+        color: #333;
+      }
+      #projects {
+        width: 100%;
+        padding: 4rem 1rem;
+        background-color: #111;
+        color: white;
+        text-align: center;
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+      }
+      .project-item {
+        background: #1a1a1a;
+        padding: 1rem;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+      .project-item:hover {
+        transform: scale(1.03);
+      }
+      #contact {
+        padding: 4rem 1rem;
+        background-color: white;
+        text-align: center;
+      }
+      .social-links a {
+        margin: 0 1rem;
+        font-size: 1.5rem;
+        color: #333;
+      }
+      footer {
+        padding: 2rem;
+        text-align: center;
+        background-color: black;
+        color: white;
+      }
     </style>
-</head>
-<body>
-    <header>
-        <h1>Yenismara Pelayo Garcia</h1>
-        <p>Welcome to my professional portfolio</p>
-
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="portafolio/resume.html" target="_blank" rel="noopener">Resume</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p class="intro-text">
-                I am a proactive and detail-oriented professional with experience in administrative processes,
-                customer service, inventory management, and business software systems, including Odoo.
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="video-container">
+        <video id="video-bg" autoplay muted playsinline>
+          <source src="video.mp4" type="video/mp4" />
+        </video>
+        <div class="content-container">
+          <p class="intro-title">Yenismara Pelayo Garcia</p>
+          <p class="intro-description">Administration | Customer Service</p>
+        </div>
+      </div>
+      <section id="about-me">
+        <h2 class="section-title">ABOUT ME</h2>
+        <div id="about-content">
+          <div id="profile-photo-container">
+            <img src="photo.jpg" alt="Profile photo" />
+          </div>
+          <div id="about-text">
+            <p>
+              I am a dedicated administration and customer-service professional with
+              more than ** eight years of experience** handling document management,
+              billing, invoicing, customer communication, and coordination of
+              internal processes.
             </p>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <p class="intro-text">Soon you will find a showcase of my work and achievements here.</p>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <p class="intro-text">You can reach me through the following platforms:</p>
-            <div class="social-bar">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="mailto:example@example.com">Email</a>
-            </div>
-        </section>
+            <p>
+              My strengths include **precision**, **organization**, and the ability
+              to adapt quickly to different systems and administrative workflows. I
+              also have experience supporting business operations and communicating
+              with clients in both Spanish and Portuguese.
+            </p>
+            <p>
+              I am currently based in Angola and open to new professional
+              opportunities.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="projects">
+        <h2 class="section-title">PROJECTS</h2>
+        <div class="projects-grid">
+          <div class="project-item">Project 1</div>
+          <div class="project-item">Project 2</div>
+          <div class="project-item">Project 3</div>
+        </div>
+      </section>
+      <section id="contact">
+        <h2 class="section-title">CONTACT</h2>
+        <p>You can reach me through:</p>
+        <div class="social-links">
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+          <a href="mailto:example@example.com">Email</a>
+          <a href="portafolio/resume.html" target="_blank">Resume</a>
+        </div>
+      </section>
+      <footer>© 2025 Yenismara Pelayo Garcia</footer>
     </div>
-
-    <footer>
-        © 2025 Yenismara Pelayo Garcia — All rights reserved
-    </footer>
-</body>
+  </body>
 </html>
