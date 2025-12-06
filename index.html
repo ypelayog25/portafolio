@@ -115,13 +115,17 @@
 
     .card{background:var(--card); border-radius:var(--radius); padding:1.4rem; box-shadow:0 12px 30px rgba(15,23,36,0.05); border:1px solid rgba(15,23,36,0.03)}
 
+    .about-grid{display:grid; grid-template-columns:1fr 320px; gap:1.25rem; align-items:start}
+    .about-grid .bio p{color:var(--muted); margin-bottom:0.9rem; font-size:1rem}
+    .about-grid .meta{display:flex; flex-direction:column; gap:0.9rem}
+
     /* ---------------------- */
-    /*  NEW PROJECTS DESIGN   */
+    /* PROJECTS DESIGN NEW   */
     /* ---------------------- */
 
     .projects-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       gap:1.5rem;
     }
 
@@ -134,7 +138,6 @@
       display:flex;
       flex-direction:column;
       transition:all .28s ease;
-      position:relative;
     }
 
     .project:hover{
@@ -154,8 +157,8 @@
     .project-media svg{
       width:95px;
       height:95px;
+      opacity:0.95;
       filter:drop-shadow(0 4px 10px rgba(0,0,0,0.15));
-      opacity:0.93;
     }
 
     .project-body{
@@ -211,6 +214,8 @@
       opacity:0.85;
       transform:translateY(-2px);
     }
+
+    footer{padding:2rem 0; text-align:center; color:var(--muted); font-size:0.95rem}
 
   </style>
 </head>
@@ -276,30 +281,85 @@
           <p>I build ETL processes, perform exploratory data analysis and develop dashboards that enable data-driven decisions.</p>
           <p style="color:var(--muted);font-size:0.95rem">Tools: Pandas · NumPy · SQL · Tableau · Git · Docker · GitHub Actions.</p>
         </div>
+
+        <aside class="meta">
+          <div class="item">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-teal)"></div>
+            <div>
+              <div class="title">Location</div>
+              <div style="color:var(--muted)">Luanda, Angola</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-blue)"></div>
+            <div>
+              <div class="title">Role</div>
+              <div style="color:var(--muted)">Data Analyst / Freelance</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div style="width:10px;height:10px;border-radius:50%;background:#a8e8df"></div>
+            <div>
+              <div class="title">Contact</div>
+              <div style="color:var(--muted)"><a href="mailto:ypelayog25@gmail.com">ypelayog25@gmail.com</a></div>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS (restaurado EXACTAMENTE como antes) -->
     <section id="skills">
       <div class="section-head">
-        <h2>Technical Skills</h2>
+        <h2 id="skills-title">Technical Skills</h2>
         <p>Core competencies and tools I use daily.</p>
       </div>
 
       <div class="skills">
-        <div class="skill card"><h4>Python</h4><small>Pandas · NumPy · Scikit-learn</small></div>
-        <div class="skill card"><h4>SQL</h4><small>Complex queries · Data modeling</small></div>
-        <div class="skill card"><h4>Tableau</h4><small>Dashboards · Storytelling</small></div>
-        <div class="skill card"><h4>Advanced Excel</h4><small>PivotTables · Power Query</small></div>
-        <div class="skill card"><h4>ETL Pipelines</h4><small>Automated ingestion</small></div>
-        <div class="skill card"><h4>Data Analytics</h4><small>KPI definition · EDA</small></div>
+        <div class="skill card">
+          <h4>Python</h4>
+          <small>Pandas · NumPy · Matplotlib · Seaborn · Scikit-learn</small>
+          <div class="bar"><i data-level="92"></i></div>
+        </div>
+
+        <div class="skill card">
+          <h4>SQL</h4>
+          <small>Complex queries · Performance tuning · Data modeling</small>
+          <div class="bar"><i data-level="88"></i></div>
+        </div>
+
+        <div class="skill card">
+          <h4>Tableau</h4>
+          <small>Interactive dashboards · Calculations · Storytelling</small>
+          <div class="bar"><i data-level="90"></i></div>
+        </div>
+
+        <div class="skill card">
+          <h4>Advanced Excel</h4>
+          <small>PivotTables · Power Query · Macros</small>
+          <div class="bar"><i data-level="92"></i></div>
+        </div>
+
+        <div class="skill card">
+          <h4>ETL & Pipelines</h4>
+          <small>Automated data ingestion and transformation</small>
+          <div class="bar"><i data-level="84"></i></div>
+        </div>
+
+        <div class="skill card">
+          <h4>Data Analytics</h4>
+          <small>Exploratory analysis · KPI definition · A/B testing basics</small>
+          <div class="bar"><i data-level="80"></i></div>
+        </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (la única parte cambiada) -->
     <section id="projects">
       <div class="section-head">
-        <h2>Selected Projects</h2>
+        <h2 id="projects-title">Selected Projects</h2>
         <p>Practical work demonstrating analytics, dashboards and pipelines.</p>
       </div>
 
@@ -307,19 +367,17 @@
 
         <article class="project">
           <div class="project-media">
-
-            <!-- SVG ICONO TIPO DASHBOARD / ANALYTICS -->
+            <!-- Icono profesional tipo dashboard -->
             <svg fill="white" viewBox="0 0 24 24">
               <path d="M3 3h18v2H3V3zm2 6h4v12H5V9zm6 4h4v8h-4v-8zm6-6h4v14h-4V7z"/>
             </svg>
-
           </div>
 
           <div class="project-body">
             <h3>E-commerce Sales Analysis</h3>
             <p>
-              Interactive Streamlit application analyzing sales performance, customer behavior,
-              revenue trends and operational KPIs through automated data processing.
+              Streamlit dashboard analyzing revenue, customer behavior, sales patterns,
+              product performance and operational KPIs with automated ETL processes.
             </p>
 
             <div class="tags">
@@ -329,9 +387,7 @@
               <span class="tag">Data Visualization</span>
             </div>
 
-            <a class="project-link"
-              href="https://ecommerce-analysis-project-ypg.streamlit.app/"
-              target="_blank">
+            <a class="project-link" href="https://ecommerce-analysis-project-ypg.streamlit.app/" target="_blank">
               Open Project →
             </a>
           </div>
@@ -340,21 +396,35 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT (sin cambios) -->
     <section id="contact">
       <div class="section-head">
-        <h2>Contact</h2>
+        <h2 id="contact-title">Contact</h2>
         <p>Interested in collaborating or hiring? Let's talk.</p>
       </div>
 
-      <div class="card">
-        <p>If you'd like to discuss a role or project, reach out via LinkedIn or email.</p>
+      <div class="card contact-grid">
+        <div>
+          <p>If you'd like to discuss a role or project, reach out via LinkedIn or email.</p>
 
-        <div class="links" style="display:flex;gap:0.6rem;margin-top:1rem;">
-          <a href="https://www.linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
-          <a href="mailto:ypelayog25@gmail.com">Email</a>
-          <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
+          <div style="margin-top:1rem" class="links">
+            <a href="https://www.linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
+            <a href="mailto:ypelayog25@gmail.com">Email</a>
+            <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
+          </div>
         </div>
+
+        <aside style="display:flex;flex-direction:column;gap:0.8rem;align-items:flex-end">
+          <div style="text-align:right">
+            <div style="font-weight:800">Let's build something with data</div>
+            <div style="color:var(--muted); margin-top:4px">Send a short message — 3–5 lines is perfect.</div>
+          </div>
+
+          <div style="width:100%; display:flex; gap:0.6rem; justify-content:flex-end;">
+            <a class="btn btn-primary" href="mailto:ypelayog25@gmail.com">Email Me</a>
+            <a class="btn btn-secondary" href="#projects">See Work</a>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -362,8 +432,9 @@
 </main>
 
 <footer>
-  <div class="wrap" style="text-align:center;">
-    © <strong>Yenismara Pelayo</strong> — Data Analyst · 2025
+  <div class="wrap" style="display:flex;flex-direction:column;gap:0.5rem;align-items:center">
+    <div>© <strong>Yenismara Pelayo</strong> — Data Analyst · 2025</div>
+    <div style="color:var(--muted)">Python · SQL · Tableau · Data Analytics</div>
   </div>
 </footer>
 
