@@ -44,180 +44,195 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg: #f5f7f6;
-      --card: #ffffff;
-      --text: #0f1724;
-      --muted: #6b7280;
-      --accent-blue: #073b4c;
-      --accent-teal: #0fb3a3;
-      --glass: rgba(11,107,122,0.06);
-      --radius: 14px;
-      --container: 1100px;
-    }
+<style>
+/* ---------------- COLORS & BASE ---------------- */
+:root{
+  --bg:#f5f7f6;
+  --card:#ffffff;
+  --text:#0f1724;
+  --muted:#6b7280;
+  --accent-blue:#073b4c;
+  --accent-teal:#0fb3a3;
+  --glass:rgba(11,107,122,0.06);
+  --radius:14px;
+  --container:1100px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:Inter, Outfit, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none; color:inherit;}
+img{max-width:100%; display:block;}
+.wrap{max-width:var(--container); margin:0 auto; padding:2.25rem 1.25rem;}
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter, Outfit, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      line-height:1.6;
-      -webkit-tap-highlight-color: transparent;
-    }
+/* ---------------- HEADER ---------------- */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(15,23,36,0.06);
+}
+.nav-inner{
+  max-width:var(--container);
+  margin:auto;
+  padding:0.7rem 1.25rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.brand{
+  display:flex;align-items:center;gap:.7rem;
+}
+.brand .logo{
+  width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(180deg,var(--accent-blue),var(--accent-teal));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:800;font-size:1.05rem;
+}
+nav ul{
+  list-style:none;display:flex;gap:1rem;margin:0;padding:0;
+}
+nav a{
+  padding:.45rem .6rem;
+  color:var(--muted);
+  font-weight:700;
+  border-radius:8px;
+}
+nav a:hover{
+  background:var(--glass);
+  color:var(--accent-blue);
+}
 
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
+/* ---------------- HERO ---------------- */
+.hero{padding:3rem 0;background:linear-gradient(180deg,rgba(11,107,122,0.04),transparent);}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1.2fr;
+  gap:2.5rem;align-items:center;
+}
+.portrait img{
+  width:210px;height:210px;border-radius:16px;
+  object-fit:cover;border:8px solid white;
+  box-shadow:0 20px 50px rgba(11,107,122,0.12);
+}
+.hero-text h1{margin:0;font-size:2.1rem;font-weight:800;}
+.hero-text .lead{color:var(--muted);font-size:1rem;margin-top:.4rem;}
+.cta-row{display:flex;gap:.75rem;margin-top:.9rem;}
+.btn{
+  padding:.6rem 1rem;
+  border-radius:12px;
+  font-weight:700;
+  display:inline-flex;align-items:center;gap:.6rem;
+  cursor:pointer;
+}
+.btn-primary{
+  background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
+  color:white;
+}
+.btn-secondary{
+  border:2px solid rgba(11,107,122,0.12);
+  color:var(--accent-blue);
+  background:white;
+}
 
-    .wrap{max-width:var(--container); margin:0 auto; padding:2.25rem 1.25rem;}
+/* ---------------- SECTIONS ---------------- */
+section{padding:3rem 0;}
+.section-head{text-align:center;margin-bottom:2rem;}
+.section-head h2{margin:0;font-size:1.6rem;font-weight:800;}
+.section-head p{margin-top:.6rem;color:var(--muted);}
 
-    header{
-      position:sticky; top:0; z-index:60;
-      background:rgba(255,255,255,0.7); backdrop-filter: blur(6px);
-      border-bottom:1px solid rgba(15,23,36,0.04);
-    }
-    .nav-inner{max-width:var(--container); margin:0 auto; padding:0.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;}
-    .brand{display:flex; align-items:center; gap:0.75rem}
-    .brand .logo{
-      width:46px;height:46px;border-radius:12px;background:linear-gradient(180deg,var(--accent-blue),var(--accent-teal)); display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.05rem;box-shadow:0 10px 30px rgba(11,107,122,0.12);
-    }
-    nav ul{display:flex; gap:1rem; list-style:none; margin:0; padding:0; align-items:center}
-    nav a{padding:0.45rem 0.6rem; color:var(--muted); font-weight:700; border-radius:8px; transition:all .18s}
-    nav a:hover{color:var(--accent-blue); background:var(--glass)}
+/* ---------------- ABOUT ---------------- */
+.card{
+  background:white;
+  border-radius:var(--radius);
+  padding:1.4rem;
+  box-shadow:0 12px 30px rgba(15,23,36,0.05);
+  border:1px solid rgba(15,23,36,0.04);
+}
 
-    .hero{
-      background: linear-gradient(180deg, rgba(11,107,122,0.04), transparent 40%);
-      padding:3.2rem 0 2rem;
-    }
-    .hero-grid{display:grid; grid-template-columns: 1fr 1.15fr; gap:2.5rem; align-items:center}
-    .portrait{
-      display:flex; align-items:center; justify-content:center;
-    }
-    .portrait img{width:210px;height:210px;border-radius:16px;object-fit:cover; box-shadow:0 20px 50px rgba(11,107,122,0.12); border:8px solid #fff;}
-    .hero-text h1{font-size:2.05rem;margin:0 0 0.4rem; font-weight:800; letter-spacing:-0.3px; font-family:Outfit, Inter, sans-serif;}
-    .hero-text p.lead{color:var(--muted); margin:0 0 1rem; font-size:1.02rem}
-    .cta-row{display:flex; gap:0.75rem; flex-wrap:wrap}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:1.4rem;
+}
+.about-grid .bio p{
+  color:var(--muted);margin-bottom:.9rem;font-size:1rem;
+}
+.meta .item{display:flex;align-items:center;gap:.6rem;}
+.meta .title{font-weight:700;}
 
-    .btn{
-      display:inline-flex; align-items:center; gap:0.6rem; padding:0.6rem 1rem; border-radius:12px; font-weight:700; cursor:pointer;
-      transition:all .18s; border: none; font-size:0.95rem;
-    }
-    .btn-primary{background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal)); color:white; box-shadow:0 10px 30px rgba(11,107,122,0.12)}
-    .btn-secondary{background:transparent; color:var(--accent-blue); border:2px solid rgba(11,107,122,0.06)}
+/* ---------------- SKILLS (NO CAMBIADO) ---------------- */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.2rem;
+}
+.skill h4{margin:0;font-weight:800;}
+.skill small{color:var(--muted);}
+.bar{
+  background:#eaf3f3;
+  height:6px;border-radius:10px;margin-top:.6rem;overflow:hidden;
+}
+.bar i{
+  display:block;height:100%;
+  background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
+  width:0%;transition:1s ease-in-out;
+}
 
-    section{padding:3rem 0}
-    .section-head{text-align:center; margin-bottom:1.8rem}
-    .section-head h2{font-size:1.55rem; margin:0; font-weight:800}
-    .section-head p{color:var(--muted); margin-top:0.6rem}
+/* ---------------- PROJECTS (MEJORADO) ---------------- */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;
+}
+.project{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(15,23,36,0.06);
+  box-shadow:0 12px 32px rgba(15,23,36,0.06);
+  transition:.28s;
+}
+.project:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 40px rgba(11,107,122,0.12);
+}
+.project-media{
+  height:200px;
+  background:linear-gradient(135deg,var(--accent-blue),var(--accent-teal));
+  display:flex;align-items:center;justify-content:center;
+}
+.project-media svg{
+  width:96px;height:96px;opacity:.95;
+}
+.project-body{padding:1.4rem;}
+.project-body h3{margin:0;color:var(--accent-blue);font-size:1.28rem;font-weight:800;}
+.project-body p{color:var(--muted);margin-top:.6rem;}
+.tags{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap;}
+.tag{
+  background:#eaf8f7;
+  padding:.42rem .75rem;border-radius:999px;
+  border:1px solid rgba(11,107,122,0.1);
+  font-size:.78rem;font-weight:700;color:var(--accent-blue);
+}
+.project-link{
+  display:inline-block;margin-top:1.2rem;
+  background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
+  color:white;font-weight:700;
+  padding:.65rem 1.1rem;border-radius:12px;
+}
 
-    .card{background:var(--card); border-radius:var(--radius); padding:1.4rem; box-shadow:0 12px 30px rgba(15,23,36,0.05); border:1px solid rgba(15,23,36,0.03)}
+/* ---------------- CONTACT ---------------- */
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center;
+}
 
-    .about-grid{display:grid; grid-template-columns:1fr 320px; gap:1.25rem; align-items:start}
-    .about-grid .bio p{color:var(--muted); margin-bottom:0.9rem; font-size:1rem}
-    .about-grid .meta{display:flex; flex-direction:column; gap:0.9rem}
-
-    /* ---------------------- */
-    /* PROJECTS DESIGN NEW   */
-    /* ---------------------- */
-
-    .projects-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:1.5rem;
-    }
-
-    .project{
-      background:var(--card);
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(15,23,36,0.05);
-      box-shadow:0 12px 32px rgba(15,23,36,0.06);
-      display:flex;
-      flex-direction:column;
-      transition:all .28s ease;
-    }
-
-    .project:hover{
-      transform:translateY(-6px);
-      box-shadow:0 22px 40px rgba(11,107,122,0.12);
-    }
-
-    .project-media{
-      height:200px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,var(--accent-blue),var(--accent-teal));
-      padding:1rem;
-    }
-
-    .project-media svg{
-      width:95px;
-      height:95px;
-      opacity:0.95;
-      filter:drop-shadow(0 4px 10px rgba(0,0,0,0.15));
-    }
-
-    .project-body{
-      padding:1.3rem 1.4rem 1.4rem;
-      flex:1;
-    }
-
-    .project-body h3{
-      margin:0;
-      font-size:1.28rem;
-      font-weight:800;
-      color:var(--accent-blue);
-    }
-
-    .project-body p{
-      color:var(--muted);
-      font-size:0.98rem;
-      margin-top:0.55rem;
-      line-height:1.55;
-    }
-
-    .tags{
-      display:flex;
-      gap:0.5rem;
-      flex-wrap:wrap;
-      margin-top:0.9rem;
-    }
-
-    .tag{
-      background:#eaf8f7;
-      color:var(--accent-blue);
-      padding:0.42rem 0.75rem;
-      border-radius:999px;
-      font-weight:700;
-      font-size:0.78rem;
-      border:1px solid rgba(11,107,122,0.10);
-    }
-
-    .project-link{
-      margin-top:1.2rem;
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
-      color:white;
-      padding:0.65rem 1.1rem;
-      font-weight:700;
-      border-radius:12px;
-      font-size:0.9rem;
-      box-shadow:0 10px 22px rgba(11,107,122,0.20);
-      transition:all .25s;
-    }
-
-    .project-link:hover{
-      opacity:0.85;
-      transform:translateY(-2px);
-    }
-
-    footer{padding:2rem 0; text-align:center; color:var(--muted); font-size:0.95rem}
-
-  </style>
+footer{text-align:center;padding:2rem 0;color:var(--muted);}
+</style>
 </head>
 
 <body>
@@ -232,211 +247,214 @@
       </div>
     </div>
 
-    <nav><ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="https://ypelayog25.github.io/portafolio/resume.html" target="_blank">View Resume</a></li>
-    </ul></nav>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://ypelayog25.github.io/portafolio/resume.html" target="_blank">View Resume</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="portrait"><img src="perfil.jpg" alt=""></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
 
-      <div class="hero-text">
-        <h1>Hi, I'm Yenismara Pelayo</h1>
-        <p class="lead">Data Analyst — I turn complex data into clear insights using Python, SQL, Tableau and Data Analytics.</p>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#projects">📊 View Projects</a>
-          <a class="btn btn-secondary" href="#contact">✉️ Contact</a>
-          <a class="btn" href="https://github.com/ypelayog25" target="_blank" style="border:1px solid rgba(11,107,122,0.06); background:#fff">💻 GitHub</a>
-        </div>
-
-        <div style="margin-top:1rem;color:var(--muted)">
-          Available for remote roles · Contract · Full-time
-        </div>
-      </div>
+    <div class="portrait">
+      <img src="perfil.jpg" alt="">
     </div>
-  </section>
 
-  <div class="wrap">
+    <div class="hero-text">
+      <h1>Hi, I'm Yenismara Pelayo</h1>
+      <p class="lead">Data Analyst — I turn complex data into clear insights using Python, SQL, Tableau and Data Analytics.</p>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-head">
-        <h2>About</h2>
-        <p>Analytical, detail-oriented data professional with experience building ETL pipelines, dashboards and predictive analysis.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">📊 View Projects</a>
+        <a class="btn btn-secondary" href="#contact">✉️ Contact</a>
+        <a class="btn" href="https://github.com/ypelayog25" target="_blank" style="border:1px solid rgba(11,107,122,0.12);background:white;">💻 GitHub</a>
       </div>
 
-      <div class="card about-grid">
-        <div class="bio">
-          <p>I am <strong>Yenismara Pelayo</strong>, a Data Analyst with solid experience in Python, SQL, Tableau and advanced Excel.</p>
-          <p>I build ETL processes, perform exploratory data analysis and develop dashboards that enable data-driven decisions.</p>
-          <p style="color:var(--muted);font-size:0.95rem">Tools: Pandas · NumPy · SQL · Tableau · Git · Docker · GitHub Actions.</p>
-        </div>
-
-        <aside class="meta">
-          <div class="item">
-            <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-teal)"></div>
-            <div>
-              <div class="title">Location</div>
-              <div style="color:var(--muted)">Luanda, Angola</div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-blue)"></div>
-            <div>
-              <div class="title">Role</div>
-              <div style="color:var(--muted)">Data Analyst / Freelance</div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div style="width:10px;height:10px;border-radius:50%;background:#a8e8df"></div>
-            <div>
-              <div class="title">Contact</div>
-              <div style="color:var(--muted)"><a href="mailto:ypelayog25@gmail.com">ypelayog25@gmail.com</a></div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- SKILLS (restaurado EXACTAMENTE como antes) -->
-    <section id="skills">
-      <div class="section-head">
-        <h2 id="skills-title">Technical Skills</h2>
-        <p>Core competencies and tools I use daily.</p>
-      </div>
-
-      <div class="skills">
-        <div class="skill card">
-          <h4>Python</h4>
-          <small>Pandas · NumPy · Matplotlib · Seaborn · Scikit-learn</small>
-          <div class="bar"><i data-level="92"></i></div>
-        </div>
-
-        <div class="skill card">
-          <h4>SQL</h4>
-          <small>Complex queries · Performance tuning · Data modeling</small>
-          <div class="bar"><i data-level="88"></i></div>
-        </div>
-
-        <div class="skill card">
-          <h4>Tableau</h4>
-          <small>Interactive dashboards · Calculations · Storytelling</small>
-          <div class="bar"><i data-level="90"></i></div>
-        </div>
-
-        <div class="skill card">
-          <h4>Advanced Excel</h4>
-          <small>PivotTables · Power Query · Macros</small>
-          <div class="bar"><i data-level="92"></i></div>
-        </div>
-
-        <div class="skill card">
-          <h4>ETL & Pipelines</h4>
-          <small>Automated data ingestion and transformation</small>
-          <div class="bar"><i data-level="84"></i></div>
-        </div>
-
-        <div class="skill card">
-          <h4>Data Analytics</h4>
-          <small>Exploratory analysis · KPI definition · A/B testing basics</small>
-          <div class="bar"><i data-level="80"></i></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS (la única parte cambiada) -->
-    <section id="projects">
-      <div class="section-head">
-        <h2 id="projects-title">Selected Projects</h2>
-        <p>Practical work demonstrating analytics, dashboards and pipelines.</p>
-      </div>
-
-      <div class="projects-grid">
-
-        <article class="project">
-          <div class="project-media">
-            <!-- Icono profesional tipo dashboard -->
-            <svg fill="white" viewBox="0 0 24 24">
-              <path d="M3 3h18v2H3V3zm2 6h4v12H5V9zm6 4h4v8h-4v-8zm6-6h4v14h-4V7z"/>
-            </svg>
-          </div>
-
-          <div class="project-body">
-            <h3>E-commerce Sales Analysis</h3>
-            <p>
-              Streamlit dashboard analyzing revenue, customer behavior, sales patterns,
-              product performance and operational KPIs with automated ETL processes.
-            </p>
-
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">Streamlit</span>
-              <span class="tag">Data Visualization</span>
-            </div>
-
-            <a class="project-link" href="https://ecommerce-analysis-project-ypg.streamlit.app/" target="_blank">
-              Open Project →
-            </a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- CONTACT (sin cambios) -->
-    <section id="contact">
-      <div class="section-head">
-        <h2 id="contact-title">Contact</h2>
-        <p>Interested in collaborating or hiring? Let's talk.</p>
-      </div>
-
-      <div class="card contact-grid">
-        <div>
-          <p>If you'd like to discuss a role or project, reach out via LinkedIn or email.</p>
-
-          <div style="margin-top:1rem" class="links">
-            <a href="https://www.linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
-            <a href="mailto:ypelayog25@gmail.com">Email</a>
-            <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
-          </div>
-        </div>
-
-        <aside style="display:flex;flex-direction:column;gap:0.8rem;align-items:flex-end">
-          <div style="text-align:right">
-            <div style="font-weight:800">Let's build something with data</div>
-            <div style="color:var(--muted); margin-top:4px">Send a short message — 3–5 lines is perfect.</div>
-          </div>
-
-          <div style="width:100%; display:flex; gap:0.6rem; justify-content:flex-end;">
-            <a class="btn btn-primary" href="mailto:ypelayog25@gmail.com">Email Me</a>
-            <a class="btn btn-secondary" href="#projects">See Work</a>
-          </div>
-        </aside>
-      </div>
-    </section>
+      <div style="margin-top:1rem;color:var(--muted)">Available for remote roles · Contract · Full-time</div>
+    </div>
 
   </div>
+</section>
+
+<div class="wrap">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head">
+    <h2>About</h2>
+    <p>Analytical, detail-oriented data professional with experience building ETL pipelines, dashboards and predictive analysis.</p>
+  </div>
+
+  <div class="card about-grid">
+
+    <div class="bio">
+      <p>I am <strong>Yenismara Pelayo</strong>, a Data Analyst with solid experience in Python, SQL, Tableau and advanced Excel.</p>
+      <p>I build ETL processes, perform exploratory data analysis and develop dashboards that enable data-driven decisions.</p>
+      <p style="color:var(--muted);font-size:.95rem;">Tools: Pandas · NumPy · SQL · Tableau · Git · Docker · GitHub Actions.</p>
+    </div>
+
+    <aside class="meta">
+      <div class="item">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-teal);"></div>
+        <div><div class="title">Location</div><div style="color:var(--muted)">Luanda, Angola</div></div>
+      </div>
+
+      <div class="item">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--accent-blue);"></div>
+        <div><div class="title">Role</div><div style="color:var(--muted)">Data Analyst / Freelance</div></div>
+      </div>
+
+      <div class="item">
+        <div style="width:10px;height:10px;border-radius:50%;background:#a8e8df;"></div>
+        <div><div class="title">Contact</div><div style="color:var(--muted)"><a href="mailto:ypelayog25@gmail.com">ypelayog25@gmail.com</a></div></div>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- SKILLS (SIN CAMBIOS) -->
+<section id="skills">
+  <div class="section-head">
+    <h2>Technical Skills</h2>
+    <p>Core competencies and tools I use daily.</p>
+  </div>
+
+  <div class="skills">
+
+    <div class="skill card">
+      <h4>Python</h4>
+      <small>Pandas · NumPy · Scikit-learn</small>
+      <div class="bar"><i data-level="92"></i></div>
+    </div>
+
+    <div class="skill card">
+      <h4>SQL</h4>
+      <small>Complex queries · Data modeling</small>
+      <div class="bar"><i data-level="88"></i></div>
+    </div>
+
+    <div class="skill card">
+      <h4>Tableau</h4>
+      <small>Dashboards · Storytelling</small>
+      <div class="bar"><i data-level="90"></i></div>
+    </div>
+
+    <div class="skill card">
+      <h4>Advanced Excel</h4>
+      <small>PivotTables · Power Query</small>
+      <div class="bar"><i data-level="92"></i></div>
+    </div>
+
+    <div class="skill card">
+      <h4>ETL Pipelines</h4>
+      <small>Automated ingestion</small>
+      <div class="bar"><i data-level="84"></i></div>
+    </div>
+
+    <div class="skill card">
+      <h4>Data Analytics</h4>
+      <small>KPI definition · EDA</small>
+      <div class="bar"><i data-level="80"></i></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS (MEJORADO PROFESIONAL) -->
+<section id="projects">
+  <div class="section-head">
+    <h2>Selected Projects</h2>
+    <p>Practical work demonstrating analytics, dashboards and pipelines.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <article class="project">
+      <div class="project-media">
+        <svg fill="white" viewBox="0 0 24 24">
+          <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+        </svg>
+      </div>
+
+      <div class="project-body">
+        <h3>E-commerce Sales Analysis Dashboard</h3>
+        <p>
+          End-to-end analytical dashboard revealing revenue trends, customer behavior,
+          product performance and operational KPIs, powered by automated ETL pipelines.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Data Visualization</span>
+        </div>
+
+        <a class="project-link" href="https://ecommerce-analysis-project-ypg.streamlit.app/" target="_blank">
+          View Dashboard →
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head">
+    <h2>Contact</h2>
+    <p>Interested in collaborating or hiring? Let's talk.</p>
+  </div>
+
+  <div class="card contact-grid">
+    <div>
+      <p>If you'd like to discuss a role or project, reach out via LinkedIn or email.</p>
+
+      <div style="margin-top:1rem" class="links">
+        <a href="https://www.linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
+        <a href="mailto:ypelayog25@gmail.com">Email</a>
+        <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <aside style="display:flex;flex-direction:column;gap:.8rem;align-items:flex-end;">
+      <div style="text-align:right;">
+        <div style="font-weight:800;">Let's build something with data</div>
+        <div style="color:var(--muted);margin-top:4px;">Send a short message — 3–5 lines is perfect.</div>
+      </div>
+
+      <div style="display:flex;gap:.6rem;">
+        <a class="btn btn-primary" href="mailto:ypelayog25@gmail.com">Email Me</a>
+        <a class="btn btn-secondary" href="#projects">See Work</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</div>
 </main>
 
 <footer>
-  <div class="wrap" style="display:flex;flex-direction:column;gap:0.5rem;align-items:center">
-    <div>© <strong>Yenismara Pelayo</strong> — Data Analyst · 2025</div>
-    <div style="color:var(--muted)">Python · SQL · Tableau · Data Analytics</div>
+  <div class="wrap">
+    © <strong>Yenismara Pelayo</strong> — Data Analyst · 2025
   </div>
 </footer>
+
+<script>
+document.querySelectorAll(".bar i").forEach(i=>{
+  setTimeout(()=>{i.style.width=i.dataset.level+"%";},400);
+});
+</script>
 
 </body>
 </html>
