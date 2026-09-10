@@ -84,6 +84,7 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:1rem;
 }
 .brand{
   display:flex;align-items:center;gap:.7rem;
@@ -94,6 +95,7 @@ header{
   display:flex;align-items:center;justify-content:center;
   color:white;font-weight:800;font-size:1.05rem;
 }
+nav{display:flex;align-items:center;gap:1rem;}
 nav ul{
   list-style:none;display:flex;gap:1rem;margin:0;padding:0;
 }
@@ -106,6 +108,36 @@ nav a{
 nav a:hover{
   background:var(--glass);
   color:var(--accent-blue);
+}
+
+/* ---------------- LANGUAGE SWITCH ---------------- */
+.lang-switch{
+  display:flex;
+  align-items:center;
+  gap:.25rem;
+  border:1px solid rgba(11,107,122,0.15);
+  border-radius:10px;
+  padding:.2rem;
+  flex:none;
+}
+.lang-btn{
+  border:none;
+  background:transparent;
+  color:var(--muted);
+  font-weight:800;
+  font-size:.78rem;
+  padding:.32rem .55rem;
+  border-radius:7px;
+  cursor:pointer;
+  font-family:inherit;
+}
+.lang-btn:hover{
+  background:var(--glass);
+  color:var(--accent-blue);
+}
+.lang-btn.active{
+  background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
+  color:#fff;
 }
 
 /* ---------------- HERO ---------------- */
@@ -396,6 +428,13 @@ section{padding:3rem 0;}
 }
 
 footer{text-align:center;padding:2rem 0;color:var(--muted);}
+
+@media (max-width:640px){
+  nav ul{display:none;}
+  .hero-grid{grid-template-columns:1fr;text-align:center;}
+  .hero-grid .portrait{display:flex;justify-content:center;}
+  .contact-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 
@@ -407,18 +446,24 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
       <div class="logo">YP</div>
       <div>
         <div style="font-weight:800">Yenismara Pelayo García</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Data Analyst</div>
+        <div style="font-size:0.85rem;color:var(--muted)" data-i18n="brand_role">Data Analyst</div>
       </div>
     </div>
 
     <nav>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://ypelayog25.github.io/portafolio/resume.html" target="_blank">View Resume</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        <li><a href="https://ypelayog25.github.io/portafolio/resume.html" target="_blank" data-i18n="nav_resume">View Resume</a></li>
       </ul>
+
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+      </div>
     </nav>
   </div>
 </header>
@@ -434,18 +479,18 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
     </div>
 
     <div class="hero-text">
-      <h1>Available for Freelance Projects</h1>
-      <p class="lead"> Data Analyst specializing in Python, SQL, Excel and interactive dashboards. I build data-driven solutions that help businesses analyze performance, automate reports and uncover valuable insights.</p>
+      <h1 data-i18n="hero_h1">Available for Freelance Projects</h1>
+      <p class="lead" data-i18n="hero_lead"> Data Analyst specializing in Python, SQL, Excel and interactive dashboards. I build data-driven solutions that help businesses analyze performance, automate reports and uncover valuable insights.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#projects">🚀 Explore My Projects</a>
+        <a class="btn btn-primary" href="#projects" data-i18n="hero_cta_projects">🚀 Explore My Projects</a>
         
         <a class="btn" href="https://github.com/ypelayog25" target="_blank"
-          style="border:1px solid rgba(11,107,122,0.12);background:white;">
+          style="border:1px solid rgba(11,107,122,0.12);background:white;" data-i18n="hero_cta_github">
           💻 GitHub
         </a>
 
         <a class="btn" href="Yenismara_Pelayo_Resume.pdf" target="_blank"
-          style="border:1px solid rgba(11,107,122,0.12);background:white;">
+          style="border:1px solid rgba(11,107,122,0.12);background:white;" data-i18n="hero_cta_resume">
           📄 Resume
         </a>
       </div>
@@ -456,7 +501,7 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
       <span>✔ Tableau</span>
       <span>✔ Excel</span>
       </div>
-      <div style="margin-top:1rem;color:var(--muted)">
+      <div style="margin-top:1rem;color:var(--muted)" data-i18n="hero_helping">
        Helping Clients Worldwide with Data Analytics
       </div>
     </div>
@@ -469,24 +514,24 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 <!-- ABOUT -->
 <section id="about">
   <div class="section-head">
-    <h2>How I Can Help Your Business</h2>
-    <p> Practical data solutions designed to turn complex information into clear,
+    <h2 data-i18n="about_h2">How I Can Help Your Business</h2>
+    <p data-i18n="about_p"> Practical data solutions designed to turn complex information into clear,
   actionable business insights.</p>
   </div>
 
   <div class="card about-grid">
     <div class="bio">      
-      <p>
+      <p data-i18n="about_bio">
         I help businesses transform raw data into clear, actionable insights through
         data analysis, automation and interactive dashboards.
       </p>
       <ul class="services-grid">
-        <li>📊 Interactive Dashboards (Streamlit & Tableau)</li>
-        <li>🐍 Data Analysis with Python</li>
-        <li>🗄 SQL Queries & Database Analysis</li>
-        <li>📈 Business Reports & KPI Tracking</li>
-        <li>🧹 Data Cleaning & ETL Processes</li>
-        <li>📑 Excel Dashboards & Automation</li>
+        <li data-i18n="service1">📊 Interactive Dashboards (Streamlit & Tableau)</li>
+        <li data-i18n="service2">🐍 Data Analysis with Python</li>
+        <li data-i18n="service3">🗄 SQL Queries & Database Analysis</li>
+        <li data-i18n="service4">📈 Business Reports & KPI Tracking</li>
+        <li data-i18n="service5">🧹 Data Cleaning & ETL Processes</li>
+        <li data-i18n="service6">📑 Excel Dashboards & Automation</li>
       </ul>
     </div>    
 
@@ -496,8 +541,8 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 <!-- SKILLS (SIN CAMBIOS) -->
 <section id="skills">
   <div class="section-head">
-    <h2>Technical Skills</h2>
-    <p>Core competencies and tools I use daily.</p>
+    <h2 data-i18n="skills_h2">Technical Skills</h2>
+    <p data-i18n="skills_p">Core competencies and tools I use daily.</p>
   </div>
 
   <div class="skills">
@@ -544,8 +589,8 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-head">
-    <h2>Selected Projects</h2>
-    <p>Practical work demonstrating analytics, dashboards and pipelines.</p>
+    <h2 data-i18n="projects_h2">Selected Projects</h2>
+    <p data-i18n="projects_p">Practical work demonstrating analytics, dashboards and pipelines.</p>
   </div>
 
   <div class="projects-grid">
@@ -559,9 +604,9 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
         <span class="project-category">DATA ANALYTICS · E-COMMERCE</span>
 
-        <h3>E-commerce Sales Analysis Dashboard</h3>
+        <h3 data-i18n="project1_title">E-commerce Sales Analysis Dashboard</h3>
 
-        <p>
+        <p data-i18n="project1_desc">
           Interactive dashboard designed to analyze sales performance,
           customer behavior and product trends.
         </p>
@@ -569,18 +614,18 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
         <div class="project-highlights">
 
           <div class="highlight">
-            <strong>Challenge</strong>
-            <span>Turn complex sales data into clear business insights.</span>
+            <strong data-i18n="label_challenge">Challenge</strong>
+            <span data-i18n="project1_challenge">Turn complex sales data into clear business insights.</span>
           </div>
 
           <div class="highlight">
-            <strong>Solution</strong>
-            <span>Automated ETL pipeline and interactive dashboard.</span>
+            <strong data-i18n="label_solution">Solution</strong>
+            <span data-i18n="project1_solution">Automated ETL pipeline and interactive dashboard.</span>
           </div>
 
           <div class="highlight">
-            <strong>Insights</strong>
-            <span>Sales, customers, products and key KPIs.</span>
+            <strong data-i18n="label_insights">Insights</strong>
+            <span data-i18n="project1_insights">Sales, customers, products and key KPIs.</span>
           </div>
 
         </div>
@@ -596,13 +641,13 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
           <a class="project-link"
             href="https://ecommerce-analysis-project-ypg.streamlit.app/"
-            target="_blank">
+            target="_blank" data-i18n="project1_link1">
             🚀 Live Dashboard
           </a>
 
           <a class="project-link project-link-secondary"
             href="https://github.com/ypelayog25/ecommerce-analysis-project"
-            target="_blank">
+            target="_blank" data-i18n="link_github">
             💻 GitHub
           </a>
 
@@ -623,7 +668,7 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
         <h3>E-commerce Sales Intelligence</h3>
 
-        <p>
+        <p data-i18n="project2_desc">
           Executive Power BI solution designed to analyze sales performance,
           customer behavior, product performance and operational risk.
         </p>
@@ -631,18 +676,18 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
         <div class="project-highlights">
 
           <div class="highlight">
-            <strong>Challenge</strong>
-            <span>Turn transactional data into clear business decisions.</span>
+            <strong data-i18n="label_challenge">Challenge</strong>
+            <span data-i18n="project2_challenge">Turn transactional data into clear business decisions.</span>
           </div>
 
           <div class="highlight">
-            <strong>Solution</strong>
-            <span>Star schema, Power Query transformations and DAX measures.</span>
+            <strong data-i18n="label_solution">Solution</strong>
+            <span data-i18n="project2_solution">Star schema, Power Query transformations and DAX measures.</span>
           </div>
 
           <div class="highlight">
-            <strong>Insights</strong>
-            <span>Sales, customers, products, operational risk and scenarios.</span>
+            <strong data-i18n="label_insights">Insights</strong>
+            <span data-i18n="project2_insights">Sales, customers, products, operational risk and scenarios.</span>
           </div>
 
         </div>
@@ -658,13 +703,13 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
         <div class="project-actions">
 
           <a class="project-link"
-             href="ecommerce-sales-intelligence.html">
+             href="ecommerce-sales-intelligence.html" data-i18n="project2_link1">
             📊 View Project
           </a>
 
           <a class="project-link project-link-secondary"
              href="https://github.com/ypelayog25/ecommerce-sales-intelligence"
-             target="_blank">
+             target="_blank" data-i18n="link_github">
             💻 GitHub
           </a>
 
@@ -680,13 +725,13 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-head">
-    <h2>Contact</h2>
-    <p>Interested in collaborating or hiring? Let's talk.</p>
+    <h2 data-i18n="contact_h2">Contact</h2>
+    <p data-i18n="contact_p">Interested in collaborating or hiring? Let's talk.</p>
   </div>
 
   <div class="card contact-grid">
     <div>
-      <p>If you'd like to discuss a role or project, reach out via LinkedIn or email.</p>
+      <p data-i18n="contact_body">If you'd like to discuss a role or project, reach out via LinkedIn or email.</p>
 
       <div style="margin-top:1rem" class="links">
         <a href="https://www.linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a>
@@ -697,13 +742,13 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
     <aside style="display:flex;flex-direction:column;gap:.8rem;align-items:flex-end;">
       <div style="text-align:right;">
-        <div style="font-weight:800;">Let's build something with data</div>
-        <div style="color:var(--muted);margin-top:4px;">Send a short message — 3–5 lines is perfect.</div>
+        <div style="font-weight:800;" data-i18n="contact_aside_title">Let's build something with data</div>
+        <div style="color:var(--muted);margin-top:4px;" data-i18n="contact_aside_p">Send a short message — 3–5 lines is perfect.</div>
       </div>
 
       <div style="display:flex;gap:.6rem;">
-        <a class="btn btn-primary" href="mailto:ypelayog25@gmail.com">Email Me</a>
-        <a class="btn btn-secondary" href="#projects">See Work</a>
+        <a class="btn btn-primary" href="mailto:ypelayog25@gmail.com" data-i18n="contact_btn_email">Email Me</a>
+        <a class="btn btn-secondary" href="#projects" data-i18n="contact_btn_seework">See Work</a>
       </div>
     </aside>
   </div>
@@ -714,7 +759,7 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    © 2026 <strong>Yenismara Pelayo García</strong> · Data Analyst
+    © 2026 <strong>Yenismara Pelayo García</strong> · <span data-i18n="footer_role">Data Analyst</span>
   </div>
 </footer>
 
@@ -722,6 +767,164 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 document.querySelectorAll(".bar i").forEach(i=>{
   setTimeout(()=>{i.style.width=i.dataset.level+"%";},400);
 });
+</script>
+
+<script>
+const translations = {
+  en: {
+    brand_role:"Data Analyst",
+    nav_about:"About", nav_skills:"Skills", nav_projects:"Projects", nav_contact:"Contact", nav_resume:"View Resume",
+    hero_h1:"Available for Freelance Projects",
+    hero_lead:" Data Analyst specializing in Python, SQL, Excel and interactive dashboards. I build data-driven solutions that help businesses analyze performance, automate reports and uncover valuable insights.",
+    hero_cta_projects:"🚀 Explore My Projects",
+    hero_cta_github:"💻 GitHub",
+    hero_cta_resume:"📄 Resume",
+    hero_helping:"Helping Clients Worldwide with Data Analytics",
+    about_h2:"How I Can Help Your Business",
+    about_p:" Practical data solutions designed to turn complex information into clear, actionable business insights.",
+    about_bio:"I help businesses transform raw data into clear, actionable insights through data analysis, automation and interactive dashboards.",
+    service1:"📊 Interactive Dashboards (Streamlit & Tableau)",
+    service2:"🐍 Data Analysis with Python",
+    service3:"🗄 SQL Queries & Database Analysis",
+    service4:"📈 Business Reports & KPI Tracking",
+    service5:"🧹 Data Cleaning & ETL Processes",
+    service6:"📑 Excel Dashboards & Automation",
+    skills_h2:"Technical Skills",
+    skills_p:"Core competencies and tools I use daily.",
+    projects_h2:"Selected Projects",
+    projects_p:"Practical work demonstrating analytics, dashboards and pipelines.",
+    project1_title:"E-commerce Sales Analysis Dashboard",
+    project1_desc:"Interactive dashboard designed to analyze sales performance, customer behavior and product trends.",
+    label_challenge:"Challenge", label_solution:"Solution", label_insights:"Insights",
+    project1_challenge:"Turn complex sales data into clear business insights.",
+    project1_solution:"Automated ETL pipeline and interactive dashboard.",
+    project1_insights:"Sales, customers, products and key KPIs.",
+    project1_link1:"🚀 Live Dashboard",
+    link_github:"💻 GitHub",
+    project2_desc:"Executive Power BI solution designed to analyze sales performance, customer behavior, product performance and operational risk.",
+    project2_challenge:"Turn transactional data into clear business decisions.",
+    project2_solution:"Star schema, Power Query transformations and DAX measures.",
+    project2_insights:"Sales, customers, products, operational risk and scenarios.",
+    project2_link1:"📊 View Project",
+    contact_h2:"Contact",
+    contact_p:"Interested in collaborating or hiring? Let's talk.",
+    contact_body:"If you'd like to discuss a role or project, reach out via LinkedIn or email.",
+    contact_aside_title:"Let's build something with data",
+    contact_aside_p:"Send a short message — 3–5 lines is perfect.",
+    contact_btn_email:"Email Me",
+    contact_btn_seework:"See Work",
+    footer_role:"Data Analyst"
+  },
+  es: {
+    brand_role:"Analista de Datos",
+    nav_about:"Sobre mí", nav_skills:"Habilidades", nav_projects:"Proyectos", nav_contact:"Contacto", nav_resume:"Ver CV",
+    hero_h1:"Disponible para Proyectos Freelance",
+    hero_lead:" Analista de Datos especializada en Python, SQL, Excel y dashboards interactivos. Construyo soluciones basadas en datos que ayudan a las empresas a analizar su rendimiento, automatizar reportes y descubrir información valiosa.",
+    hero_cta_projects:"🚀 Explorar Mis Proyectos",
+    hero_cta_github:"💻 GitHub",
+    hero_cta_resume:"📄 CV",
+    hero_helping:"Ayudando a Clientes en Todo el Mundo con Análisis de Datos",
+    about_h2:"Cómo Puedo Ayudar a Tu Negocio",
+    about_p:" Soluciones de datos prácticas diseñadas para convertir información compleja en información clara y accionable para el negocio.",
+    about_bio:"Ayudo a las empresas a transformar datos sin procesar en información clara y accionable mediante análisis de datos, automatización y dashboards interactivos.",
+    service1:"📊 Dashboards Interactivos (Streamlit y Tableau)",
+    service2:"🐍 Análisis de Datos con Python",
+    service3:"🗄 Consultas SQL y Análisis de Bases de Datos",
+    service4:"📈 Reportes de Negocio y Seguimiento de KPIs",
+    service5:"🧹 Limpieza de Datos y Procesos ETL",
+    service6:"📑 Dashboards en Excel y Automatización",
+    skills_h2:"Habilidades Técnicas",
+    skills_p:"Competencias principales y herramientas que uso a diario.",
+    projects_h2:"Proyectos Destacados",
+    projects_p:"Trabajo práctico que demuestra análisis de datos, dashboards y pipelines.",
+    project1_title:"Dashboard de Análisis de Ventas E-commerce",
+    project1_desc:"Dashboard interactivo diseñado para analizar el rendimiento de ventas, el comportamiento de los clientes y las tendencias de productos.",
+    label_challenge:"Desafío", label_solution:"Solución", label_insights:"Resultados",
+    project1_challenge:"Convertir datos de ventas complejos en información clara para el negocio.",
+    project1_solution:"Pipeline ETL automatizado y dashboard interactivo.",
+    project1_insights:"Ventas, clientes, productos y KPIs clave.",
+    project1_link1:"🚀 Dashboard en Vivo",
+    link_github:"💻 GitHub",
+    project2_desc:"Solución ejecutiva en Power BI diseñada para analizar el rendimiento de ventas, el comportamiento de los clientes, el desempeño de productos y el riesgo operativo.",
+    project2_challenge:"Convertir datos transaccionales en decisiones de negocio claras.",
+    project2_solution:"Esquema en estrella, transformaciones en Power Query y medidas DAX.",
+    project2_insights:"Ventas, clientes, productos, riesgo operativo y escenarios.",
+    project2_link1:"📊 Ver Proyecto",
+    contact_h2:"Contacto",
+    contact_p:"¿Interesado en colaborar o contratar? Hablemos.",
+    contact_body:"Si quieres conversar sobre un puesto o proyecto, contáctame por LinkedIn o correo electrónico.",
+    contact_aside_title:"Construyamos algo con datos",
+    contact_aside_p:"Envía un mensaje breve — de 3 a 5 líneas es perfecto.",
+    contact_btn_email:"Envíame un Correo",
+    contact_btn_seework:"Ver Trabajo",
+    footer_role:"Analista de Datos"
+  },
+  pt: {
+    brand_role:"Analista de Dados",
+    nav_about:"Sobre mim", nav_skills:"Habilidades", nav_projects:"Projetos", nav_contact:"Contato", nav_resume:"Ver Currículo",
+    hero_h1:"Disponível para Projetos Freelance",
+    hero_lead:" Analista de Dados especializada em Python, SQL, Excel e dashboards interativos. Construo soluções orientadas a dados que ajudam empresas a analisar desempenho, automatizar relatórios e descobrir informações valiosas.",
+    hero_cta_projects:"🚀 Explorar Meus Projetos",
+    hero_cta_github:"💻 GitHub",
+    hero_cta_resume:"📄 Currículo",
+    hero_helping:"Ajudando Clientes em Todo o Mundo com Análise de Dados",
+    about_h2:"Como Posso Ajudar Seu Negócio",
+    about_p:" Soluções de dados práticas projetadas para transformar informações complexas em insights claros e acionáveis para o negócio.",
+    about_bio:"Ajudo empresas a transformar dados brutos em insights claros e acionáveis por meio de análise de dados, automação e dashboards interativos.",
+    service1:"📊 Dashboards Interativos (Streamlit e Tableau)",
+    service2:"🐍 Análise de Dados com Python",
+    service3:"🗄 Consultas SQL e Análise de Bancos de Dados",
+    service4:"📈 Relatórios de Negócio e Acompanhamento de KPIs",
+    service5:"🧹 Limpeza de Dados e Processos de ETL",
+    service6:"📑 Dashboards em Excel e Automação",
+    skills_h2:"Habilidades Técnicas",
+    skills_p:"Competências principais e ferramentas que uso diariamente.",
+    projects_h2:"Projetos Selecionados",
+    projects_p:"Trabalho prático que demonstra análises, dashboards e pipelines.",
+    project1_title:"Dashboard de Análise de Vendas E-commerce",
+    project1_desc:"Dashboard interativo projetado para analisar o desempenho de vendas, o comportamento dos clientes e as tendências de produtos.",
+    label_challenge:"Desafio", label_solution:"Solução", label_insights:"Resultados",
+    project1_challenge:"Transformar dados de vendas complexos em informações claras para o negócio.",
+    project1_solution:"Pipeline de ETL automatizado e dashboard interativo.",
+    project1_insights:"Vendas, clientes, produtos e principais KPIs.",
+    project1_link1:"🚀 Dashboard ao Vivo",
+    link_github:"💻 GitHub",
+    project2_desc:"Solução executiva em Power BI projetada para analisar o desempenho de vendas, o comportamento dos clientes, o desempenho de produtos e o risco operacional.",
+    project2_challenge:"Transformar dados transacionais em decisões de negócio claras.",
+    project2_solution:"Esquema estrela, transformações em Power Query e medidas DAX.",
+    project2_insights:"Vendas, clientes, produtos, risco operacional e cenários.",
+    project2_link1:"📊 Ver Projeto",
+    contact_h2:"Contato",
+    contact_p:"Interessado em colaborar ou contratar? Vamos conversar.",
+    contact_body:"Se quiser conversar sobre uma vaga ou projeto, entre em contato pelo LinkedIn ou e-mail.",
+    contact_aside_title:"Vamos construir algo com dados",
+    contact_aside_p:"Envie uma mensagem curta — de 3 a 5 linhas é perfeito.",
+    contact_btn_email:"Envie um E-mail",
+    contact_btn_seework:"Ver Trabalho",
+    footer_role:"Analista de Dados"
+  }
+};
+
+function applySiteLanguage(lang){
+  if(!translations[lang]) lang = "en";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    const key = el.getAttribute("data-i18n");
+    if(translations[lang][key] !== undefined){
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  document.querySelectorAll(".lang-btn").forEach(function(b){
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+  localStorage.setItem("site-lang", lang);
+}
+
+document.querySelectorAll(".lang-btn").forEach(function(b){
+  b.addEventListener("click", function(){ applySiteLanguage(b.dataset.lang); });
+});
+
+applySiteLanguage(localStorage.getItem("site-lang") || "en");
 </script>
 
 </body>
