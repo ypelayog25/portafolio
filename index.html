@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yenismara Pelayo — Data Analyst | Python · SQL · Tableau · Data Analytics</title>
-  <meta name="description" content="Yenismara Pelayo — Data Analyst. I turn complex data into actionable insights using Python, SQL, Tableau and Data Analytics. Portfolio with projects, skills and contact." />
-  <meta name="keywords" content="Yenismara Pelayo, Data Analyst, Python, SQL, Tableau, Data Analytics, ETL" />
-  <meta name="author" content="Yenismara Pelayo" />
+  <title>Yenismara Pelayo García — Data Analyst | Python · SQL · Tableau · Data Analytics</title>
+  <meta name="description" content="Yenismara Pelayo García — Data Analyst. I turn complex data into actionable insights using Python, SQL, Tableau and Data Analytics. Portfolio with projects, skills and contact." />
+  <meta name="keywords" content="Yenismara Pelayo García, Data Analyst, Python, SQL, Tableau, Data Analytics, ETL" />
+  <meta name="author" content="Yenismara Pelayo García" />
   <meta name="theme-color" content="#0B6B7A" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Yenismara Pelayo — Data Analyst" />
+  <meta property="og:title" content="Yenismara Pelayo García— Data Analyst" />
   <meta property="og:description" content="Portfolio of Yenismara Pelayo — Data Analyst | Python · SQL · Tableau · Data Analytics" />
   <meta property="og:image" content="https://ypelayog25.github.io/portafolio/perfil.jpg" />
   <meta property="og:type" content="website" />
@@ -18,8 +18,8 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Yenismara Pelayo — Data Analyst" />
-  <meta name="twitter:description" content="Portfolio of Yenismara Pelayo — Data Analyst | Python · SQL · Tableau" />
+  <meta name="twitter:title" content="Yenismara Pelayo García — Data Analyst" />
+  <meta name="twitter:description" content="Portfolio of Yenismara Pelayo García— Data Analyst | Python · SQL · Tableau" />
   <meta name="twitter:image" content="https://ypelayog25.github.io/portafolio/perfil.jpg" />
 
   <!-- Structured data -->
@@ -27,7 +27,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Yenismara Pelayo",
+    "name": "Yenismara Pelayo García",
     "jobTitle": "Data Analyst",
     "email": "mailto:ypelayog25@gmail.com",
     "url": "https://ypelayog25.github.io/portafolio/",
@@ -249,10 +249,10 @@ section{padding:3rem 0;}
 }
 
 /* ---------------- PROJECTS ---------------- */
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:1.5rem;
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 .project{
   background:white;
@@ -283,6 +283,13 @@ section{padding:3rem 0;}
   transform:scale(1.03);
 }
 
+.project-powerbi {
+    background: #17152B;
+}
+/* Power BI project */
+.project-powerbi {
+    background: #17152B;
+}
 .project-body{
   padding:1.4rem;
 }
@@ -573,7 +580,7 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
           <div class="highlight">
             <strong>Insights</strong>
-            <span>Revenue, customers, products and key KPIs.</span>
+            <span>Sales, customers, products and key KPIs.</span>
           </div>
 
         </div>
@@ -601,10 +608,74 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
         </div>
 
+      </div>    
+    </article>
+     <!-- POWER BI PROJECT -->
+    <article class="project">
+      <div class="project-powerbi">
+        <img src="images/ecommerce-sales-intelligence-cover.png"
+             alt="E-commerce Sales Intelligence Power BI Dashboard">
+      </div>
+
+      <div class="project-body">
+
+        <span class="project-category">POWER BI · BUSINESS INTELLIGENCE</span>
+
+        <h3>E-commerce Sales Intelligence</h3>
+
+        <p>
+          Executive Power BI solution designed to analyze sales performance,
+          customer behavior, product performance and operational risk.
+        </p>
+
+        <div class="project-highlights">
+
+          <div class="highlight">
+            <strong>Challenge</strong>
+            <span>Turn transactional data into clear business decisions.</span>
+          </div>
+
+          <div class="highlight">
+            <strong>Solution</strong>
+            <span>Star schema, Power Query transformations and DAX measures.</span>
+          </div>
+
+          <div class="highlight">
+            <strong>Insights</strong>
+            <span>Sales, customers, products, operational risk and scenarios.</span>
+          </div>
+
+        </div>
+
+        <div class="tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">Star Schema</span>
+          <span class="tag">Business Intelligence</span>
+        </div>
+
+        <div class="project-actions">
+
+          <a class="project-link"
+             href="ecommerce-sales-intelligence.html">
+            📊 View Project
+          </a>
+
+          <a class="project-link project-link-secondary"
+             href="https://github.com/ypelayog25/ecommerce-sales-intelligence"
+             target="_blank">
+            💻 GitHub
+          </a>
+
+        </div>
+
       </div>
     </article>
+
   </div>
 </section>
+
 
 <!-- CONTACT -->
 <section id="contact">
