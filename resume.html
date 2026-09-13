@@ -14,6 +14,7 @@
       --muted: #6b7280;
       --accent-blue: #073b4c;
       --accent-teal: #0fb3a3;
+      --glass: rgba(11,107,122,0.06);
       --radius: 14px;
       --container: 900px;
     }
@@ -59,6 +60,51 @@
 
     .header {
       text-align: center;
+    }
+
+    /* ---------------- LANGUAGE SWITCH ---------------- */
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .25rem;
+      border: 1px solid rgba(11,107,122,0.15);
+      border-radius: 10px;
+      padding: .2rem;
+      width: fit-content;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(15,23,36,0.08);
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: .78rem;
+      padding: .32rem .6rem;
+      border-radius: 7px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-btn:hover {
+      background: var(--glass);
+      color: var(--accent-blue);
+    }
+    .lang-btn.active {
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+      color: #fff;
+    }
+
+    @media (max-width: 480px) {
+      .lang-switch {
+        position: static;
+        margin: 0 auto 1.2rem;
+      }
     }
 
     .header img {
@@ -119,93 +165,379 @@
       transform: translateY(-2px);
       background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
     }
+
+    /* ---------------- PERSONAL PROJECTS ---------------- */
+    .project-card {
+      border: 1px solid rgba(15,23,36,0.06);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      margin-top: 1rem;
+      background: linear-gradient(180deg, rgba(15,179,163,0.03), rgba(255,255,255,0));
+    }
+    .project-card h3 {
+      margin-top: 0;
+    }
+    .project-links {
+      margin-top: .6rem;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+    .project-links a {
+      display: inline-block;
+      font-size: 0.9rem;
+      padding: .4rem .75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(11,107,122,0.2);
+      background: white;
+    }
+    .project-links a:hover {
+      background: var(--glass);
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
 
     <div class="header">
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+      </div>
+
       <img src="perfil2026.jpg" alt="Yenismara Pelayo García portrait">
-      <h1>Resume — Yenismara Pelayo García</h1>
-      <div class="tagline">Backend Developer · Data Analyst</div>
+      <h1 data-i18n="page_h1">Resume — Yenismara Pelayo García</h1>
+      <div class="tagline" data-i18n="tagline">Data Analyst | Business Intelligence Specialist</div>
       <div class="info">
-        Luanda, Angola · <a href="mailto:ypelayog25@gmail.com">ypelayog25@gmail.com</a> · 
-        <a href="https://linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a> · 
+        Luanda, Angola · <a href="mailto:ypelayog25@gmail.com">ypelayog25@gmail.com</a> ·
+        <a href="https://linkedin.com/in/yenismara-pelayo-235b60335" target="_blank">LinkedIn</a> ·
         <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
       </div>
 
-      <a class="btn-download" href="Yenismara_Pelayo_Resume.pdf" target="_blank" rel="noopener">⬇️ Download PDF</a>
+      <a class="btn-download" href="Yenismara_Pelayo_Resume.pdf" target="_blank" rel="noopener" data-i18n="btn_download">⬇️ Download PDF</a>
     </div>
 
     <section>
-      <h2>Professional Summary</h2>
-      <p>
-        Computer Science Engineer with 14 years of experience in information technologies and software development.
-        Mid-level Backend Developer focused on innovative solutions for complex challenges. Skilled in popular frameworks such as
-        <strong>Django REST Framework</strong> and <strong>Symfony</strong>, with solid experience in API management using <strong>WSO2 API Manager</strong>.
-        Proficient in monitoring systems with <strong>Grafana</strong> and generating technical and financial reports through <strong>ReportServer</strong>.
-        Passionate about leveraging technology to solve problems creatively and efficiently, and eager to contribute to innovative software projects.
+      <h2 data-i18n="summary_h2">Professional Summary</h2>
+      <p data-i18n="summary_p">
+        Computer Science Engineer with more than 15 years of experience combining software development, data engineering and business analysis.
+        Specialized in turning operational and financial data into actionable insight using <strong>SQL</strong>, <strong>Python</strong> and visualization tools such as
+        <strong>Power BI</strong>, <strong>Tableau</strong> and <strong>Grafana</strong>. Solid experience designing and optimizing <strong>PostgreSQL</strong> databases,
+        automating technical and financial reporting with <strong>ReportServer</strong>, and building real-time monitoring dashboards to support decision-making.
+        Currently working as an independent data analyst, developing her own analytics and Business Intelligence projects.
       </p>
     </section>
 
     <section>
-      <h2>Professional Experience</h2>
+      <h2 data-i18n="experience_h2">Professional Experience</h2>
 
-      <h3>Xetid — Defense Information Technology Company (2010 – Present)</h3>
-      <p><strong>Position:</strong> Mid-level Backend Developer</p>
-      <p><strong>Location:</strong> Matanzas, Cuba</p>
+      <h3 data-i18n="job1_title">Data Analyst — Independent / Freelance</h3>
+      <p><strong data-i18n="label_location">Location:</strong> <span data-i18n="job1_company">Own projects, Angola / remote</span> · <span data-i18n="job1_dates">October 2024 – Present</span></p>
       <ul>
-        <li>Developed web applications using <strong>Symfony</strong> and <strong>Django REST Framework</strong>.</li>
-        <li>Designed and optimized <strong>PostgreSQL</strong> databases.</li>
-        <li>Created interactive dashboards and data visualizations in <strong>Grafana</strong>.</li>
-        <li>Generated and maintained technical and financial reports using <strong>ReportServer</strong>.</li>
-        <li>Collaborated with multidisciplinary teams for IT project delivery.</li>
+        <li data-i18n="job1_b1">Developed an end-to-end e-commerce sales analytics project (<strong>Power BI</strong> + <strong>Python/Streamlit</strong>), including data modeling, an interactive dashboard and an analysis app published online.</li>
+        <li data-i18n="job1_b2">Ran performance diagnostics and optimization on <strong>Power BI</strong> dashboards, identifying rendering bottlenecks and proposing technical improvements.</li>
+        <li data-i18n="job1_b3">Built an online portfolio and case studies to showcase data analysis and Business Intelligence capabilities to potential clients.</li>
       </ul>
 
-      <h4>Key Projects</h4>
+      <h3 data-i18n="job2_title">Senior Backend Developer &amp; Data Analyst</h3>
+      <p><strong data-i18n="label_location">Location:</strong> <span data-i18n="job2_company">XETID – Defense Information Technology Company, Matanzas, Cuba</span> · <span data-i18n="job2_dates">June 2021 – September 2024</span></p>
       <ul>
-        <li><strong>Project Management System:</strong> Backend development of a complete web application using Symfony integrated with PostgreSQL and managed via WSO2 API Manager. Real-time dashboards in Grafana.</li>
-        <li><strong>Economic Indicators Monitoring Platform:</strong> REST API development with Symfony, integrating multiple economic data sources and generating real-time analytics and reports.</li>
+        <li data-i18n="job2_b1">Designed and optimized <strong>PostgreSQL</strong> databases and complex SQL queries for critical monitoring and information management systems, ensuring reliable, analysis-ready data.</li>
+        <li data-i18n="job2_b2">Built real-time <strong>Grafana</strong> dashboards to track key performance indicators (KPIs), enabling early detection of anomalies and data-driven decisions.</li>
+        <li data-i18n="job2_b3">Automated technical and financial reporting with <strong>ReportServer</strong>, reducing manual work and improving data reliability.</li>
+        <li data-i18n="job2_b4">Analyzed the performance of large-scale corporate platforms and developed REST APIs (<strong>Django REST Framework</strong>, <strong>Symfony</strong>) to integrate multiple data sources across systems, managing their lifecycle with <strong>WSO2 API Manager</strong>.</li>
+        <li data-i18n="job2_b5">Collaborated with cross-functional teams on requirements analysis and the continuous improvement of reporting and monitoring solutions.</li>
       </ul>
 
-      <h3>Servindus — IT Specialist (Before 2010)</h3>
+      <h4 data-i18n="keyprojects_h4">Key Projects</h4>
       <ul>
-        <li>Provided technical support and systems maintenance for Linux and Windows environments.</li>
-        <li>Configured servers, network systems, and implemented data backup solutions.</li>
+        <li data-i18n="keyproject1"><strong>Corporate Project Management System:</strong> Full backend and API development for the centralization and tracking of dozens of projects annually, with direct impact on operational efficiency and strategic management.</li>
+        <li data-i18n="keyproject2"><strong>Real-Time Economic Indicators Monitoring Platform:</strong> Technical leadership of the backend, integration of multiple data sources, and automation of strategic report generation to support executive decision-making.</li>
       </ul>
-    </section>
 
-    <section>
-      <h2>Education</h2>
-      <p><strong>Bachelor’s Degree in Computer Science Engineering</strong> — University of Informatics Sciences (UCI), Havana, Cuba (2005–2010)</p>
-      <p><strong>Thesis:</strong> Cost Analysis Proposal for the SCADA Project using Rough Set Theory</p>
-    </section>
-
-    <section>
-      <h2>Skills</h2>
+      <h3 data-i18n="job3_title">Computer Science Specialist</h3>
+      <p><strong data-i18n="label_location">Location:</strong> <span data-i18n="job3_company">Servindus, Matanzas, Cuba</span> · <span data-i18n="job3_dates">November 2014 – June 2020</span></p>
       <ul>
-        <li>Programming Languages: <strong>Python</strong>, <strong>PHP</strong></li>
-        <li>Frameworks: <strong>Django REST Framework</strong>, <strong>Symfony</strong></li>
-        <li>Databases: <strong>PostgreSQL</strong></li>
-        <li>Platforms: <strong>Grafana</strong>, <strong>ReportServer</strong></li>
-        <li>Technologies: <strong>WSO2 API Manager</strong></li>
-        <li>Languages: Native Spanish · Fluent Portuguese · Intermediate English (B1)</li>
+        <li data-i18n="job3_b1">Administered servers (Linux/Windows) and implemented backup and recovery policies, ensuring data availability and integrity.</li>
+        <li data-i18n="job3_b2">Provided specialized technical support to end users and development teams.</li>
+      </ul>
+
+      <h3 data-i18n="job4_title">Technical Support Specialist</h3>
+      <p><strong data-i18n="label_location">Location:</strong> <span data-i18n="job4_company">TRD — Tiendas Recaudadoras de Divisa, Cuba</span> · <span data-i18n="job4_dates">September 2010 – October 2014</span></p>
+      <ul>
+        <li data-i18n="job4_b1">Provided technical support and desktop software installation for the company's economic and commercial systems.</li>
+        <li data-i18n="job4_b2">Maintained PCs, printers and cash registers, supporting approximately 10 stores across the province.</li>
       </ul>
     </section>
 
     <section>
-      <h2>Additional Information</h2>
+      <h2 data-i18n="personal_projects_h2">Personal Projects</h2>
+      <p data-i18n="personal_projects_p">Independent data analytics projects built to demonstrate end-to-end skills in dashboard design, data modeling and business analysis.</p>
+
+      <div class="project-card">
+        <h3 data-i18n="pproject1_title">E-commerce Sales Intelligence — Power BI</h3>
+        <p data-i18n="pproject1_desc">Executive Power BI solution turning transactional e-commerce data into decisions: a six-page report covering sales, customers, products and operational risk, built on a star-schema data model with Power Query transformations, DAX measures and what-if scenario simulation.</p>
+        <div class="project-links">
+          <a href="https://ypelayog25.github.io/portafolio/ecommerce-sales-intelligence.html" target="_blank" rel="noopener" data-i18n="pproject1_link">📊 View Project</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3 data-i18n="pproject2_title">E-commerce Sales Analysis Dashboard — Python (Streamlit)</h3>
+        <p data-i18n="pproject2_desc">Interactive Python/Streamlit application to explore sales performance, customer behavior and product trends, published online as a live demo.</p>
+        <div class="project-links">
+          <a href="https://ecommerce-analysis-project-ypg.streamlit.app/" target="_blank" rel="noopener" data-i18n="pproject2_link">🚀 Live Dashboard</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="education_h2">Education</h2>
+      <p><strong data-i18n="degree_title">Bachelor’s Degree in Computer Science Engineering</strong> — <span data-i18n="degree_school">University of Informatics Sciences (UCI), Havana, Cuba (2005–2010)</span></p>
+      <p><strong data-i18n="label_thesis">Thesis:</strong> <span data-i18n="thesis_text">Cost Analysis Proposal for the SCADA Project using Rough Set Theory</span></p>
+      <p><strong data-i18n="label_course">Course:</strong> <span data-i18n="course_text">Data Analytics Essentials — Cisco Networking Academy (2025)</span></p>
+    </section>
+
+    <section>
+      <h2 data-i18n="skills_h2">Skills</h2>
       <ul>
-        <li>Member of the Cuban Association of Engineers.</li>
-        <li>Presenter at international conferences: UNISOC (2022, 2024) and CIUM (2023) at University of Matanzas, Cuba.</li>
-        <li>Strong analytical, problem-solving, and teamwork skills.</li>
+        <li><strong data-i18n="label_analytics_tools">Analytics &amp; BI:</strong> <strong>SQL &amp; PostgreSQL</strong>, <strong>Python (Pandas)</strong>, <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>Grafana</strong>, <strong>Intermediate Excel</strong>, <strong>ReportServer</strong>, <strong data-i18n="label_etl">ETL / Data Modeling</strong></li>
+        <li><strong data-i18n="label_frameworks">Frameworks:</strong> <strong>Django REST Framework</strong>, <strong>Symfony</strong></li>
+        <li><strong data-i18n="label_tech">Technologies:</strong> <strong>WSO2 API Manager</strong>, <strong>Linux &amp; Windows</strong></li>
+        <li><strong data-i18n="label_languages">Languages:</strong> <span data-i18n="languages_text">Spanish (Native) · Portuguese (Intermediate) · English (Technical English)</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-i18n="additional_h2">Additional Information</h2>
+      <ul>
+        <li data-i18n="add1">Member of the Cuban Association of Engineers.</li>
+        <li data-i18n="add2">Presenter at international conferences: UNISOC (2022, 2024) and CIUM (2023) at University of Matanzas, Cuba.</li>
+        <li data-i18n="add3">Strong analytical, problem-solving, and teamwork skills.</li>
       </ul>
     </section>
 
   </main>
 
   <footer>
-    © <strong>Yenismara Pelayo García</strong> — Backend Developer · 2025
+    © <strong>Yenismara Pelayo García</strong> — <span data-i18n="footer_role">Backend Developer</span> · 2025
   </footer>
+
+<script>
+const translations = {
+  en: {
+    page_h1: "Resume — Yenismara Pelayo García",
+    tagline: "Data Analyst | Business Intelligence Specialist",
+    btn_download: "⬇️ Download PDF",
+    summary_h2: "Professional Summary",
+    summary_p: "Computer Science Engineer with more than 15 years of experience combining software development, data engineering and business analysis. Specialized in turning operational and financial data into actionable insight using <strong>SQL</strong>, <strong>Python</strong> and visualization tools such as <strong>Power BI</strong>, <strong>Tableau</strong> and <strong>Grafana</strong>. Solid experience designing and optimizing <strong>PostgreSQL</strong> databases, automating technical and financial reporting with <strong>ReportServer</strong>, and building real-time monitoring dashboards to support decision-making. Currently working as an independent data analyst, developing her own analytics and Business Intelligence projects.",
+    experience_h2: "Professional Experience",
+    label_location: "Location:",
+    job1_title: "Data Analyst — Independent / Freelance",
+    job1_company: "Own projects, Angola / remote",
+    job1_dates: "October 2024 – Present",
+    job1_b1: "Developed an end-to-end e-commerce sales analytics project (<strong>Power BI</strong> + <strong>Python/Streamlit</strong>), including data modeling, an interactive dashboard and an analysis app published online.",
+    job1_b2: "Ran performance diagnostics and optimization on <strong>Power BI</strong> dashboards, identifying rendering bottlenecks and proposing technical improvements.",
+    job1_b3: "Built an online portfolio and case studies to showcase data analysis and Business Intelligence capabilities to potential clients.",
+    job2_title: "Senior Backend Developer &amp; Data Analyst",
+    job2_company: "XETID – Defense Information Technology Company, Matanzas, Cuba",
+    job2_dates: "June 2021 – September 2024",
+    job2_b1: "Designed and optimized <strong>PostgreSQL</strong> databases and complex SQL queries for critical monitoring and information management systems, ensuring reliable, analysis-ready data.",
+    job2_b2: "Built real-time <strong>Grafana</strong> dashboards to track key performance indicators (KPIs), enabling early detection of anomalies and data-driven decisions.",
+    job2_b3: "Automated technical and financial reporting with <strong>ReportServer</strong>, reducing manual work and improving data reliability.",
+    job2_b4: "Analyzed the performance of large-scale corporate platforms and developed REST APIs (<strong>Django REST Framework</strong>, <strong>Symfony</strong>) to integrate multiple data sources across systems, managing their lifecycle with <strong>WSO2 API Manager</strong>.",
+    job2_b5: "Collaborated with cross-functional teams on requirements analysis and the continuous improvement of reporting and monitoring solutions.",
+    keyprojects_h4: "Key Projects",
+    keyproject1: "<strong>Corporate Project Management System:</strong> Full backend and API development for the centralization and tracking of dozens of projects annually, with direct impact on operational efficiency and strategic management.",
+    keyproject2: "<strong>Real-Time Economic Indicators Monitoring Platform:</strong> Technical leadership of the backend, integration of multiple data sources, and automation of strategic report generation to support executive decision-making.",
+    job3_title: "Computer Science Specialist",
+    job3_company: "Servindus, Matanzas, Cuba",
+    job3_dates: "November 2014 – June 2020",
+    job3_b1: "Administered servers (Linux/Windows) and implemented backup and recovery policies, ensuring data availability and integrity.",
+    job3_b2: "Provided specialized technical support to end users and development teams.",
+    job4_title: "Technical Support Specialist",
+    job4_company: "TRD — Tiendas Recaudadoras de Divisa, Cuba",
+    job4_dates: "September 2010 – October 2014",
+    job4_b1: "Provided technical support and desktop software installation for the company's economic and commercial systems.",
+    job4_b2: "Maintained PCs, printers and cash registers, supporting approximately 10 stores across the province.",
+    personal_projects_h2: "Personal Projects",
+    personal_projects_p: "Independent data analytics projects built to demonstrate end-to-end skills in dashboard design, data modeling and business analysis.",
+    pproject1_title: "E-commerce Sales Intelligence — Power BI",
+    pproject1_desc: "Executive Power BI solution turning transactional e-commerce data into decisions: a six-page report covering sales, customers, products and operational risk, built on a star-schema data model with Power Query transformations, DAX measures and what-if scenario simulation.",
+    pproject1_link: "📊 View Project",
+    pproject2_title: "E-commerce Sales Analysis Dashboard — Python (Streamlit)",
+    pproject2_desc: "Interactive Python/Streamlit application to explore sales performance, customer behavior and product trends, published online as a live demo.",
+    pproject2_link: "🚀 Live Dashboard",
+    education_h2: "Education",
+    degree_title: "Bachelor’s Degree in Computer Science Engineering",
+    degree_school: "University of Informatics Sciences (UCI), Havana, Cuba (2005–2010)",
+    label_thesis: "Thesis:",
+    thesis_text: "Cost Analysis Proposal for the SCADA Project using Rough Set Theory",
+    label_course: "Course:",
+    course_text: "Data Analytics Essentials — Cisco Networking Academy (2025)",
+    skills_h2: "Skills",
+    label_analytics_tools: "Analytics &amp; BI:",
+    label_etl: "ETL / Data Modeling",
+    label_frameworks: "Frameworks:",
+    label_tech: "Technologies:",
+    label_languages: "Languages:",
+    languages_text: "Spanish (Native) · Portuguese (Intermediate) · English (Technical English)",
+    additional_h2: "Additional Information",
+    add1: "Member of the Cuban Association of Engineers.",
+    add2: "Presenter at international conferences: UNISOC (2022, 2024) and CIUM (2023) at University of Matanzas, Cuba.",
+    add3: "Strong analytical, problem-solving, and teamwork skills.",
+    footer_role: "Data Analyst"
+  },
+  es: {
+    page_h1: "Currículum — Yenismara Pelayo García",
+    tagline: "Analista de Datos | Especialista en Business Intelligence",
+    btn_download: "⬇️ Descargar PDF",
+    summary_h2: "Resumen Profesional",
+    summary_p: "Ingeniera en Ciencias Informáticas con más de 15 años de experiencia combinando desarrollo de software, ingeniería de datos y análisis de negocio. Especializada en transformar datos operativos y financieros en información accionable mediante <strong>SQL</strong>, <strong>Python</strong> y herramientas de visualización como <strong>Power BI</strong>, <strong>Tableau</strong> y <strong>Grafana</strong>. Sólida experiencia diseñando y optimizando bases de datos <strong>PostgreSQL</strong>, automatizando reportes técnicos y financieros con <strong>ReportServer</strong>, y construyendo dashboards de monitoreo en tiempo real para la toma de decisiones. Actualmente trabaja como analista de datos independiente, desarrollando proyectos propios de analítica y Business Intelligence.",
+    experience_h2: "Experiencia Profesional",
+    label_location: "Ubicación:",
+    job1_title: "Analista de Datos — Independiente / Freelance",
+    job1_company: "Proyectos propios, Angola / remoto",
+    job1_dates: "Octubre 2024 – Actualidad",
+    job1_b1: "Desarrollé un proyecto integral de analítica de ventas de e-commerce (<strong>Power BI</strong> + <strong>Python/Streamlit</strong>), incluyendo modelado de datos, dashboard interactivo y una aplicación de análisis publicada en línea.",
+    job1_b2: "Realicé diagnósticos de rendimiento y optimización de dashboards de <strong>Power BI</strong>, identificando cuellos de botella de renderizado y proponiendo mejoras técnicas.",
+    job1_b3: "Construí un portafolio web y casos de estudio para demostrar capacidades de análisis de datos y Business Intelligence a clientes potenciales.",
+    job2_title: "Desarrolladora Backend y Analista de Datos Sénior",
+    job2_company: "XETID – Empresa de Tecnologías de Información de Defensa, Matanzas, Cuba",
+    job2_dates: "Junio 2021 – Septiembre 2024",
+    job2_b1: "Diseñé y optimicé bases de datos <strong>PostgreSQL</strong> y consultas SQL complejas para sistemas críticos de monitoreo y gestión de información, garantizando datos confiables y listos para análisis.",
+    job2_b2: "Construí dashboards en tiempo real con <strong>Grafana</strong> para el seguimiento de indicadores clave de rendimiento (KPIs), permitiendo la detección temprana de anomalías y decisiones basadas en datos.",
+    job2_b3: "Automaticé la generación de reportes técnicos y financieros con <strong>ReportServer</strong>, reduciendo el trabajo manual y mejorando la confiabilidad de la información.",
+    job2_b4: "Analicé el rendimiento de plataformas corporativas a gran escala y desarrollé APIs REST (<strong>Django REST Framework</strong>, <strong>Symfony</strong>) para integrar múltiples fuentes de datos entre sistemas, gestionando su ciclo de vida con <strong>WSO2 API Manager</strong>.",
+    job2_b5: "Colaboré con equipos multidisciplinarios en el análisis de requisitos y la mejora continua de soluciones de reporting y monitoreo.",
+    keyprojects_h4: "Proyectos Clave",
+    keyproject1: "<strong>Sistema de Gestión de Proyectos Corporativos:</strong> Desarrollo backend y de APIs para la centralización y el seguimiento de decenas de proyectos anuales, con impacto directo en la eficiencia operativa y la gestión estratégica.",
+    keyproject2: "<strong>Plataforma de Monitoreo de Indicadores Económicos en Tiempo Real:</strong> Liderazgo técnico del backend, integración de múltiples fuentes de datos y automatización de la generación de reportes estratégicos para apoyar la toma de decisiones ejecutivas.",
+    job3_title: "Especialista en Ciencias Informáticas",
+    job3_company: "Servindus, Matanzas, Cuba",
+    job3_dates: "Noviembre 2014 – Junio 2020",
+    job3_b1: "Administré servidores (Linux/Windows) e implementé políticas de respaldo y recuperación, garantizando la disponibilidad e integridad de los datos.",
+    job3_b2: "Brindé soporte técnico especializado a usuarios finales y equipos de desarrollo.",
+    job4_title: "Especialista en Soporte Técnico",
+    job4_company: "TRD — Tiendas Recaudadoras de Divisa, Cuba",
+    job4_dates: "Septiembre 2010 – Octubre 2014",
+    job4_b1: "Brindé soporte técnico e instalación de software de escritorio para los sistemas económicos y comerciales de la empresa.",
+    job4_b2: "Di mantenimiento a equipos PC, impresoras y cajas registradoras, atendiendo aproximadamente 10 tiendas de la provincia.",
+    personal_projects_h2: "Personal Projects",
+    personal_projects_p: "Independent data analytics projects built to demonstrate end-to-end skills in dashboard design, data modeling and business analysis.",
+    pproject1_title: "E-commerce Sales Intelligence — Power BI",
+    pproject1_desc: "Executive Power BI solution turning transactional e-commerce data into decisions: a six-page report covering sales, customers, products and operational risk, built on a star-schema data model with Power Query transformations, DAX measures and what-if scenario simulation.",
+    pproject1_link: "📊 View Project",
+    pproject2_title: "E-commerce Sales Analysis Dashboard — Python (Streamlit)",
+    pproject2_desc: "Interactive Python/Streamlit application to explore sales performance, customer behavior and product trends, published online as a live demo.",
+    pproject2_link: "🚀 Live Dashboard",
+    education_h2: "Formación Académica",
+    degree_title: "Ingeniería en Ciencias Informáticas",
+    degree_school: "Universidad de las Ciencias Informáticas (UCI), La Habana, Cuba (2005–2010)",
+    label_thesis: "Tesis:",
+    thesis_text: "Propuesta de análisis de costos para el proyecto SCADA utilizando la Teoría de Conjuntos Rugosos",
+    label_course: "Curso:",
+    course_text: "Data Analytics Essentials — Cisco Networking Academy (2025)",
+    skills_h2: "Habilidades",
+    label_analytics_tools: "Analítica y BI:",
+    label_etl: "ETL / Modelado de datos",
+    label_frameworks: "Frameworks:",
+    label_tech: "Tecnologías:",
+    label_languages: "Idiomas:",
+    languages_text: "Español (Nativo) · Portugués (Intermedio) · Inglés (Inglés Técnico)",
+    additional_h2: "Información Adicional",
+    add1: "Miembro de la Asociación Cubana de Ingenieros.",
+    add2: "Ponente en conferencias internacionales: UNISOC (2022, 2024) y CIUM (2023) en la Universidad de Matanzas, Cuba.",
+    add3: "Fuertes habilidades analíticas, de resolución de problemas y trabajo en equipo.",
+    footer_role: "Analista de Datos"
+  },
+  pt: {
+    page_h1: "Currículo — Yenismara Pelayo García",
+    tagline: "Analista de Dados | Especialista em Business Intelligence",
+    btn_download: "⬇️ Descarregar PDF",
+    summary_h2: "Resumo Profissional",
+    summary_p: "Engenheira em Ciências Informáticas com mais de 15 anos de experiência a combinar desenvolvimento de software, engenharia de dados e análise de negócio. Especializada em transformar dados operacionais e financeiros em informação acionável através de <strong>SQL</strong>, <strong>Python</strong> e ferramentas de visualização como <strong>Power BI</strong>, <strong>Tableau</strong> e <strong>Grafana</strong>. Sólida experiência na conceção e otimização de bases de dados <strong>PostgreSQL</strong>, na automatização de relatórios técnicos e financeiros com <strong>ReportServer</strong>, e na construção de dashboards de monitorização em tempo real para apoio à tomada de decisão. Atualmente trabalha como analista de dados independente, desenvolvendo projetos próprios de analítica e Business Intelligence.",
+    experience_h2: "Experiência Profissional",
+    label_location: "Localização:",
+    job1_title: "Analista de Dados — Independente / Freelancer",
+    job1_company: "Projetos próprios, Angola / remoto",
+    job1_dates: "Outubro 2024 – Atualidade",
+    job1_b1: "Desenvolvi um projeto integral de análise de vendas de e-commerce (<strong>Power BI</strong> + <strong>Python/Streamlit</strong>), incluindo modelação de dados, dashboard interativo e uma aplicação de análise publicada online.",
+    job1_b2: "Realizei diagnósticos de desempenho e otimização de dashboards de <strong>Power BI</strong>, identificando gargalos de renderização e propondo melhorias técnicas.",
+    job1_b3: "Construí um portefólio online e casos de estudo para demonstrar competências de análise de dados e Business Intelligence a potenciais clientes.",
+    job2_title: "Desenvolvedora Backend e Analista de Dados Sénior",
+    job2_company: "XETID – Empresa de Tecnologias de Informação de Defesa, Matanzas, Cuba",
+    job2_dates: "Junho 2021 – Setembro 2024",
+    job2_b1: "Concebi e otimizei bases de dados <strong>PostgreSQL</strong> e consultas SQL complexas para sistemas críticos de monitorização e gestão de informação, garantindo dados fiáveis e prontos para análise.",
+    job2_b2: "Construí dashboards em tempo real com <strong>Grafana</strong> para acompanhamento de indicadores-chave de desempenho (KPIs), permitindo a deteção precoce de anomalias e decisões baseadas em dados.",
+    job2_b3: "Automatizei a geração de relatórios técnicos e financeiros com <strong>ReportServer</strong>, reduzindo o trabalho manual e melhorando a fiabilidade da informação.",
+    job2_b4: "Analisei o desempenho de plataformas corporativas de grande escala e desenvolvi APIs REST (<strong>Django REST Framework</strong>, <strong>Symfony</strong>) para integrar múltiplas fontes de dados entre sistemas, gerindo o seu ciclo de vida com o <strong>WSO2 API Manager</strong>.",
+    job2_b5: "Colaborei com equipas multidisciplinares na análise de requisitos e na melhoria contínua de soluções de reporting e monitorização.",
+    keyprojects_h4: "Projetos-Chave",
+    keyproject1: "<strong>Sistema de Gestão de Projetos Corporativos:</strong> Desenvolvimento de backend e de APIs para a centralização e o acompanhamento de dezenas de projetos anuais, com impacto direto na eficiência operacional e na gestão estratégica.",
+    keyproject2: "<strong>Plataforma de Monitorização de Indicadores Económicos em Tempo Real:</strong> Liderança técnica do backend, integração de múltiplas fontes de dados e automatização da geração de relatórios estratégicos para apoiar a tomada de decisão executiva.",
+    job3_title: "Especialista em Ciências Informáticas",
+    job3_company: "Servindus, Matanzas, Cuba",
+    job3_dates: "Novembro 2014 – Junho 2020",
+    job3_b1: "Administrei servidores (Linux/Windows) e implementei políticas de cópia de segurança e recuperação, garantindo a disponibilidade e integridade dos dados.",
+    job3_b2: "Prestei apoio técnico especializado a utilizadores finais e equipas de desenvolvimento.",
+    job4_title: "Especialista em Suporte Técnico",
+    job4_company: "TRD — Tiendas Recaudadoras de Divisa, Cuba",
+    job4_dates: "Setembro 2010 – Outubro 2014",
+    job4_b1: "Prestei apoio técnico e instalação de software de secretária para os sistemas económicos e comerciais da empresa.",
+    job4_b2: "Dei manutenção a equipamentos PC, impressoras e caixas registadoras, atendendo cerca de 10 lojas da província.",
+    personal_projects_h2: "Personal Projects",
+    personal_projects_p: "Independent data analytics projects built to demonstrate end-to-end skills in dashboard design, data modeling and business analysis.",
+    pproject1_title: "E-commerce Sales Intelligence — Power BI",
+    pproject1_desc: "Executive Power BI solution turning transactional e-commerce data into decisions: a six-page report covering sales, customers, products and operational risk, built on a star-schema data model with Power Query transformations, DAX measures and what-if scenario simulation.",
+    pproject1_link: "📊 View Project",
+    pproject2_title: "E-commerce Sales Analysis Dashboard — Python (Streamlit)",
+    pproject2_desc: "Interactive Python/Streamlit application to explore sales performance, customer behavior and product trends, published online as a live demo.",
+    pproject2_link: "🚀 Live Dashboard",
+    education_h2: "Formação Académica",
+    degree_title: "Licenciatura em Engenharia de Ciências Informáticas",
+    degree_school: "Universidade das Ciências Informáticas (UCI), Havana, Cuba (2005–2010)",
+    label_thesis: "Tese:",
+    thesis_text: "Proposta de análise de custos para o projeto SCADA utilizando a Teoria dos Conjuntos Aproximados",
+    label_course: "Curso:",
+    course_text: "Data Analytics Essentials — Cisco Networking Academy (2025)",
+    skills_h2: "Competências",
+    label_analytics_tools: "Analítica e BI:",
+    label_etl: "ETL / Modelação de dados",
+    label_frameworks: "Frameworks:",
+    label_tech: "Tecnologias:",
+    label_languages: "Idiomas:",
+    languages_text: "Espanhol (Nativo) · Português (Intermédio) · Inglês (Inglês Técnico)",
+    additional_h2: "Informação Adicional",
+    add1: "Membro da Associação Cubana de Engenheiros.",
+    add2: "Palestrante em conferências internacionais: UNISOC (2022, 2024) e CIUM (2023) na Universidade de Matanzas, Cuba.",
+    add3: "Fortes competências analíticas, de resolução de problemas e trabalho em equipa.",
+    footer_role: "Analista de Dados"
+  }
+};
+
+function applySiteLanguage(lang){
+  if(!translations[lang]) lang = "en";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    const key = el.getAttribute("data-i18n");
+    if(translations[lang][key] !== undefined){
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  document.querySelectorAll(".lang-btn").forEach(function(b){
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+  localStorage.setItem("site-lang", lang);
+}
+
+document.querySelectorAll(".lang-btn").forEach(function(b){
+  b.addEventListener("click", function(){ applySiteLanguage(b.dataset.lang); });
+});
+
+applySiteLanguage(localStorage.getItem("site-lang") || "en");
+</script>
+
 </body>
 </html>
