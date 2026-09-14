@@ -1,1356 +1,2052 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>E-commerce Sales Intelligence — Power BI Project | Yenismara Pelayo García</title>
+    <title>E-commerce Sales Intelligence — Power BI Project | Yenismara Pelayo García</title>
 
-  <meta name="description" content="Executive Power BI solution analyzing e-commerce sales, customers, products and operational risk. Star schema, Power Query and DAX by Yenismara Pelayo García.">
+    <meta name="description"
+          content="Executive Power BI solution analyzing e-commerce sales, customers, products and operational risk. Star schema, Power Query and DAX by Yenismara Pelayo García.">
 
-  <meta name="theme-color" content="#073b4c">
+    <meta name="theme-color" content="#073b4c">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="E-commerce Sales Intelligence — Power BI Project">
-  <meta property="og:description" content="A six-page Power BI solution turning transactional e-commerce data into decisions on sales, customers, products and risk.">
-  <meta property="og:image" content="https://ypelayog25.github.io/portafolio/images/ecommerce-sales-intelligence-cover.png">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://ypelayog25.github.io/portafolio/ecommerce-sales-intelligence.html">
+    <!-- Open Graph -->
+    <meta property="og:title"
+          content="E-commerce Sales Intelligence — Power BI Project">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="E-commerce Sales Intelligence — Power BI Project">
-  <meta name="twitter:description" content="A six-page Power BI solution turning transactional e-commerce data into decisions on sales, customers, products and risk.">
-  <meta name="twitter:image" content="https://ypelayog25.github.io/portafolio/images/ecommerce-sales-intelligence-cover.png">
+    <meta property="og:description"
+          content="A six-page Power BI solution turning transactional e-commerce data into decisions on sales, customers, products and risk.">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "E-commerce Sales Intelligence",
-    "creator": {
-      "@type": "Person",
-      "name": "Yenismara Pelayo García",
-      "url": "https://ypelayog25.github.io/portafolio/"
-    },
-    "about": "Power BI business intelligence dashboard for e-commerce sales, customers, products and operational risk",
-    "url": "https://ypelayog25.github.io/portafolio/ecommerce-sales-intelligence.html"
-  }
-  </script>
+    <meta property="og:image"
+          content="https://ypelayog25.github.io/portafolio/images/ecommerce-sales-intelligence-cover.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <meta property="og:type" content="article">
+
+    <meta property="og:url"
+          content="https://ypelayog25.github.io/portafolio/ecommerce-sales-intelligence.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title"
+          content="E-commerce Sales Intelligence — Power BI Project">
+
+    <meta name="twitter:description"
+          content="A six-page Power BI solution turning transactional e-commerce data into decisions on sales, customers, products and risk.">
+
+    <meta name="twitter:image"
+          content="https://ypelayog25.github.io/portafolio/images/ecommerce-sales-intelligence-cover.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "E-commerce Sales Intelligence",
+        "creator": {
+            "@type": "Person",
+            "name": "Yenismara Pelayo García",
+            "url": "https://ypelayog25.github.io/portafolio/"
+        },
+        "about": "Power BI business intelligence dashboard for e-commerce sales, customers, products and operational risk",
+        "url": "https://ypelayog25.github.io/portafolio/ecommerce-sales-intelligence.html"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
 
 <style>
+
 /* ============ TOKENS ============ */
+
 :root{
-  --bg:#f5f7f6;
-  --surface:#ffffff;
-  --text:#0f1724;
-  --muted:#5b6472;
-  --accent-blue:#073b4c;
-  --accent-teal:#0fb3a3;
-  --ink:#04141c;
-  --glass:rgba(11,107,122,0.06);
-  --radius:14px;
-  --container:1100px;
-  --shadow-soft:0 12px 30px rgba(15,23,36,0.06);
-  --dash-navy-1:#050a24;
+    --bg:#f5f7f6;
+    --surface:#ffffff;
+    --text:#0f1724;
+    --muted:#5b6472;
+    --accent-blue:#073b4c;
+    --accent-teal:#0fb3a3;
+    --ink:#04141c;
+    --glass:rgba(11,107,122,0.06);
+    --radius:14px;
+    --container:1100px;
+    --shadow-soft:0 12px 30px rgba(15,23,36,0.06);
+    --dash-navy-1:#050a24;
 }
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  font-family:"Inter",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
+    margin:0;
+    font-family:"Inter",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
 }
 
 h1,h2,h3{
-  font-family:"Outfit",sans-serif;
-  margin:0;
-  letter-spacing:-0.015em;
+    font-family:"Outfit",sans-serif;
+    margin:0;
+    letter-spacing:-0.015em;
 }
 
 img{
-  max-width:100%;
-  display:block;
+    max-width:100%;
+    display:block;
 }
 
 a{
-  text-decoration:none;
-  color:inherit;
+    text-decoration:none;
+    color:inherit;
 }
 
 .wrap{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:0 1.25rem;
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 1.25rem;
 }
 
 :focus-visible{
-  outline:2px solid var(--accent-teal);
-  outline-offset:3px;
+    outline:2px solid var(--accent-teal);
+    outline-offset:3px;
 }
 
-/* ============ HEADER (shared with index) ============ */
+
+/* ============ HEADER ============ */
+
 .site-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255,255,255,0.78);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(15,23,36,0.06);
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,0.78);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(15,23,36,0.06);
 }
 
 .nav-inner{
-  max-width:var(--container);
-  margin:auto;
-  padding:.7rem 1.25rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:1rem;
+    max-width:var(--container);
+    margin:auto;
+    padding:.7rem 1.25rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:1rem;
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:.7rem;
+    display:flex;
+    align-items:center;
+    gap:.7rem;
 }
 
 .brand .logo{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  flex:none;
-  background:linear-gradient(180deg,var(--accent-blue),var(--accent-teal));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-weight:800;
-  font-size:1rem;
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    flex:none;
+    background:linear-gradient(180deg,var(--accent-blue),var(--accent-teal));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:800;
+    font-size:1rem;
 }
 
 .brand .name{
-  font-weight:800;
-  font-size:.98rem;
+    font-weight:800;
+    font-size:.98rem;
 }
 
 .brand .role{
-  font-size:.8rem;
-  color:var(--muted);
-}
-
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:.35rem;
-  margin:0;
-  padding:0;
-  align-items:center;
-}
-
-nav a{
-  padding:.5rem .65rem;
-  color:var(--muted);
-  font-weight:600;
-  font-size:.92rem;
-  border-radius:8px;
-}
-
-nav a:hover{
-  background:var(--glass);
-  color:var(--accent-blue);
-}
-
-nav .nav-back{
-  color:var(--accent-blue);
-  font-weight:700;
+    font-size:.8rem;
+    color:var(--muted);
 }
 
 nav{
-  display:flex;
-  align-items:center;
-  gap:1rem;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:.35rem;
+    margin:0;
+    padding:0;
+    align-items:center;
+}
+
+nav a{
+    padding:.5rem .65rem;
+    color:var(--muted);
+    font-weight:600;
+    font-size:.92rem;
+    border-radius:8px;
+}
+
+nav a:hover{
+    background:var(--glass);
+    color:var(--accent-blue);
+}
+
+nav .nav-back{
+    color:var(--accent-blue);
+    font-weight:700;
 }
 
 .lang-switch{
-  display:flex;
-  align-items:center;
-  gap:.25rem;
-  border:1px solid rgba(11,107,122,0.15);
-  border-radius:10px;
-  padding:.2rem;
-  flex:none;
+    display:flex;
+    align-items:center;
+    gap:.25rem;
+    border:1px solid rgba(11,107,122,0.15);
+    border-radius:10px;
+    padding:.2rem;
+    flex:none;
 }
 
 .lang-btn{
-  border:none;
-  background:transparent;
-  color:var(--muted);
-  font-weight:800;
-  font-size:.78rem;
-  padding:.32rem .55rem;
-  border-radius:7px;
-  cursor:pointer;
-  font-family:inherit;
+    border:none;
+    background:transparent;
+    color:var(--muted);
+    font-weight:800;
+    font-size:.78rem;
+    padding:.32rem .55rem;
+    border-radius:7px;
+    cursor:pointer;
+    font-family:inherit;
 }
 
 .lang-btn:hover{
-  background:var(--glass);
-  color:var(--accent-blue);
+    background:var(--glass);
+    color:var(--accent-blue);
 }
 
 .lang-btn.active{
-  background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
-  color:#fff;
+    background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
+    color:#fff;
 }
 
+
 /* ============ SECTION SCAFFOLDING ============ */
+
 section{
-  padding:3rem 0;
+    padding:3rem 0;
 }
 
 .section-head{
-  max-width:none;
-  width:100%;
-  margin-bottom:1.6rem;
+    max-width:none;
+    width:100%;
+    margin-bottom:1.6rem;
 }
 
 .section-head.center{
-  margin-left:auto;
-  margin-right:auto;
-  text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
 }
 
 .section-head h2{
-  font-size:clamp(1.7rem,3vw,2.3rem);
-  font-weight:800;
-  line-height:1.2;
+    font-size:clamp(1.7rem,3vw,2.3rem);
+    font-weight:800;
+    line-height:1.2;
 }
 
 .section-head p{
-  width:100%;
-  max-width:none;
-  margin-top:.7rem;
-  color:var(--muted);
-  font-size:1rem;
+    width:100%;
+    max-width:none;
+    margin-top:.7rem;
+    color:var(--muted);
+    font-size:1rem;
 }
 
 .section-head.on-dark p{
-  color:#c3c8d6;
+    color:#c3c8d6;
 }
 
 .card{
-  background:var(--surface);
-  border-radius:var(--radius);
-  border:1px solid rgba(15,179,163,0.28);
-  box-shadow:var(--shadow-soft);
+    background:var(--surface);
+    border-radius:var(--radius);
+    border:1px solid rgba(15,179,163,0.28);
+    box-shadow:var(--shadow-soft);
 }
 
+
 /* ============ HERO ============ */
+
 .hero{
-  position:relative;
-  overflow:hidden;
-  padding:4.5rem 0 5rem;
-  background:linear-gradient(180deg, rgba(11,107,122,0.05), transparent);
+    position:relative;
+    overflow:hidden;
+    padding:4.5rem 0 5rem;
+    background:linear-gradient(180deg, rgba(11,107,122,0.05), transparent);
 }
 
 .hero-grid{
-  display:flex;
-  flex-direction:column;
-  gap:2.6rem;
+    display:flex;
+    flex-direction:column;
+    gap:2.6rem;
 }
 
 .hero-copy{
-  width:100%;
+    width:100%;
 }
 
 .hero-visual{
-  width:100%;
+    width:100%;
 }
 
 .eyebrow{
-  display:block;
-  font-size:.78rem;
-  font-weight:800;
-  letter-spacing:.06em;
-  color:var(--accent-teal);
-  margin-bottom:.9rem;
+    display:block;
+    font-size:.78rem;
+    font-weight:800;
+    letter-spacing:.06em;
+    color:var(--accent-teal);
+    margin-bottom:.9rem;
 }
 
 .hero h1{
-  font-size:clamp(2.4rem,4.6vw,3.6rem);
-  line-height:1.08;
-  font-weight:800;
-  color:var(--text);
+    font-size:clamp(2.4rem,4.6vw,3.6rem);
+    line-height:1.08;
+    font-weight:800;
+    color:var(--text);
 }
 
 .hero .lead{
-  margin-top:1.1rem;
-  max-width:none;
-  color:var(--muted);
-  font-size:1.1rem;
-  line-height:1.7;
+    margin-top:1.1rem;
+    max-width:none;
+    color:var(--muted);
+    font-size:1.1rem;
+    line-height:1.7;
 }
 
 .cta-row{
-  display:flex;
-  gap:.75rem;
-  flex-wrap:wrap;
-  margin-top:1.7rem;
+    display:flex;
+    gap:.75rem;
+    flex-wrap:wrap;
+    margin-top:1.7rem;
 }
 
 .cta-row.center{
-  justify-content:center;
+    justify-content:center;
 }
 
 .btn{
-  padding:.75rem 1.2rem;
-  border-radius:12px;
-  font-weight:700;
-  font-size:.94rem;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:.5rem;
-  cursor:pointer;
-  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    padding:.75rem 1.2rem;
+    border-radius:12px;
+    font-weight:700;
+    font-size:.94rem;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+    cursor:pointer;
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
 }
 
 .btn-primary{
-  background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
-  color:#fff;
+    background:linear-gradient(90deg,var(--accent-blue),var(--accent-teal));
+    color:#fff;
 }
 
 .btn-primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 14px 28px rgba(15,179,163,0.28);
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px rgba(15,179,163,0.28);
 }
 
 .btn-secondary{
-  border:2px solid rgba(11,107,122,0.15);
-  color:var(--accent-blue);
-  background:#fff;
+    border:2px solid rgba(11,107,122,0.15);
+    color:var(--accent-blue);
+    background:#fff;
 }
 
 .btn-secondary:hover{
-  background:var(--glass);
+    background:var(--glass);
 }
 
 .btn-outline-light{
-  border:1.5px solid rgba(255,255,255,0.35);
-  color:#fff;
+    border:1.5px solid rgba(255,255,255,0.35);
+    color:#fff;
 }
 
 .btn-outline-light:hover{
-  border-color:var(--accent-teal);
-  background:rgba(255,255,255,0.06);
+    border-color:var(--accent-teal);
+    background:rgba(255,255,255,0.06);
 }
 
 .hero-meta{
-  margin-top:1.4rem;
-  color:var(--muted);
-  font-size:.88rem;
+    margin-top:1.4rem;
+    color:var(--muted);
+    font-size:.88rem;
 }
 
-/* framed screenshot used for hero */
 .shot-frame{
-  border-radius:16px;
-  overflow:hidden;
-  background:var(--dash-navy-1);
-  box-shadow:0 30px 60px rgba(7,59,76,0.18), 0 0 0 1px rgba(15,23,36,0.05);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--dash-navy-1);
+    box-shadow:
+        0 30px 60px rgba(7,59,76,0.18),
+        0 0 0 1px rgba(15,23,36,0.05);
 }
 
 .shot-frame img{
-  width:100%;
-  display:block;
+    width:100%;
+    display:block;
 }
 
-/* device / browser frame used only for the video */
+
+/* ============ VIDEO FRAME ============ */
+
 .device-frame{
-  border-radius:16px;
-  overflow:hidden;
-  background:transparent;
-  border:1px solid rgba(15,23,36,0.08);
-  box-shadow:var(--shadow-soft);
+    border-radius:16px;
+    overflow:hidden;
+    background:transparent;
+    border:1px solid rgba(15,23,36,0.08);
+    box-shadow:var(--shadow-soft);
 }
 
-.device-frame img{
-  width:100%;
-  display:block;
+.device-frame video{
+    width:100%;
+    display:block;
 }
 
-/* one orchestrated entrance for the hero only */
+
+/* ============ HERO ANIMATION ============ */
+
 @keyframes riseIn{
-  from{
-    opacity:0;
-    transform:translateY(16px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+
+    from{
+        opacity:0;
+        transform:translateY(16px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .hero-copy{
-  animation:riseIn .7s ease both;
+    animation:riseIn .7s ease both;
 }
 
 .hero-visual{
-  animation:riseIn .8s ease .15s both;
+    animation:riseIn .8s ease .15s both;
 }
 
+
 /* ============ OVERVIEW ============ */
+
 .overview-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.2rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.2rem;
 }
 
 .info-card{
-  padding:1.6rem;
+    padding:1.6rem;
 }
 
 .info-card h3{
-  font-size:1.1rem;
-  font-weight:800;
-  margin-bottom:.6rem;
-  color:var(--accent-blue);
+    font-size:1.1rem;
+    font-weight:800;
+    margin-bottom:.6rem;
+    color:var(--accent-blue);
 }
 
 .info-card p{
-  color:var(--muted);
-  font-size:.94rem;
+    color:var(--muted);
+    font-size:.94rem;
 }
 
+
 /* ============ DASHBOARD ============ */
+
 .dashboard-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.3rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.3rem;
 }
 
 .dashboard-card{
-  overflow:hidden;
-  transition:transform .25s ease, box-shadow .25s ease;
+    overflow:hidden;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 .dashboard-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 20px 36px rgba(7,59,76,0.14);
+    transform:translateY(-5px);
+    box-shadow:0 20px 36px rgba(7,59,76,0.14);
 }
 
-/* fondo oscuro para que las capturas del dashboard (fondo navy) se integren sin bordes visibles */
 .dashboard-card .thumb{
-  aspect-ratio:16/10;
-  overflow:hidden;
-  background:#201C55;
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:#201C55;
 }
 
 .dashboard-card .thumb img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
 .dashboard-card-body{
-  padding:1.2rem 1.3rem 1.4rem;
+    padding:1.2rem 1.3rem 1.4rem;
 }
 
 .dashboard-card-body h3{
-  font-size:1.05rem;
-  font-weight:800;
-  margin-bottom:.4rem;
+    font-size:1.05rem;
+    font-weight:800;
+    margin-bottom:.4rem;
 }
 
 .dashboard-card-body p{
-  color:var(--muted);
-  font-size:.9rem;
+    color:var(--muted);
+    font-size:.9rem;
 }
 
+
 /* ============ VIDEO ============ */
+
 .video-section{
-  background:transparent;
-  color:var(--text);
+    background:transparent;
+    color:var(--text);
 }
 
 .video-frame{
-  max-width:900px;
-  margin:0 auto;
+    max-width:900px;
+    margin:0 auto;
 }
 
 .video-frame video{
-  width:100%;
-  display:block;
+    width:100%;
+    display:block;
 }
 
+
 /* ============ INSIGHTS ============ */
+
 .insights-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:1.2rem;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1.2rem;
 }
 
 .insight{
-  padding:1.5rem 1.6rem;
-  border-left:3px solid var(--accent-teal);
+    padding:1.5rem 1.6rem;
+    border-left:3px solid var(--accent-teal);
 }
 
 .insight .tag{
-  display:inline-block;
-  font-size:.74rem;
-  font-weight:700;
-  letter-spacing:.02em;
-  color:var(--accent-blue);
-  background:var(--glass);
-  padding:.25rem .55rem;
-  border-radius:6px;
-  margin-bottom:.7rem;
+    display:inline-block;
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.02em;
+    color:var(--accent-blue);
+    background:var(--glass);
+    padding:.25rem .55rem;
+    border-radius:6px;
+    margin-bottom:.7rem;
 }
 
 .insight h3{
-  font-size:1.08rem;
-  font-weight:700;
-  margin-bottom:.5rem;
-  line-height:1.35;
+    font-size:1.08rem;
+    font-weight:700;
+    margin-bottom:.5rem;
+    line-height:1.35;
 }
 
 .insight p{
-  color:var(--muted);
-  font-size:.92rem;
+    color:var(--muted);
+    font-size:.92rem;
 }
 
+
 /* ============ TECHNICAL APPROACH ============ */
+
 .technical-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:1.2rem;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1.2rem;
 }
 
 .technical-card{
-  padding:1.6rem;
+    padding:1.6rem;
 }
 
 .technical-card h3{
-  font-size:1.05rem;
-  font-weight:800;
-  margin-bottom:.9rem;
-  color:var(--accent-blue);
+    font-size:1.05rem;
+    font-weight:800;
+    margin-bottom:.9rem;
+    color:var(--accent-blue);
 }
 
 .technical-card ul{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:.55rem;
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:.55rem;
 }
 
 .technical-card li{
-  color:var(--muted);
-  font-size:.92rem;
-  padding-left:1.1rem;
-  position:relative;
+    color:var(--muted);
+    font-size:.92rem;
+    padding-left:1.1rem;
+    position:relative;
 }
 
 .technical-card li::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:.5em;
-  width:6px;
-  height:6px;
-  background:var(--accent-teal);
-  border-radius:2px;
+    content:"";
+    position:absolute;
+    left:0;
+    top:.5em;
+    width:6px;
+    height:6px;
+    background:var(--accent-teal);
+    border-radius:2px;
 }
 
+
 /* ============ IMPACT ============ */
+
 .impact-card{
-  padding:2.2rem;
-  max-width:820px;
-  margin-left:auto;
-  margin-right:auto;
+    padding:2.2rem;
+    max-width:820px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 #impact .section-head{
-  text-align:center;
-  margin-left:auto;
-  margin-right:auto;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .impact-lede{
-  font-family:"Outfit",sans-serif;
-  font-weight:600;
-  font-size:1.2rem;
-  color:var(--accent-blue);
-  line-height:1.5;
-  margin-bottom:1rem;
+    font-family:"Outfit",sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    color:var(--accent-blue);
+    line-height:1.5;
+    margin-bottom:1rem;
 }
 
 .impact-card p.body{
-  color:var(--muted);
-  font-size:.98rem;
-  margin-bottom:.9rem;
+    color:var(--muted);
+    font-size:.98rem;
+    margin-bottom:.9rem;
 }
 
 .impact-card p.body:last-child{
-  margin-bottom:0;
+    margin-bottom:0;
 }
+
 
 /* ============ CTA / CLOSE ============ */
+
 .cta-section{
-  background:linear-gradient(160deg, var(--accent-blue) 0%, var(--ink) 100%);
-  color:#fff;
-  text-align:center;
+    background:linear-gradient(
+        160deg,
+        var(--accent-blue) 0%,
+        var(--ink) 100%
+    );
+    color:#fff;
+    text-align:center;
 }
 
-/* ============ FOOTER (shared with index) ============ */
+
+/* ============ FOOTER ============ */
+
 footer{
-  text-align:center;
-  padding:2rem 0;
-  color:var(--muted);
-  font-size:.88rem;
+    text-align:center;
+    padding:2rem 0;
+    color:var(--muted);
+    font-size:.88rem;
 }
+
 
 /* ============ RESPONSIVE ============ */
-/* Tablets y pantallas medianas: solo se reacomodan las grillas a una columna */
+
 @media (max-width:920px){
-  .overview-grid,
-  .dashboard-grid,
-  .insights-grid,
-  .technical-grid{
-    grid-template-columns:1fr;
-  }
+
+    .overview-grid,
+    .dashboard-grid,
+    .insights-grid,
+    .technical-grid{
+        grid-template-columns:1fr;
+    }
 }
 
-/* Solo en movil real se oculta el menu completo, dejando unicamente el boton de volver */
+
+/* ============ MOBILE NAVIGATION ============ */
+
 @media (max-width:640px){
-  nav li:not(.nav-back-item){
-    display:none;
-  }
+
+    .nav-inner{
+        padding:.65rem 1rem;
+        gap:.6rem;
+    }
+
+    .brand{
+        gap:.5rem;
+        flex:none;
+    }
+
+    .brand .name{
+        font-size:.85rem;
+    }
+
+    .brand .role{
+        font-size:.7rem;
+    }
+
+    .brand .logo{
+        width:38px;
+        height:38px;
+        border-radius:10px;
+        font-size:.85rem;
+    }
+
+    nav{
+        gap:.5rem;
+        min-width:0;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+
+    nav::-webkit-scrollbar{
+        display:none;
+    }
+
+    nav ul{
+        flex-wrap:nowrap;
+        gap:.15rem;
+        white-space:nowrap;
+    }
+
+    nav a{
+        padding:.4rem .5rem;
+        font-size:.76rem;
+    }
+
+    .lang-switch{
+        flex:none;
+    }
+
+    .lang-btn{
+        font-size:.7rem;
+        padding:.28rem .4rem;
+    }
 }
+
 
 @media (max-width:600px){
-  section{
-    padding:2.2rem 0;
-  }
 
-  .hero{
-    padding:3.6rem 0 3rem;
-  }
+    section{
+        padding:2.2rem 0;
+    }
 
-  .cta-row{
-    flex-direction:column;
-    align-items:stretch;
-  }
+    .hero{
+        padding:3.6rem 0 3rem;
+    }
 
-  .btn{
-    width:100%;
-  }
+    .cta-row{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .btn{
+        width:100%;
+    }
 }
+
 
 @media (prefers-reduced-motion: reduce){
-  *{
-    animation:none !important;
-    transition:none !important;
-  }
+
+    *{
+        animation:none !important;
+        transition:none !important;
+    }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <header class="site-header">
-  <div class="nav-inner">
 
-    <div class="brand">
-      <div class="logo">YP</div>
-      <div>
-        <div class="name">Yenismara Pelayo García</div>
-        <div class="role">E-commerce Sales Intelligence | Power BI</div>
-      </div>
+    <div class="nav-inner">
+
+        <div class="brand">
+
+            <div class="logo">YP</div>
+
+            <div>
+                <div class="name">
+                    Yenismara Pelayo García
+                </div>
+
+                <div class="role">
+                    E-commerce Sales Intelligence | Power BI
+                </div>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="#overview" data-i18n="nav_overview">
+                        Overview
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#dashboard" data-i18n="nav_dashboard">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#insights" data-i18n="nav_insights">
+                        Insights
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#approach" data-i18n="nav_approach">
+                        Approach
+                    </a>
+                </li>
+
+                <li class="nav-back-item">
+                    <a class="nav-back"
+                       href="index.html"
+                       data-i18n="nav_back">
+                        ← Portfolio
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="lang-switch">
+
+                <button class="lang-btn" data-lang="en">
+                    EN
+                </button>
+
+                <button class="lang-btn" data-lang="es">
+                    ES
+                </button>
+
+                <button class="lang-btn" data-lang="pt">
+                    PT
+                </button>
+
+            </div>
+
+        </nav>
+
     </div>
 
-    <nav>
-      <ul>
-        <li><a href="#overview" data-i18n="nav_overview">Overview</a></li>
-        <li><a href="#dashboard" data-i18n="nav_dashboard">Dashboard</a></li>
-        <li><a href="#insights" data-i18n="nav_insights">Insights</a></li>
-        <li><a href="#approach" data-i18n="nav_approach">Approach</a></li>
-        <li class="nav-back-item">
-          <a class="nav-back" href="index.html" data-i18n="nav_back">← Portfolio</a>
-        </li>
-      </ul>
-
-      <div class="lang-switch">
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="pt">PT</button>
-      </div>
-    </nav>
-
-  </div>
 </header>
+
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
+    <!-- HERO -->
 
-        <span class="eyebrow">
-          POWER BI · BUSINESS INTELLIGENCE
-        </span>
+    <section class="hero">
 
-        <h1>
-          E-commerce Sales Intelligence
-        </h1>
+        <div class="wrap hero-grid">
 
-        <p class="lead" data-i18n="hero_lead">
-          An executive Power BI solution that turns transactional e-commerce
-          data into decisions — across sales performance, customer behavior,
-          product performance and operational risk.
-        </p>
+            <div class="hero-copy">
 
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#dashboard" data-i18n="hero_cta_dashboard">
-            Explore the dashboard
-          </a>
+                <span class="eyebrow">
+                    POWER BI · BUSINESS INTELLIGENCE
+                </span>
 
-          <a
-            class="btn btn-secondary"
-            href="https://github.com/ypelayog25/ecommerce-sales-intelligence"
-            target="_blank"
-            data-i18n="hero_cta_github"
-          >
-            View on GitHub
-          </a>
+                <h1>
+                    E-commerce Sales Intelligence
+                </h1>
+
+                <p class="lead" data-i18n="hero_lead">
+                    An executive Power BI solution that turns transactional
+                    e-commerce data into decisions — across sales performance,
+                    customer behavior, product performance and operational risk.
+                </p>
+
+
+                <div class="cta-row">
+
+                    <a class="btn btn-primary"
+                       href="#dashboard"
+                       data-i18n="hero_cta_dashboard">
+                        Explore the dashboard
+                    </a>
+
+
+                    <a class="btn btn-secondary"
+                       href="https://github.com/ypelayog25/ecommerce-sales-intelligence"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       data-i18n="hero_cta_github">
+                        View on GitHub
+                    </a>
+
+                </div>
+
+
+                <div class="hero-meta" data-i18n="hero_meta">
+                    Six-page report · Star schema · Power Query · DAX ·
+                    What-if scenarios
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="shot-frame">
+
+                    <img
+                        src="images/ecommerce-sales-intelligence-cover.png"
+                        alt="E-commerce Sales Intelligence Power BI Dashboard"
+                    >
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="hero-meta" data-i18n="hero_meta">
-          Six-page report · Star schema · Power Query · DAX · What-if scenarios
-        </div>
-
-      </div>
-
-      <div class="hero-visual">
-        <div class="shot-frame">
-          <img
-            src="images/ecommerce-sales-intelligence-cover.png"
-            alt="E-commerce Sales Intelligence Power BI Dashboard"
-          >
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="wrap">
-
-    <!-- OVERVIEW -->
-    <section id="overview">
-      <div class="section-head center">
-        <h2 data-i18n="overview_h2">
-          From transactional data to business decisions
-        </h2>
-        <p data-i18n="overview_p">
-          The project combines data modeling, transformation, DAX and interactive
-          Power BI visualizations to provide a clear view of e-commerce performance.
-        </p>
-      </div>
-
-      <div class="overview-grid">
-
-        <div class="card info-card">
-          <h3 data-i18n="overview_card1_h3">
-            Business problem
-          </h3>
-          <p data-i18n="overview_card1_p">
-            Turn transactional e-commerce data into clear, decision-ready information
-            about sales performance, customer behavior, products and operational risk.
-          </p>
-        </div>
-
-        <div class="card info-card">
-          <h3 data-i18n="overview_card2_h3">
-            Solution
-          </h3>
-          <p data-i18n="overview_card2_p">
-            A six-page Power BI analytical solution built with a star schema,
-            Power Query transformations and DAX measures.
-          </p>
-        </div>
-
-        <div class="card info-card">
-          <h3 data-i18n="overview_card3_h3">
-            Focus
-          </h3>
-          <p data-i18n="overview_card3_p">
-            Sales, customers, products, operational risk and business scenarios
-            designed to support better decisions.
-          </p>
-        </div>
-
-      </div>
     </section>
 
-  </div>
 
-  <!-- INTERACTIVE EXPERIENCE -->
-  <section class="video-section">
     <div class="wrap">
 
-      <div class="section-head center">
-        <h2 data-i18n="video_h2">
-          Explore the dashboard in action
-        </h2>
-        <p data-i18n="video_p">
-          A short demonstration showing filters, dynamic insights and the
-          cancellation-reduction scenario simulator.
-        </p>
-      </div>
+        <!-- OVERVIEW -->
 
-      <div class="device-frame video-frame">
-        <video
-          controls
-          muted
-          playsinline
-          preload="metadata"
-          poster="images/ecommerce-sales-intelligence-cover.png"
-        >
-          <source
-            src="videos/ecommerce-sales-intelligence-demo.mp4"
-            type="video/mp4"
-          >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+        <section id="overview">
+
+            <div class="section-head center">
+
+                <h2 data-i18n="overview_h2">
+                    From transactional data to business decisions
+                </h2>
+
+                <p data-i18n="overview_p">
+                    The project combines data modeling, transformation, DAX
+                    and interactive Power BI visualizations to provide a clear
+                    view of e-commerce performance.
+                </p>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+                <div class="card info-card">
+
+                    <h3 data-i18n="overview_card1_h3">
+                        Business problem
+                    </h3>
+
+                    <p data-i18n="overview_card1_p">
+                        Turn transactional e-commerce data into clear,
+                        decision-ready information about sales performance,
+                        customer behavior, products and operational risk.
+                    </p>
+
+                </div>
+
+
+                <div class="card info-card">
+
+                    <h3 data-i18n="overview_card2_h3">
+                        Solution
+                    </h3>
+
+                    <p data-i18n="overview_card2_p">
+                        A six-page Power BI analytical solution built with
+                        a star schema, Power Query transformations and
+                        DAX measures.
+                    </p>
+
+                </div>
+
+
+                <div class="card info-card">
+
+                    <h3 data-i18n="overview_card3_h3">
+                        Focus
+                    </h3>
+
+                    <p data-i18n="overview_card3_p">
+                        Sales, customers, products, operational risk and
+                        business scenarios designed to support better decisions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </div>
-  </section>
 
-  <div class="wrap">
 
-    <!-- DASHBOARD -->
-    <section id="dashboard">
-      <div class="section-head center">
-        <h2 data-i18n="dashboard_h2">
-          Six views of the business
-        </h2>
-        <p data-i18n="dashboard_p">
-          Each page answers a different business question while maintaining
-          a consistent analytical narrative.
-        </p>
-      </div>
+    <!-- INTERACTIVE EXPERIENCE -->
 
-      <div class="dashboard-grid">
+    <section class="video-section">
 
-        <article class="card dashboard-card">
-          <div class="thumb">
-            <img
-              src="images/ecommerce-overview.png"
-              alt="E-commerce Sales Intelligence Overview dashboard"
-            >
-          </div>
-          <div class="dashboard-card-body">
-            <h3 data-i18n="dash_card1_h3">
-              Overview
-            </h3>
-            <p data-i18n="dash_card1_p">
-              Executive summary of revenue, orders, customers and overall business performance.
-            </p>
-          </div>
-        </article>
+        <div class="wrap">
 
-        <article class="card dashboard-card">
-          <div class="thumb">
-            <img
-              src="images/ecommerce-sales.png"
-              alt="E-commerce Sales dashboard"
-            >
-          </div>
-          <div class="dashboard-card-body">
-            <h3 data-i18n="dash_card2_h3">
-              Sales
-            </h3>
-            <p data-i18n="dash_card2_p">
-              Sales trends, payment methods, order behavior and operational performance over time.
-            </p>
-          </div>
-        </article>
+            <div class="section-head center">
 
-        <article class="card dashboard-card">
-          <div class="thumb">
-            <img
-              src="images/ecommerce-customers.png"
-              alt="E-commerce Customers dashboard"
-            >
-          </div>
-          <div class="dashboard-card-body">
-            <h3 data-i18n="dash_card3_h3">
-              Customers
-            </h3>
-            <p data-i18n="dash_card3_p">
-              Customer value, revenue contribution and purchasing behavior.
-            </p>
-          </div>
-        </article>
+                <h2 data-i18n="video_h2">
+                    Explore the dashboard in action
+                </h2>
 
-        <article class="card dashboard-card">
-          <div class="thumb">
-            <img
-              src="images/ecommerce-products.png"
-              alt="E-commerce Products dashboard"
-            >
-          </div>
-          <div class="dashboard-card-body">
-            <h3 data-i18n="dash_card4_h3">
-              Products
-            </h3>
-            <p data-i18n="dash_card4_p">
-              Product performance, pricing, sales activity and customer ratings.
-            </p>
-          </div>
-        </article>
+                <p data-i18n="video_p">
+                    A short demonstration showing filters, dynamic insights
+                    and the cancellation-reduction scenario simulator.
+                </p>
 
-        <article class="card dashboard-card">
-          <div class="thumb">
-            <img
-              src="images/ecommerce-business-insights.png"
-              alt="E-commerce Business Insights Power BI dashboard"
-            >
-          </div>
-          <div class="dashboard-card-body">
-            <h3 data-i18n="dash_card5_h3">
-              Business Insights
-            </h3>
-            <p data-i18n="dash_card5_p">
-              Identifies operational risks, customer experience signals and category-level opportunities.
-            </p>
-          </div>
-        </article>
+            </div>
 
-        <article class="card dashboard-card">
-          <div class="thumb">
-            <img
-              src="images/ecommerce-forecast-scenarios.png"
-              alt="E-commerce Forecast and Scenarios Power BI dashboard"
-            >
-          </div>
-          <div class="dashboard-card-body">
-            <h3 data-i18n="dash_card6_h3">
-              Forecast &amp; scenarios
-            </h3>
-            <p data-i18n="dash_card6_p">
-              Uses scenario simulation to evaluate the potential revenue impact of reducing cancellations.
-            </p>
-          </div>
-        </article>
 
-      </div>
+            <div class="device-frame video-frame">
+
+                <video
+                    controls
+                    muted
+                    playsinline
+                    preload="metadata"
+                    poster="images/ecommerce-sales-intelligence-cover.png"
+                >
+
+                    <source
+                        src="videos/ecommerce-sales-intelligence-demo.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+            </div>
+
+        </div>
+
     </section>
 
-  </div>
 
-  <div class="wrap">
-
-    <!-- KEY INSIGHTS -->
-    <section id="insights">
-      <div class="section-head center">
-        <h2 data-i18n="insights_h2">
-          What the analysis reveals
-        </h2>
-        <p data-i18n="insights_p">
-          The dashboard is designed to move beyond reporting and highlight
-          signals that can support business action.
-        </p>
-      </div>
-
-      <div class="insights-grid">
-
-        <article class="card insight">
-          <span class="tag" data-i18n="tag_revenue">
-            Revenue
-          </span>
-          <h3 data-i18n="insight1_h3">
-            Electronics is the leading revenue category.
-          </h3>
-          <p data-i18n="insight1_p">
-            Electronics generates the strongest revenue contribution within the analyzed product categories.
-          </p>
-        </article>
-
-        <article class="card insight">
-          <span class="tag" data-i18n="tag_risk">
-            Risk
-          </span>
-          <h3 data-i18n="insight2_h3">
-            Cancellation risk requires attention.
-          </h3>
-          <p data-i18n="insight2_p">
-            Category-level analysis highlights Electronics as an important area for operational risk monitoring.
-          </p>
-        </article>
-
-        <article class="card insight">
-          <span class="tag" data-i18n="tag_retention">
-            Retention
-          </span>
-          <h3 data-i18n="insight3_h3">
-            Customer retention remains strong.
-          </h3>
-          <p data-i18n="insight3_p">
-            The repeat purchase rate indicates a strong level of returning customer activity.
-          </p>
-        </article>
-
-        <article class="card insight">
-          <span class="tag" data-i18n="tag_quality">
-            Quality
-          </span>
-          <h3 data-i18n="insight4_h3">
-            Product quality signals can guide attention.
-          </h3>
-          <p data-i18n="insight4_p">
-            Customer ratings help identify products that may require further investigation.
-          </p>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- TECHNICAL APPROACH -->
-    <section id="approach">
-      <div class="section-head center">
-        <h2 data-i18n="approach_h2">
-          Built for analytical clarity
-        </h2>
-        <p data-i18n="approach_p">
-          The solution combines structured data modeling, transformation
-          and business-oriented DAX.
-        </p>
-      </div>
-
-      <div class="technical-grid">
-
-        <article class="card technical-card">
-          <h3 data-i18n="tech_card1_h3">
-            Data &amp; modeling
-          </h3>
-          <ul>
-            <li data-i18n="tech1_li1">
-              Star schema data model
-            </li>
-            <li data-i18n="tech1_li2">
-              Fact and dimension tables
-            </li>
-            <li data-i18n="tech1_li3">
-              Date dimension
-            </li>
-            <li data-i18n="tech1_li4">
-              Customer and product dimensions
-            </li>
-            <li data-i18n="tech1_li5">
-              Transactional sales fact table
-            </li>
-          </ul>
-        </article>
-
-        <article class="card technical-card">
-          <h3 data-i18n="tech_card2_h3">
-            Power BI development
-          </h3>
-          <ul>
-            <li data-i18n="tech2_li1">
-              Power Query transformations
-            </li>
-            <li data-i18n="tech2_li2">
-              DAX measures
-            </li>
-            <li data-i18n="tech2_li3">
-              Interactive slicers
-            </li>
-            <li data-i18n="tech2_li4">
-              Dynamic business narratives
-            </li>
-            <li data-i18n="tech2_li5">
-              What-if scenario analysis
-            </li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- BUSINESS IMPACT -->
-    <section id="impact">
-      <div class="section-head">
-        <h2 data-i18n="impact_h2">
-          From metrics to decisions
-        </h2>
-      </div>
-
-      <div class="card impact-card">
-        <p class="impact-lede" data-i18n="impact_lede">
-          The dashboard provides a structured way to understand how sales
-          performance, customers, products and operational risks interact.
-        </p>
-        <p class="body" data-i18n="impact_body1">
-          Instead of presenting isolated KPIs, the project connects
-          performance indicators with business context and scenario analysis.
-        </p>
-        <p class="body" data-i18n="impact_body2">
-          The result is an executive-oriented analytical solution that
-          can help identify where attention should be focused and how
-          operational changes could affect revenue.
-        </p>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- PROJECT LINKS -->
-  <section class="cta-section">
     <div class="wrap">
 
-      <div class="section-head on-dark center">
-        <h2 data-i18n="cta_h2">
-          Explore the project
-        </h2>
-        <p data-i18n="cta_p">
-          View the project source and return to the complete portfolio.
-        </p>
-      </div>
+        <!-- DASHBOARD -->
 
-      <div class="cta-row center">
-        <a
-          class="btn btn-primary"
-          href="https://github.com/ypelayog25/ecommerce-sales-intelligence"
-          target="_blank"
-          data-i18n="cta_github"
-        >
-          View GitHub
-        </a>
+        <section id="dashboard">
 
-        <a
-          class="btn btn-outline-light"
-          href="index.html"
-          data-i18n="cta_back"
-        >
-          ← Back to Portfolio
-        </a>
-      </div>
+            <div class="section-head center">
+
+                <h2 data-i18n="dashboard_h2">
+                    Six views of the business
+                </h2>
+
+                <p data-i18n="dashboard_p">
+                    Each page answers a different business question while
+                    maintaining a consistent analytical narrative.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+
+                <article class="card dashboard-card">
+
+                    <div class="thumb">
+
+                        <img
+                            src="images/ecommerce-overview.png"
+                            alt="E-commerce Sales Intelligence Overview dashboard"
+                        >
+
+                    </div>
+
+                    <div class="dashboard-card-body">
+
+                        <h3 data-i18n="dash_card1_h3">
+                            Overview
+                        </h3>
+
+                        <p data-i18n="dash_card1_p">
+                            Executive summary of revenue, orders, customers
+                            and overall business performance.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card dashboard-card">
+
+                    <div class="thumb">
+
+                        <img
+                            src="images/ecommerce-sales.png"
+                            alt="E-commerce Sales dashboard"
+                        >
+
+                    </div>
+
+                    <div class="dashboard-card-body">
+
+                        <h3 data-i18n="dash_card2_h3">
+                            Sales
+                        </h3>
+
+                        <p data-i18n="dash_card2_p">
+                            Sales trends, payment methods, order behavior
+                            and operational performance over time.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card dashboard-card">
+
+                    <div class="thumb">
+
+                        <img
+                            src="images/ecommerce-customers.png"
+                            alt="E-commerce Customers dashboard"
+                        >
+
+                    </div>
+
+                    <div class="dashboard-card-body">
+
+                        <h3 data-i18n="dash_card3_h3">
+                            Customers
+                        </h3>
+
+                        <p data-i18n="dash_card3_p">
+                            Customer value, revenue contribution and
+                            purchasing behavior.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card dashboard-card">
+
+                    <div class="thumb">
+
+                        <img
+                            src="images/ecommerce-products.png"
+                            alt="E-commerce Products dashboard"
+                        >
+
+                    </div>
+
+                    <div class="dashboard-card-body">
+
+                        <h3 data-i18n="dash_card4_h3">
+                            Products
+                        </h3>
+
+                        <p data-i18n="dash_card4_p">
+                            Product performance, pricing, sales activity
+                            and customer ratings.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card dashboard-card">
+
+                    <div class="thumb">
+
+                        <img
+                            src="images/ecommerce-business-insights.png"
+                            alt="E-commerce Business Insights Power BI dashboard"
+                        >
+
+                    </div>
+
+                    <div class="dashboard-card-body">
+
+                        <h3 data-i18n="dash_card5_h3">
+                            Business Insights
+                        </h3>
+
+                        <p data-i18n="dash_card5_p">
+                            Identifies operational risks, customer experience
+                            signals and category-level opportunities.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card dashboard-card">
+
+                    <div class="thumb">
+
+                        <img
+                            src="images/ecommerce-forecast-scenarios.png"
+                            alt="E-commerce Forecast and Scenarios Power BI dashboard"
+                        >
+
+                    </div>
+
+                    <div class="dashboard-card-body">
+
+                        <h3 data-i18n="dash_card6_h3">
+                            Forecast &amp; scenarios
+                        </h3>
+
+                        <p data-i18n="dash_card6_p">
+                            Uses scenario simulation to evaluate the potential
+                            revenue impact of reducing cancellations.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
 
     </div>
-  </section>
+
+
+    <div class="wrap">
+
+        <!-- KEY INSIGHTS -->
+
+        <section id="insights">
+
+            <div class="section-head center">
+
+                <h2 data-i18n="insights_h2">
+                    What the analysis reveals
+                </h2>
+
+                <p data-i18n="insights_p">
+                    The dashboard is designed to move beyond reporting and
+                    highlight signals that can support business action.
+                </p>
+
+            </div>
+
+
+            <div class="insights-grid">
+
+
+                <article class="card insight">
+
+                    <span class="tag" data-i18n="tag_revenue">
+                        Revenue
+                    </span>
+
+                    <h3 data-i18n="insight1_h3">
+                        Electronics is the leading revenue category.
+                    </h3>
+
+                    <p data-i18n="insight1_p">
+                        Electronics generates the strongest revenue contribution
+                        within the analyzed product categories.
+                    </p>
+
+                </article>
+
+
+                <article class="card insight">
+
+                    <span class="tag" data-i18n="tag_risk">
+                        Risk
+                    </span>
+
+                    <h3 data-i18n="insight2_h3">
+                        Cancellation risk requires attention.
+                    </h3>
+
+                    <p data-i18n="insight2_p">
+                        Category-level analysis highlights Electronics as an
+                        important area for operational risk monitoring.
+                    </p>
+
+                </article>
+
+
+                <article class="card insight">
+
+                    <span class="tag" data-i18n="tag_retention">
+                        Retention
+                    </span>
+
+                    <h3 data-i18n="insight3_h3">
+                        Customer retention remains strong.
+                    </h3>
+
+                    <p data-i18n="insight3_p">
+                        The repeat purchase rate indicates a strong level
+                        of returning customer activity.
+                    </p>
+
+                </article>
+
+
+                <article class="card insight">
+
+                    <span class="tag" data-i18n="tag_quality">
+                        Quality
+                    </span>
+
+                    <h3 data-i18n="insight4_h3">
+                        Product quality signals can guide attention.
+                    </h3>
+
+                    <p data-i18n="insight4_p">
+                        Customer ratings help identify products that may
+                        require further investigation.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- TECHNICAL APPROACH -->
+
+        <section id="approach">
+
+            <div class="section-head center">
+
+                <h2 data-i18n="approach_h2">
+                    Built for analytical clarity
+                </h2>
+
+                <p data-i18n="approach_p">
+                    The solution combines structured data modeling,
+                    transformation and business-oriented DAX.
+                </p>
+
+            </div>
+
+
+            <div class="technical-grid">
+
+
+                <article class="card technical-card">
+
+                    <h3 data-i18n="tech_card1_h3">
+                        Data &amp; modeling
+                    </h3>
+
+                    <ul>
+
+                        <li data-i18n="tech1_li1">
+                            Star schema data model
+                        </li>
+
+                        <li data-i18n="tech1_li2">
+                            Fact and dimension tables
+                        </li>
+
+                        <li data-i18n="tech1_li3">
+                            Date dimension
+                        </li>
+
+                        <li data-i18n="tech1_li4">
+                            Customer and product dimensions
+                        </li>
+
+                        <li data-i18n="tech1_li5">
+                            Transactional sales fact table
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <article class="card technical-card">
+
+                    <h3 data-i18n="tech_card2_h3">
+                        Power BI development
+                    </h3>
+
+                    <ul>
+
+                        <li data-i18n="tech2_li1">
+                            Power Query transformations
+                        </li>
+
+                        <li data-i18n="tech2_li2">
+                            DAX measures
+                        </li>
+
+                        <li data-i18n="tech2_li3">
+                            Interactive slicers
+                        </li>
+
+                        <li data-i18n="tech2_li4">
+                            Dynamic business narratives
+                        </li>
+
+                        <li data-i18n="tech2_li5">
+                            What-if scenario analysis
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- BUSINESS IMPACT -->
+
+        <section id="impact">
+
+            <div class="section-head">
+
+                <h2 data-i18n="impact_h2">
+                    From metrics to decisions
+                </h2>
+
+            </div>
+
+
+            <div class="card impact-card">
+
+                <p class="impact-lede" data-i18n="impact_lede">
+                    The dashboard provides a structured way to understand
+                    how sales performance, customers, products and operational
+                    risks interact.
+                </p>
+
+                <p class="body" data-i18n="impact_body1">
+                    Instead of presenting isolated KPIs, the project connects
+                    performance indicators with business context and scenario
+                    analysis.
+                </p>
+
+                <p class="body" data-i18n="impact_body2">
+                    The result is an executive-oriented analytical solution
+                    that can help identify where attention should be focused
+                    and how operational changes could affect revenue.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- PROJECT LINKS -->
+
+    <section class="cta-section">
+
+        <div class="wrap">
+
+            <div class="section-head on-dark center">
+
+                <h2 data-i18n="cta_h2">
+                    Explore the project
+                </h2>
+
+                <p data-i18n="cta_p">
+                    View the project source and return to the complete portfolio.
+                </p>
+
+            </div>
+
+
+            <div class="cta-row center">
+
+                <a
+                    class="btn btn-primary"
+                    href="https://github.com/ypelayog25/ecommerce-sales-intelligence"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="cta_github"
+                >
+                    View GitHub
+                </a>
+
+
+                <a
+                    class="btn btn-outline-light"
+                    href="index.html"
+                    data-i18n="cta_back"
+                >
+                    ← Back to Portfolio
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
+
 <footer>
-  <div class="wrap">
-    © 2026 <strong>Yenismara Pelayo García</strong> · <span data-i18n="footer_role">Data Analyst</span>
-  </div>
+
+    <div class="wrap">
+
+        © 2026
+        <strong>Yenismara Pelayo García</strong>
+        ·
+        <span data-i18n="footer_role">
+            Data Analyst
+        </span>
+
+    </div>
+
 </footer>
 
+
 <script>
+
 const translations = {
-  en: {
-    nav_overview:"Overview", nav_dashboard:"Dashboard", nav_insights:"Insights", nav_approach:"Approach", nav_back:"← Portfolio",
-    hero_lead:"An executive Power BI solution that turns transactional e-commerce data into decisions — across sales performance, customer behavior, product performance and operational risk.",
-    hero_cta_dashboard:"Explore the dashboard",
-    hero_cta_github:"View on GitHub",
-    hero_meta:"Six-page report · Star schema · Power Query · DAX · What-if scenarios",
-    overview_h2:"From transactional data to business decisions",
-    overview_p:"The project combines data modeling, transformation, DAX and interactive Power BI visualizations to provide a clear view of e-commerce performance.",
-    overview_card1_h3:"Business problem",
-    overview_card1_p:"Turn transactional e-commerce data into clear, decision-ready information about sales performance, customer behavior, products and operational risk.",
-    overview_card2_h3:"Solution",
-    overview_card2_p:"A six-page Power BI analytical solution built with a star schema, Power Query transformations and DAX measures.",
-    overview_card3_h3:"Focus",
-    overview_card3_p:"Sales, customers, products, operational risk and business scenarios designed to support better decisions.",
-    video_h2:"Explore the dashboard in action",
-    video_p:"A short demonstration showing filters, dynamic insights and the cancellation-reduction scenario simulator.",
-    dashboard_h2:"Six views of the business",
-    dashboard_p:"Each page answers a different business question while maintaining a consistent analytical narrative.",
-    dash_card1_h3:"Overview", dash_card1_p:"Executive summary of revenue, orders, customers and overall business performance.",
-    dash_card2_h3:"Sales", dash_card2_p:"Sales trends, payment methods, order behavior and operational performance over time.",
-    dash_card3_h3:"Customers", dash_card3_p:"Customer value, revenue contribution and purchasing behavior.",
-    dash_card4_h3:"Products", dash_card4_p:"Product performance, pricing, sales activity and customer ratings.",
-    dash_card5_h3:"Business Insights", dash_card5_p:"Identifies operational risks, customer experience signals and category-level opportunities.",
-    dash_card6_h3:"Forecast &amp; scenarios", dash_card6_p:"Uses scenario simulation to evaluate the potential revenue impact of reducing cancellations.",
-    insights_h2:"What the analysis reveals",
-    insights_p:"The dashboard is designed to move beyond reporting and highlight signals that can support business action.",
-    tag_revenue:"Revenue", tag_risk:"Risk", tag_retention:"Retention", tag_quality:"Quality",
-    insight1_h3:"Electronics is the leading revenue category.",
-    insight1_p:"Electronics generates the strongest revenue contribution within the analyzed product categories.",
-    insight2_h3:"Cancellation risk requires attention.",
-    insight2_p:"Category-level analysis highlights Electronics as an important area for operational risk monitoring.",
-    insight3_h3:"Customer retention remains strong.",
-    insight3_p:"The repeat purchase rate indicates a strong level of returning customer activity.",
-    insight4_h3:"Product quality signals can guide attention.",
-    insight4_p:"Customer ratings help identify products that may require further investigation.",
-    approach_h2:"Built for analytical clarity",
-    approach_p:"The solution combines structured data modeling, transformation and business-oriented DAX.",
-    tech_card1_h3:"Data &amp; modeling",
-    tech1_li1:"Star schema data model", tech1_li2:"Fact and dimension tables", tech1_li3:"Date dimension",
-    tech1_li4:"Customer and product dimensions", tech1_li5:"Transactional sales fact table",
-    tech_card2_h3:"Power BI development",
-    tech2_li1:"Power Query transformations", tech2_li2:"DAX measures", tech2_li3:"Interactive slicers",
-    tech2_li4:"Dynamic business narratives", tech2_li5:"What-if scenario analysis",
-    impact_h2:"From metrics to decisions",
-    impact_lede:"The dashboard provides a structured way to understand how sales performance, customers, products and operational risks interact.",
-    impact_body1:"Instead of presenting isolated KPIs, the project connects performance indicators with business context and scenario analysis.",
-    impact_body2:"The result is an executive-oriented analytical solution that can help identify where attention should be focused and how operational changes could affect revenue.",
-    cta_h2:"Explore the project",
-    cta_p:"View the project source and return to the complete portfolio.",
-    cta_github:"View GitHub",
-    cta_back:"← Back to Portfolio",
-    footer_role:"Data Analyst"
-  },
-  es: {
-    nav_overview:"Resumen", nav_dashboard:"Dashboard", nav_insights:"Resultados", nav_approach:"Enfoque", nav_back:"← Portafolio",
-    hero_lead:"Una solución ejecutiva en Power BI que convierte los datos transaccionales de e-commerce en decisiones — en ventas, comportamiento de clientes, desempeño de productos y riesgo operativo.",
-    hero_cta_dashboard:"Explorar el dashboard",
-    hero_cta_github:"Ver en GitHub",
-    hero_meta:"Informe de seis páginas · Esquema en estrella · Power Query · DAX · Escenarios what-if",
-    overview_h2:"De datos transaccionales a decisiones de negocio",
-    overview_p:"El proyecto combina modelado de datos, transformación, DAX y visualizaciones interactivas en Power BI para ofrecer una visión clara del desempeño del e-commerce.",
-    overview_card1_h3:"Problema de negocio",
-    overview_card1_p:"Convertir datos transaccionales de e-commerce en información clara y lista para la toma de decisiones sobre ventas, clientes, productos y riesgo operativo.",
-    overview_card2_h3:"Solución",
-    overview_card2_p:"Una solución analítica en Power BI de seis páginas, construida con un esquema en estrella, transformaciones en Power Query y medidas DAX.",
-    overview_card3_h3:"Enfoque",
-    overview_card3_p:"Ventas, clientes, productos, riesgo operativo y escenarios de negocio diseñados para apoyar mejores decisiones.",
-    video_h2:"Explora el dashboard en acción",
-    video_p:"Una breve demostración que muestra filtros, información dinámica y el simulador de escenarios de reducción de cancelaciones.",
-    dashboard_h2:"Seis vistas del negocio",
-    dashboard_p:"Cada página responde a una pregunta de negocio distinta, manteniendo una narrativa analítica coherente.",
-    dash_card1_h3:"Resumen", dash_card1_p:"Resumen ejecutivo de ingresos, pedidos, clientes y desempeño general del negocio.",
-    dash_card2_h3:"Ventas", dash_card2_p:"Tendencias de ventas, métodos de pago, comportamiento de pedidos y desempeño operativo a lo largo del tiempo.",
-    dash_card3_h3:"Clientes", dash_card3_p:"Valor del cliente, contribución a los ingresos y comportamiento de compra.",
-    dash_card4_h3:"Productos", dash_card4_p:"Desempeño de productos, precios, actividad de ventas y calificaciones de clientes.",
-    dash_card5_h3:"Información de Negocio", dash_card5_p:"Identifica riesgos operativos, señales de experiencia del cliente y oportunidades a nivel de categoría.",
-    dash_card6_h3:"Pronóstico y escenarios", dash_card6_p:"Utiliza simulación de escenarios para evaluar el posible impacto en ingresos de reducir las cancelaciones.",
-    insights_h2:"Lo que revela el análisis",
-    insights_p:"El dashboard está diseñado para ir más allá de los reportes y resaltar señales que apoyen la acción del negocio.",
-    tag_revenue:"Ingresos", tag_risk:"Riesgo", tag_retention:"Retención", tag_quality:"Calidad",
-    insight1_h3:"Electrónica es la categoría con mayores ingresos.",
-    insight1_p:"Electrónica genera la mayor contribución de ingresos entre las categorías de productos analizadas.",
-    insight2_h3:"El riesgo de cancelación requiere atención.",
-    insight2_p:"El análisis por categoría destaca a Electrónica como un área importante para el monitoreo de riesgo operativo.",
-    insight3_h3:"La retención de clientes se mantiene fuerte.",
-    insight3_p:"La tasa de compra recurrente indica un fuerte nivel de actividad de clientes que regresan.",
-    insight4_h3:"Las señales de calidad de producto pueden guiar la atención.",
-    insight4_p:"Las calificaciones de los clientes ayudan a identificar productos que pueden requerir mayor investigación.",
-    approach_h2:"Diseñado para la claridad analítica",
-    approach_p:"La solución combina modelado de datos estructurado, transformación y DAX orientado al negocio.",
-    tech_card1_h3:"Datos y modelado",
-    tech1_li1:"Modelo de datos en esquema estrella", tech1_li2:"Tablas de hechos y dimensiones", tech1_li3:"Dimensión de fecha",
-    tech1_li4:"Dimensiones de cliente y producto", tech1_li5:"Tabla de hechos de ventas transaccionales",
-    tech_card2_h3:"Desarrollo en Power BI",
-    tech2_li1:"Transformaciones en Power Query", tech2_li2:"Medidas DAX", tech2_li3:"Segmentadores interactivos",
-    tech2_li4:"Narrativas de negocio dinámicas", tech2_li5:"Análisis de escenarios what-if",
-    impact_h2:"De las métricas a las decisiones",
-    impact_lede:"El dashboard ofrece una forma estructurada de entender cómo interactúan el desempeño de ventas, los clientes, los productos y los riesgos operativos.",
-    impact_body1:"En lugar de presentar KPIs aislados, el proyecto conecta los indicadores de desempeño con el contexto de negocio y el análisis de escenarios.",
-    impact_body2:"El resultado es una solución analítica orientada a nivel ejecutivo que ayuda a identificar dónde enfocar la atención y cómo los cambios operativos podrían afectar los ingresos.",
-    cta_h2:"Explora el proyecto",
-    cta_p:"Consulta el código fuente del proyecto y vuelve al portafolio completo.",
-    cta_github:"Ver en GitHub",
-    cta_back:"← Volver al Portafolio",
-    footer_role:"Analista de Datos"
-  },
-  pt: {
-    nav_overview:"Visão geral", nav_dashboard:"Dashboard", nav_insights:"Insights", nav_approach:"Abordagem", nav_back:"← Portfólio",
-    hero_lead:"Uma solução executiva em Power BI que transforma dados transacionais de e-commerce em decisões — em vendas, comportamento dos clientes, desempenho de produtos e risco operacional.",
-    hero_cta_dashboard:"Explorar o dashboard",
-    hero_cta_github:"Ver no GitHub",
-    hero_meta:"Relatório de seis páginas · Esquema estrela · Power Query · DAX · Cenários what-if",
-    overview_h2:"De dados transacionais a decisões de negócio",
-    overview_p:"O projeto combina modelagem de dados, transformação, DAX e visualizações interativas em Power BI para oferecer uma visão clara do desempenho do e-commerce.",
-    overview_card1_h3:"Problema de negócio",
-    overview_card1_p:"Transformar dados transacionais de e-commerce em informações claras e prontas para decisão sobre vendas, clientes, produtos e risco operacional.",
-    overview_card2_h3:"Solução",
-    overview_card2_p:"Uma solução analítica em Power BI de seis páginas, construída com esquema estrela, transformações em Power Query e medidas DAX.",
-    overview_card3_h3:"Foco",
-    overview_card3_p:"Vendas, clientes, produtos, risco operacional e cenários de negócio projetados para apoiar melhores decisões.",
-    video_h2:"Explore o dashboard em ação",
-    video_p:"Uma breve demonstração mostrando filtros, insights dinâmicos e o simulador de cenários de redução de cancelamentos.",
-    dashboard_h2:"Seis visões do negócio",
-    dashboard_p:"Cada página responde a uma pergunta de negócio diferente, mantendo uma narrativa analítica consistente.",
-    dash_card1_h3:"Visão geral", dash_card1_p:"Resumo executivo de receita, pedidos, clientes e desempenho geral do negócio.",
-    dash_card2_h3:"Vendas", dash_card2_p:"Tendências de vendas, métodos de pagamento, comportamento de pedidos e desempenho operacional ao longo do tempo.",
-    dash_card3_h3:"Clientes", dash_card3_p:"Valor do cliente, contribuição para a receita e comportamento de compra.",
-    dash_card4_h3:"Produtos", dash_card4_p:"Desempenho de produtos, preços, atividade de vendas e avaliações de clientes.",
-    dash_card5_h3:"Insights de Negócio", dash_card5_p:"Identifica riscos operacionais, sinais de experiência do cliente e oportunidades por categoria.",
-    dash_card6_h3:"Previsão e cenários", dash_card6_p:"Usa simulação de cenários para avaliar o possível impacto na receita ao reduzir os cancelamentos.",
-    insights_h2:"O que a análise revela",
-    insights_p:"O dashboard foi projetado para ir além dos relatórios e destacar sinais que apoiem a ação do negócio.",
-    tag_revenue:"Receita", tag_risk:"Risco", tag_retention:"Retenção", tag_quality:"Qualidade",
-    insight1_h3:"Eletrônicos é a categoria líder em receita.",
-    insight1_p:"Eletrônicos gera a maior contribuição de receita entre as categorias de produtos analisadas.",
-    insight2_h3:"O risco de cancelamento requer atenção.",
-    insight2_p:"A análise por categoria destaca Eletrônicos como uma área importante para o monitoramento de risco operacional.",
-    insight3_h3:"A retenção de clientes permanece forte.",
-    insight3_p:"A taxa de recompra indica um forte nível de atividade de clientes recorrentes.",
-    insight4_h3:"Sinais de qualidade do produto podem orientar a atenção.",
-    insight4_p:"As avaliações dos clientes ajudam a identificar produtos que podem exigir investigação adicional.",
-    approach_h2:"Construído para clareza analítica",
-    approach_p:"A solução combina modelagem de dados estruturada, transformação e DAX orientado ao negócio.",
-    tech_card1_h3:"Dados e modelagem",
-    tech1_li1:"Modelo de dados em esquema estrela", tech1_li2:"Tabelas de fatos e dimensões", tech1_li3:"Dimensão de data",
-    tech1_li4:"Dimensões de cliente e produto", tech1_li5:"Tabela de fatos de vendas transacionais",
-    tech_card2_h3:"Desenvolvimento em Power BI",
-    tech2_li1:"Transformações em Power Query", tech2_li2:"Medidas DAX", tech2_li3:"Segmentações interativas",
-    tech2_li4:"Narrativas de negócio dinâmicas", tech2_li5:"Análise de cenários what-if",
-    impact_h2:"Das métricas às decisões",
-    impact_lede:"O dashboard oferece uma forma estruturada de entender como o desempenho de vendas, os clientes, os produtos e os riscos operacionais interagem.",
-    impact_body1:"Em vez de apresentar KPIs isolados, o projeto conecta os indicadores de desempenho com o contexto de negócio e a análise de cenários.",
-    impact_body2:"O resultado é uma solução analítica orientada ao nível executivo que ajuda a identificar onde focar a atenção e como mudanças operacionais podem afetar a receita.",
-    cta_h2:"Explore o projeto",
-    cta_p:"Veja o código-fonte do projeto e volte para o portfólio completo.",
-    cta_github:"Ver no GitHub",
-    cta_back:"← Voltar ao Portfólio",
-    footer_role:"Analista de Dados"
-  }
+
+    en: {
+
+        nav_overview:"Overview",
+        nav_dashboard:"Dashboard",
+        nav_insights:"Insights",
+        nav_approach:"Approach",
+        nav_back:"← Portfolio",
+
+        hero_lead:"An executive Power BI solution that turns transactional e-commerce data into decisions — across sales performance, customer behavior, product performance and operational risk.",
+
+        hero_cta_dashboard:"Explore the dashboard",
+
+        hero_cta_github:"View on GitHub",
+
+        hero_meta:"Six-page report · Star schema · Power Query · DAX · What-if scenarios",
+
+        overview_h2:"From transactional data to business decisions",
+
+        overview_p:"The project combines data modeling, transformation, DAX and interactive Power BI visualizations to provide a clear view of e-commerce performance.",
+
+        overview_card1_h3:"Business problem",
+
+        overview_card1_p:"Turn transactional e-commerce data into clear, decision-ready information about sales performance, customer behavior, products and operational risk.",
+
+        overview_card2_h3:"Solution",
+
+        overview_card2_p:"A six-page Power BI analytical solution built with a star schema, Power Query transformations and DAX measures.",
+
+        overview_card3_h3:"Focus",
+
+        overview_card3_p:"Sales, customers, products, operational risk and business scenarios designed to support better decisions.",
+
+        video_h2:"Explore the dashboard in action",
+
+        video_p:"A short demonstration showing filters, dynamic insights and the cancellation-reduction scenario simulator.",
+
+        dashboard_h2:"Six views of the business",
+
+        dashboard_p:"Each page answers a different business question while maintaining a consistent analytical narrative.",
+
+        dash_card1_h3:"Overview",
+
+        dash_card1_p:"Executive summary of revenue, orders, customers and overall business performance.",
+
+        dash_card2_h3:"Sales",
+
+        dash_card2_p:"Sales trends, payment methods, order behavior and operational performance over time.",
+
+        dash_card3_h3:"Customers",
+
+        dash_card3_p:"Customer value, revenue contribution and purchasing behavior.",
+
+        dash_card4_h3:"Products",
+
+        dash_card4_p:"Product performance, pricing, sales activity and customer ratings.",
+
+        dash_card5_h3:"Business Insights",
+
+        dash_card5_p:"Identifies operational risks, customer experience signals and category-level opportunities.",
+
+        dash_card6_h3:"Forecast &amp; scenarios",
+
+        dash_card6_p:"Uses scenario simulation to evaluate the potential revenue impact of reducing cancellations.",
+
+        insights_h2:"What the analysis reveals",
+
+        insights_p:"The dashboard is designed to move beyond reporting and highlight signals that can support business action.",
+
+        tag_revenue:"Revenue",
+
+        tag_risk:"Risk",
+
+        tag_retention:"Retention",
+
+        tag_quality:"Quality",
+
+        insight1_h3:"Electronics is the leading revenue category.",
+
+        insight1_p:"Electronics generates the strongest revenue contribution within the analyzed product categories.",
+
+        insight2_h3:"Cancellation risk requires attention.",
+
+        insight2_p:"Category-level analysis highlights Electronics as an important area for operational risk monitoring.",
+
+        insight3_h3:"Customer retention remains strong.",
+
+        insight3_p:"The repeat purchase rate indicates a strong level of returning customer activity.",
+
+        insight4_h3:"Product quality signals can guide attention.",
+
+        insight4_p:"Customer ratings help identify products that may require further investigation.",
+
+        approach_h2:"Built for analytical clarity",
+
+        approach_p:"The solution combines structured data modeling, transformation and business-oriented DAX.",
+
+        tech_card1_h3:"Data &amp; modeling",
+
+        tech1_li1:"Star schema data model",
+
+        tech1_li2:"Fact and dimension tables",
+
+        tech1_li3:"Date dimension",
+
+        tech1_li4:"Customer and product dimensions",
+
+        tech1_li5:"Transactional sales fact table",
+
+        tech_card2_h3:"Power BI development",
+
+        tech2_li1:"Power Query transformations",
+
+        tech2_li2:"DAX measures",
+
+        tech2_li3:"Interactive slicers",
+
+        tech2_li4:"Dynamic business narratives",
+
+        tech2_li5:"What-if scenario analysis",
+
+        impact_h2:"From metrics to decisions",
+
+        impact_lede:"The dashboard provides a structured way to understand how sales performance, customers, products and operational risks interact.",
+
+        impact_body1:"Instead of presenting isolated KPIs, the project connects performance indicators with business context and scenario analysis.",
+
+        impact_body2:"The result is an executive-oriented analytical solution that can help identify where attention should be focused and how operational changes could affect revenue.",
+
+        cta_h2:"Explore the project",
+
+        cta_p:"View the project source and return to the complete portfolio.",
+
+        cta_github:"View GitHub",
+
+        cta_back:"← Back to Portfolio",
+
+        footer_role:"Data Analyst"
+
+    },
+
+
+    es: {
+
+        nav_overview:"Resumen",
+
+        nav_dashboard:"Dashboard",
+
+        nav_insights:"Resultados",
+
+        nav_approach:"Enfoque",
+
+        nav_back:"← Portafolio",
+
+        hero_lead:"Una solución ejecutiva en Power BI que convierte los datos transaccionales de e-commerce en decisiones — en ventas, comportamiento de clientes, desempeño de productos y riesgo operativo.",
+
+        hero_cta_dashboard:"Explorar el dashboard",
+
+        hero_cta_github:"Ver en GitHub",
+
+        hero_meta:"Informe de seis páginas · Esquema en estrella · Power Query · DAX · Escenarios what-if",
+
+        overview_h2:"De datos transaccionales a decisiones de negocio",
+
+        overview_p:"El proyecto combina modelado de datos, transformación, DAX y visualizaciones interactivas en Power BI para ofrecer una visión clara del desempeño del e-commerce.",
+
+        overview_card1_h3:"Problema de negocio",
+
+        overview_card1_p:"Convertir datos transaccionales de e-commerce en información clara y lista para la toma de decisiones sobre ventas, clientes, productos y riesgo operativo.",
+
+        overview_card2_h3:"Solución",
+
+        overview_card2_p:"Una solución analítica en Power BI de seis páginas, construida con un esquema en estrella, transformaciones en Power Query y medidas DAX.",
+
+        overview_card3_h3:"Enfoque",
+
+        overview_card3_p:"Ventas, clientes, productos, riesgo operativo y escenarios de negocio diseñados para apoyar mejores decisiones.",
+
+        video_h2:"Explora el dashboard en acción",
+
+        video_p:"Una breve demostración que muestra filtros, información dinámica y el simulador de escenarios de reducción de cancelaciones.",
+
+        dashboard_h2:"Seis vistas del negocio",
+
+        dashboard_p:"Cada página responde a una pregunta de negocio distinta, manteniendo una narrativa analítica coherente.",
+
+        dash_card1_h3:"Resumen",
+
+        dash_card1_p:"Resumen ejecutivo de ingresos, pedidos, clientes y desempeño general del negocio.",
+
+        dash_card2_h3:"Ventas",
+
+        dash_card2_p:"Tendencias de ventas, métodos de pago, comportamiento de pedidos y desempeño operativo a lo largo del tiempo.",
+
+        dash_card3_h3:"Clientes",
+
+        dash_card3_p:"Valor del cliente, contribución a los ingresos y comportamiento de compra.",
+
+        dash_card4_h3:"Productos",
+
+        dash_card4_p:"Desempeño de productos, precios, actividad de ventas y calificaciones de clientes.",
+
+        dash_card5_h3:"Información de Negocio",
+
+        dash_card5_p:"Identifica riesgos operativos, señales de experiencia del cliente y oportunidades a nivel de categoría.",
+
+        dash_card6_h3:"Pronóstico y escenarios",
+
+        dash_card6_p:"Utiliza simulación de escenarios para evaluar el posible impacto en ingresos de reducir las cancelaciones.",
+
+        insights_h2:"Lo que revela el análisis",
+
+        insights_p:"El dashboard está diseñado para ir más allá de los reportes y resaltar señales que apoyen la acción del negocio.",
+
+        tag_revenue:"Ingresos",
+
+        tag_risk:"Riesgo",
+
+        tag_retention:"Retención",
+
+        tag_quality:"Calidad",
+
+        insight1_h3:"Electrónica es la categoría con mayores ingresos.",
+
+        insight1_p:"Electrónica genera la mayor contribución de ingresos entre las categorías de productos analizadas.",
+
+        insight2_h3:"El riesgo de cancelación requiere atención.",
+
+        insight2_p:"El análisis por categoría destaca a Electrónica como un área importante para el monitoreo de riesgo operativo.",
+
+        insight3_h3:"La retención de clientes se mantiene fuerte.",
+
+        insight3_p:"La tasa de compra recurrente indica un fuerte nivel de actividad de clientes que regresan.",
+
+        insight4_h3:"Las señales de calidad de producto pueden guiar la atención.",
+
+        insight4_p:"Las calificaciones de los clientes ayudan a identificar productos que pueden requerir mayor investigación.",
+
+        approach_h2:"Diseñado para la claridad analítica",
+
+        approach_p:"La solución combina modelado de datos estructurado, transformación y DAX orientado al negocio.",
+
+        tech_card1_h3:"Datos y modelado",
+
+        tech1_li1:"Modelo de datos en esquema estrella",
+
+        tech1_li2:"Tablas de hechos y dimensiones",
+
+        tech1_li3:"Dimensión de fecha",
+
+        tech1_li4:"Dimensiones de cliente y producto",
+
+        tech1_li5:"Tabla de hechos de ventas transaccionales",
+
+        tech_card2_h3:"Desarrollo en Power BI",
+
+        tech2_li1:"Transformaciones en Power Query",
+
+        tech2_li2:"Medidas DAX",
+
+        tech2_li3:"Segmentadores interactivos",
+
+        tech2_li4:"Narrativas de negocio dinámicas",
+
+        tech2_li5:"Análisis de escenarios what-if",
+
+        impact_h2:"De las métricas a las decisiones",
+
+        impact_lede:"El dashboard ofrece una forma estructurada de entender cómo interactúan el desempeño de ventas, los clientes, los productos y los riesgos operativos.",
+
+        impact_body1:"En lugar de presentar KPIs aislados, el proyecto conecta los indicadores de desempeño con el contexto de negocio y el análisis de escenarios.",
+
+        impact_body2:"El resultado es una solución analítica orientada a nivel ejecutivo que ayuda a identificar dónde enfocar la atención y cómo los cambios operativos podrían afectar los ingresos.",
+
+        cta_h2:"Explora el proyecto",
+
+        cta_p:"Consulta el código fuente del proyecto y vuelve al portafolio completo.",
+
+        cta_github:"Ver en GitHub",
+
+        cta_back:"← Volver al Portafolio",
+
+        footer_role:"Analista de Datos"
+
+    },
+
+
+    pt: {
+
+        nav_overview:"Visão geral",
+
+        nav_dashboard:"Dashboard",
+
+        nav_insights:"Insights",
+
+        nav_approach:"Abordagem",
+
+        nav_back:"← Portfólio",
+
+        hero_lead:"Uma solução executiva em Power BI que transforma dados transacionais de e-commerce em decisões — em vendas, comportamento dos clientes, desempenho de produtos e risco operacional.",
+
+        hero_cta_dashboard:"Explorar o dashboard",
+
+        hero_cta_github:"Ver no GitHub",
+
+        hero_meta:"Relatório de seis páginas · Esquema estrela · Power Query · DAX · Cenários what-if",
+
+        overview_h2:"De dados transacionais a decisões de negócio",
+
+        overview_p:"O projeto combina modelagem de dados, transformação, DAX e visualizações interativas em Power BI para oferecer uma visão clara do desempenho do e-commerce.",
+
+        overview_card1_h3:"Problema de negócio",
+
+        overview_card1_p:"Transformar dados transacionais de e-commerce em informações claras e prontas para decisão sobre vendas, clientes, produtos e risco operacional.",
+
+        overview_card2_h3:"Solução",
+
+        overview_card2_p:"Uma solução analítica em Power BI de seis páginas, construída com esquema estrela, transformações em Power Query e medidas DAX.",
+
+        overview_card3_h3:"Foco",
+
+        overview_card3_p:"Vendas, clientes, produtos, risco operacional e cenários de negócio projetados para apoiar melhores decisões.",
+
+        video_h2:"Explore o dashboard em ação",
+
+        video_p:"Uma breve demonstração mostrando filtros, insights dinâmicos e o simulador de cenários de redução de cancelamentos.",
+
+        dashboard_h2:"Seis visões do negócio",
+
+        dashboard_p:"Cada página responde a uma pergunta de negócio diferente, mantendo uma narrativa analítica consistente.",
+
+        dash_card1_h3:"Visão geral",
+
+        dash_card1_p:"Resumo executivo de receita, pedidos, clientes e desempenho geral do negócio.",
+
+        dash_card2_h3:"Vendas",
+
+        dash_card2_p:"Tendências de vendas, métodos de pagamento, comportamento de pedidos e desempenho operacional ao longo do tempo.",
+
+        dash_card3_h3:"Clientes",
+
+        dash_card3_p:"Valor do cliente, contribuição para a receita e comportamento de compra.",
+
+        dash_card4_h3:"Produtos",
+
+        dash_card4_p:"Desempenho de produtos, preços, atividade de vendas e avaliações de clientes.",
+
+        dash_card5_h3:"Insights de Negócio",
+
+        dash_card5_p:"Identifica riscos operacionais, sinais de experiência do cliente e oportunidades por categoria.",
+
+        dash_card6_h3:"Previsão e cenários",
+
+        dash_card6_p:"Usa simulação de cenários para avaliar o possível impacto na receita ao reduzir os cancelamentos.",
+
+        insights_h2:"O que a análise revela",
+
+        insights_p:"O dashboard foi projetado para ir além dos relatórios e destacar sinais que apoiem a ação do negócio.",
+
+        tag_revenue:"Receita",
+
+        tag_risk:"Risco",
+
+        tag_retention:"Retenção",
+
+        tag_quality:"Qualidade",
+
+        insight1_h3:"Eletrônicos é a categoria líder em receita.",
+
+        insight1_p:"Eletrônicos gera a maior contribuição de receita entre as categorias de produtos analisadas.",
+
+        insight2_h3:"O risco de cancelamento requer atenção.",
+
+        insight2_p:"A análise por categoria destaca Eletrônicos como uma área importante para o monitoramento de risco operacional.",
+
+        insight3_h3:"A retenção de clientes permanece forte.",
+
+        insight3_p:"A taxa de recompra indica um forte nível de atividade de clientes recorrentes.",
+
+        insight4_h3:"Sinais de qualidade do produto podem orientar a atenção.",
+
+        insight4_p:"As avaliações dos clientes ajudam a identificar produtos que podem exigir investigação adicional.",
+
+        approach_h2:"Construído para clareza analítica",
+
+        approach_p:"A solução combina modelagem de dados estruturada, transformação e DAX orientado ao negócio.",
+
+        tech_card1_h3:"Dados e modelagem",
+
+        tech1_li1:"Modelo de dados em esquema estrela",
+
+        tech1_li2:"Tabelas de fatos e dimensões",
+
+        tech1_li3:"Dimensão de data",
+
+        tech1_li4:"Dimensões de cliente e produto",
+
+        tech1_li5:"Tabela de fatos de vendas transacionais",
+
+        tech_card2_h3:"Desenvolvimento em Power BI",
+
+        tech2_li1:"Transformações em Power Query",
+
+        tech2_li2:"Medidas DAX",
+
+        tech2_li3:"Segmentações interativas",
+
+        tech2_li4:"Narrativas de negócio dinâmicas",
+
+        tech2_li5:"Análise de cenários what-if",
+
+        impact_h2:"Das métricas às decisões",
+
+        impact_lede:"O dashboard oferece uma forma estruturada de entender como o desempenho de vendas, os clientes, os produtos e os riscos operacionais interagem.",
+
+        impact_body1:"Em vez de apresentar KPIs isolados, o projeto conecta os indicadores de desempenho com o contexto de negócio e a análise de cenários.",
+
+        impact_body2:"O resultado é uma solução analítica orientada ao nível executivo que ajuda a identificar onde focar a atenção e como mudanças operacionais podem afetar a receita.",
+
+        cta_h2:"Explore o projeto",
+
+        cta_p:"Veja o código-fonte do projeto e volte para o portfólio completo.",
+
+        cta_github:"Ver no GitHub",
+
+        cta_back:"← Voltar ao Portfólio",
+
+        footer_role:"Analista de Dados"
+
+    }
+
 };
 
+
 function applySiteLanguage(lang){
-  if(!translations[lang]) lang = "en";
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-i18n]").forEach(function(el){
-    const key = el.getAttribute("data-i18n");
-    if(translations[lang][key] !== undefined){
-      el.innerHTML = translations[lang][key];
+
+    if(!translations[lang]){
+        lang = "en";
     }
-  });
-  document.querySelectorAll(".lang-btn").forEach(function(b){
-    b.classList.toggle("active", b.dataset.lang === lang);
-  });
-  localStorage.setItem("site-lang", lang);
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+
+        const key = el.getAttribute("data-i18n");
+
+        if(translations[lang][key] !== undefined){
+
+            el.innerHTML = translations[lang][key];
+
+        }
+
+    });
+
+
+    document.querySelectorAll(".lang-btn").forEach(function(b){
+
+        b.classList.toggle(
+            "active",
+            b.dataset.lang === lang
+        );
+
+    });
+
+
+    localStorage.setItem("site-lang", lang);
+
 }
 
+
 document.querySelectorAll(".lang-btn").forEach(function(b){
-  b.addEventListener("click", function(){ applySiteLanguage(b.dataset.lang); });
+
+    b.addEventListener(
+        "click",
+        function(){
+            applySiteLanguage(b.dataset.lang);
+        }
+    );
+
 });
 
-applySiteLanguage(localStorage.getItem("site-lang") || "en");
+
+applySiteLanguage(
+    localStorage.getItem("site-lang") || "en"
+);
+
 </script>
 
 </body>
+
 </html>
