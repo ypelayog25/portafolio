@@ -215,7 +215,7 @@
         <a href="https://github.com/ypelayog25" target="_blank">GitHub</a>
       </div>
 
-      <a class="btn-download" href="Yenismara_Pelayo_Resume.pdf" target="_blank" rel="noopener" data-i18n="btn_download">⬇️ Download PDF</a>
+      <a id="cv-download" class="btn-download" href="CV_Yenismara_Pelayo_DataAnalyst_EN.pdf" target="_blank" rel="noopener" data-i18n="btn_download">⬇️ Download PDF</a>
     </div>
 
     <section>
@@ -424,14 +424,14 @@ const translations = {
     job4_dates: "Septiembre 2010 – Octubre 2014",
     job4_b1: "Brindé soporte técnico e instalación de software de escritorio para los sistemas económicos y comerciales de la empresa.",
     job4_b2: "Di mantenimiento a equipos PC, impresoras y cajas registradoras, atendiendo aproximadamente 10 tiendas de la provincia.",
-    personal_projects_h2: "Proyectos Personales",
-    personal_projects_p: "Proyectos independientes de analítica de datos desarrollados para demostrar habilidades de principio a fin en diseño de dashboards, modelado de datos y análisis de negocio.",
+    personal_projects_h2: "Personal Projects",
+    personal_projects_p: "Independent data analytics projects built to demonstrate end-to-end skills in dashboard design, data modeling and business analysis.",
     pproject1_title: "E-commerce Sales Intelligence — Power BI",
-    pproject1_desc: "Solución ejecutiva en Power BI que transforma datos transaccionales de e-commerce en decisiones: un informe de seis páginas que cubre ventas, clientes, productos y riesgo operativo, construido sobre un modelo de datos en estrella con transformaciones en Power Query, medidas DAX y simulación de escenarios what-if.",
-    pproject1_link: "📊 Ver Proyecto",
+    pproject1_desc: "Executive Power BI solution turning transactional e-commerce data into decisions: a six-page report covering sales, customers, products and operational risk, built on a star-schema data model with Power Query transformations, DAX measures and what-if scenario simulation.",
+    pproject1_link: "📊 View Project",
     pproject2_title: "E-commerce Sales Analysis Dashboard — Python (Streamlit)",
-    pproject2_desc: "Aplicación interactiva en Python/Streamlit para explorar el rendimiento de ventas, el comportamiento de los clientes y las tendencias de productos, publicada online como demo en vivo.",
-    pproject2_link: "🚀 Dashboard en Vivo",
+    pproject2_desc: "Interactive Python/Streamlit application to explore sales performance, customer behavior and product trends, published online as a live demo.",
+    pproject2_link: "🚀 Live Dashboard",
     education_h2: "Formación Académica",
     degree_title: "Ingeniería en Ciencias Informáticas",
     degree_school: "Universidad de las Ciencias Informáticas (UCI), La Habana, Cuba (2005–2010)",
@@ -487,14 +487,14 @@ const translations = {
     job4_dates: "Setembro 2010 – Outubro 2014",
     job4_b1: "Prestei apoio técnico e instalação de software de secretária para os sistemas económicos e comerciais da empresa.",
     job4_b2: "Dei manutenção a equipamentos PC, impressoras e caixas registadoras, atendendo cerca de 10 lojas da província.",
-    personal_projects_h2: "Projetos Pessoais",
-    personal_projects_p: "Projetos independentes de análise de dados desenvolvidos para demonstrar competências de ponta a ponta em design de dashboards, modelação de dados e análise de negócio.",
+    personal_projects_h2: "Personal Projects",
+    personal_projects_p: "Independent data analytics projects built to demonstrate end-to-end skills in dashboard design, data modeling and business analysis.",
     pproject1_title: "E-commerce Sales Intelligence — Power BI",
-    pproject1_desc: "Solução executiva em Power BI que transforma dados transacionais de e-commerce em decisões: um relatório de seis páginas que abrange vendas, clientes, produtos e risco operacional, construído sobre um modelo de dados em estrela com transformações no Power Query, medidas DAX e simulação de cenários what-if.",
-    pproject1_link: "📊 Ver Projeto",
+    pproject1_desc: "Executive Power BI solution turning transactional e-commerce data into decisions: a six-page report covering sales, customers, products and operational risk, built on a star-schema data model with Power Query transformations, DAX measures and what-if scenario simulation.",
+    pproject1_link: "📊 View Project",
     pproject2_title: "E-commerce Sales Analysis Dashboard — Python (Streamlit)",
-    pproject2_desc: "Aplicação interativa em Python/Streamlit para explorar o desempenho das vendas, o comportamento dos clientes e as tendências dos produtos, publicada online como demonstração ao vivo.",
-    pproject2_link: "🚀 Dashboard ao Vivo",
+    pproject2_desc: "Interactive Python/Streamlit application to explore sales performance, customer behavior and product trends, published online as a live demo.",
+    pproject2_link: "🚀 Live Dashboard",
     education_h2: "Formação Académica",
     degree_title: "Licenciatura em Engenharia de Ciências Informáticas",
     degree_school: "Universidade das Ciências Informáticas (UCI), Havana, Cuba (2005–2010)",
@@ -526,6 +526,18 @@ function applySiteLanguage(lang){
       el.innerHTML = translations[lang][key];
     }
   });
+
+  // Download the CV corresponding to the selected language.
+  const cvFiles = {
+    en: "CV_Yenismara_Pelayo_DataAnalyst_EN.pdf",
+    es: "CV_Yenismara_Pelayo_DataAnalyst_ES.pdf",
+    pt: "CV_Yenismara_Pelayo_DataAnalyst_PT.pdf"
+  };
+  const cvDownload = document.getElementById("cv-download");
+  if (cvDownload) {
+    cvDownload.href = cvFiles[lang];
+  }
+
   document.querySelectorAll(".lang-btn").forEach(function(b){
     b.classList.toggle("active", b.dataset.lang === lang);
   });
