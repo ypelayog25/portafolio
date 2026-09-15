@@ -110,6 +110,24 @@ nav a:hover{
   color:var(--accent-blue);
 }
 
+/* ---------------- MOBILE MENU TOGGLE ---------------- */
+.menu-toggle{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    flex:none;
+    border:1px solid rgba(11,107,122,0.15);
+    border-radius:8px;
+    background:#fff;
+    color:var(--accent-blue);
+    cursor:pointer;
+    padding:0;
+    font-size:1.35rem;
+    line-height:1;
+}
+
 /* ---------------- LANGUAGE SWITCH ---------------- */
 .lang-switch{
   display:flex;
@@ -429,10 +447,71 @@ section{padding:3rem 0;}
 
 footer{text-align:center;padding:2rem 0;color:var(--muted);}
 
+/* ---------------- RESPONSIVE ---------------- */
 @media (max-width:640px){
   .hero-grid{grid-template-columns:1fr;text-align:center;}
   .hero-grid .portrait{display:flex;justify-content:center;}
   .contact-grid{grid-template-columns:1fr;}
+
+  /* Mobile dropdown navigation (matches Power BI project page) */
+  nav{
+    position:relative;
+    gap:.5rem;
+    min-width:0;
+  }
+
+  nav ul{
+    display:none;
+    position:absolute;
+    top:calc(100% + .7rem);
+    right:0;
+    left:auto;
+    min-width:220px;
+    max-width:calc(100vw - 2rem);
+    flex-direction:column;
+    align-items:stretch;
+    gap:.15rem;
+    background:var(--card);
+    border:1px solid rgba(15,23,36,0.08);
+    border-radius:14px;
+    box-shadow:0 20px 44px rgba(7,59,76,0.2);
+    padding:.5rem;
+    white-space:normal;
+    z-index:60;
+  }
+
+  nav ul.is-open{
+    display:flex;
+  }
+
+  nav ul li{
+    width:100%;
+  }
+
+  nav ul a{
+    display:block;
+    width:100%;
+    padding:.7rem .85rem;
+    font-size:.9rem;
+    border-radius:9px;
+  }
+
+  nav ul a:hover{
+    background:var(--glass);
+  }
+
+  .lang-switch{
+    flex:none;
+  }
+
+  .lang-btn{
+    font-size:.7rem;
+    padding:.28rem .4rem;
+  }
+
+  .menu-toggle{
+    display:flex;
+  }
 }
 </style>
 </head>
@@ -450,7 +529,7 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
     </div>
 
     <nav>
-      <ul>
+      <ul id="primaryMenu">
         <li><a href="#about" data-i18n="nav_about">About</a></li>
         <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
         <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
@@ -463,6 +542,13 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
         <button class="lang-btn" data-lang="es">ES</button>
         <button class="lang-btn" data-lang="pt">PT</button>
       </div>
+
+      <button class="menu-toggle"
+              id="menuToggle"
+              type="button"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="primaryMenu">☰</button>
     </nav>
   </div>
 </header>
@@ -762,6 +848,57 @@ footer{text-align:center;padding:2rem 0;color:var(--muted);}
 document.querySelectorAll(".bar i").forEach(i=>{
   setTimeout(()=>{i.style.width=i.dataset.level+"%";},400);
 });
+</script>
+
+<script>
+/* ---- Mobile dropdown menu behaviour ---- */
+const menuToggle = document.getElementById("menuToggle");
+const primaryMenu = document.getElementById("primaryMenu");
+
+function closeMobileMenu(){
+  primaryMenu.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.textContent = "☰";
+}
+
+function openMobileMenu(){
+  primaryMenu.classList.add("is-open");
+  menuToggle.setAttribute("aria-expanded", "true");
+  menuToggle.textContent = "✕";
+}
+
+if(menuToggle && primaryMenu){
+
+  menuToggle.addEventListener("click", function(){
+    const isOpen = primaryMenu.classList.contains("is-open");
+    if(isOpen){
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  /* Close the menu after tapping a link */
+  primaryMenu.querySelectorAll("a").forEach(function(link){
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  /* Close the menu when tapping outside of it */
+  document.addEventListener("click", function(e){
+    const clickedInsideNav = e.target.closest("nav");
+    if(!clickedInsideNav){
+      closeMobileMenu();
+    }
+  });
+
+  /* Reset menu state if the viewport grows back to desktop */
+  window.addEventListener("resize", function(){
+    if(window.innerWidth > 640){
+      closeMobileMenu();
+    }
+  });
+
+}
 </script>
 
 <script>

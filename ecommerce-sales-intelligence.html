@@ -240,6 +240,65 @@ nav .nav-back{
     color:#fff;
 }
 
+/* ---- Mobile menu toggle (hamburger) : hidden on desktop ---- */
+.menu-toggle{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    flex:none;
+    border:1px solid rgba(11,107,122,0.15);
+    border-radius:8px;
+    background:#fff;
+    color:var(--accent-blue);
+    cursor:pointer;
+    padding:0;
+}
+
+.menu-toggle .bar{
+    display:block;
+    width:18px;
+    height:2px;
+    background:var(--accent-blue);
+    position:relative;
+    border-radius:2px;
+}
+
+.menu-toggle .bar::before,
+.menu-toggle .bar::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:18px;
+    height:2px;
+    background:var(--accent-blue);
+    border-radius:2px;
+    transition:transform .2s ease, opacity .2s ease, top .2s ease;
+}
+
+.menu-toggle .bar::before{
+    top:-6px;
+}
+
+.menu-toggle .bar::after{
+    top:6px;
+}
+
+.menu-toggle[aria-expanded="true"] .bar{
+    background:transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .bar::before{
+    top:0;
+    transform:rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .bar::after{
+    top:0;
+    transform:rotate(-45deg);
+}
+
 
 /* ============ SECTION SCAFFOLDING ============ */
 
@@ -330,6 +389,7 @@ section{
     color:var(--muted);
     font-size:1.1rem;
     line-height:1.7;
+    text-align:justify;
 }
 
 .cta-row{
@@ -472,6 +532,7 @@ section{
 .info-card p{
     color:var(--muted);
     font-size:.94rem;
+    text-align:justify;
 }
 
 
@@ -520,6 +581,7 @@ section{
 .dashboard-card-body p{
     color:var(--muted);
     font-size:.9rem;
+    text-align:justify;
 }
 
 
@@ -648,12 +710,14 @@ section{
     color:var(--accent-blue);
     line-height:1.5;
     margin-bottom:1rem;
+    text-align:justify;
 }
 
 .impact-card p.body{
     color:var(--muted);
     font-size:.98rem;
     margin-bottom:.9rem;
+    text-align:justify;
 }
 
 .impact-card p.body:last-child{
@@ -697,7 +761,7 @@ footer{
 }
 
 
-/* ============ MOBILE NAVIGATION ============ */
+/* ============ MOBILE NAVIGATION (dropdown menu) ============ */
 
 @media (max-width:640px){
 
@@ -727,25 +791,55 @@ footer{
     }
 
     nav{
+        position:relative;
         gap:.5rem;
         min-width:0;
-        overflow-x:auto;
-        scrollbar-width:none;
     }
 
-    nav::-webkit-scrollbar{
-        display:none;
-    }
-
+    /* Hide the inline text menu on mobile; it becomes a dropdown */
     nav ul{
-        flex-wrap:nowrap;
+        display:none;
+        position:absolute;
+        top:calc(100% + .7rem);
+        right:0;
+        left:auto;
+        min-width:220px;
+        max-width:calc(100vw - 2rem);
+        flex-direction:column;
+        align-items:stretch;
         gap:.15rem;
-        white-space:nowrap;
+        background:var(--surface);
+        border:1px solid rgba(15,23,36,0.08);
+        border-radius:14px;
+        box-shadow:0 20px 44px rgba(7,59,76,0.2);
+        padding:.5rem;
+        white-space:normal;
     }
 
-    nav a{
-        padding:.4rem .5rem;
-        font-size:.76rem;
+    nav ul.is-open{
+        display:flex;
+    }
+
+    nav ul li{
+        width:100%;
+    }
+
+    nav ul a{
+        display:block;
+        width:100%;
+        padding:.7rem .85rem;
+        font-size:.9rem;
+        border-radius:9px;
+    }
+
+    nav ul a:hover{
+        background:var(--glass);
+    }
+
+    nav ul .nav-back-item{
+        margin-top:.3rem;
+        padding-top:.4rem;
+        border-top:1px solid rgba(15,23,36,0.07);
     }
 
     .lang-switch{
@@ -755,6 +849,10 @@ footer{
     .lang-btn{
         font-size:.7rem;
         padding:.28rem .4rem;
+    }
+
+    .menu-toggle{
+        display:flex;
     }
 }
 
@@ -817,7 +915,7 @@ footer{
 
         <nav>
 
-            <ul>
+            <ul id="primaryMenu">
 
                 <li>
                     <a href="#overview" data-i18n="nav_overview">
@@ -869,6 +967,15 @@ footer{
                 </button>
 
             </div>
+
+            <button class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="primaryMenu">
+                <span class="bar"></span>
+            </button>
 
         </nav>
 
@@ -2044,6 +2151,63 @@ document.querySelectorAll(".lang-btn").forEach(function(b){
 applySiteLanguage(
     localStorage.getItem("site-lang") || "en"
 );
+
+
+/* ---- Mobile dropdown menu behaviour ---- */
+
+const menuToggle = document.getElementById("menuToggle");
+const primaryMenu = document.getElementById("primaryMenu");
+
+function closeMobileMenu(){
+    primaryMenu.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+function openMobileMenu(){
+    primaryMenu.classList.add("is-open");
+    menuToggle.setAttribute("aria-expanded", "true");
+}
+
+if(menuToggle && primaryMenu){
+
+    menuToggle.addEventListener("click", function(){
+
+        const isOpen = primaryMenu.classList.contains("is-open");
+
+        if(isOpen){
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+
+    });
+
+    /* Close the menu after tapping a link */
+    primaryMenu.querySelectorAll("a").forEach(function(link){
+        link.addEventListener("click", closeMobileMenu);
+    });
+
+    /* Close the menu when tapping outside of it */
+    document.addEventListener("click", function(e){
+
+        const clickedInsideNav = e.target.closest("nav");
+
+        if(!clickedInsideNav){
+            closeMobileMenu();
+        }
+
+    });
+
+    /* Reset menu state if the viewport grows back to desktop */
+    window.addEventListener("resize", function(){
+
+        if(window.innerWidth > 640){
+            closeMobileMenu();
+        }
+
+    });
+
+}
 
 </script>
 
